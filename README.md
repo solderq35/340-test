@@ -22,28 +22,43 @@ Run in terminal/Putty:
 
 ### Non Permanent URL Output
 `node main.js {PORT}`
+
 (1024 < PORT < 65535)
+
 Go to `http://flip{x}.engr.oregonstate.edu:{PORT}` to view webpage (must be on OSU VPN)
+
 Where {x} is the flip number you're currently on (1-3), and PORT is port you selected in previous step.
+
 Ex: `http://flip2.engr.oregonstate.edu:9530/`
 
 ### Permanent URL Output
 Run following in terminal:
+
 `npm i mysql express forever --save`
+
 `alias forever='./node_modules/forever/bin/forever`
+
 `forever start main.js {PORT}`
+
 `ex: forever start main.js 9530`
+
 (1024 < PORT < 65535)
+
 Pick another number if taken.
 
 Go to `http://flip{x}.engr.oregonstate.edu:{PORT}` to view webpage (must be on OSU VPN)
+
 Where {x} is the flip number you're currently on (1-3), and PORT is port you selected in previous step.
+
 Ex: `http://flip2.engr.oregonstate.edu:9530/`
 
 Delete permanent URL:
-forever list
+
+`forever list`
+
 see list of PIDs of your "forever" URL
-forever stop {PID}
+
+`forever stop {PID}`
 
 ## SELECT Page Construction Tips
 
@@ -55,10 +70,13 @@ Ex: `doctor.js`
 Enter this JS file.
 
 Change line `var query = 'SELECT * FROM {entityname}';`
+
 Ex: `var query = 'SELECT * FROM patient';`
+
 Note: The entity name in this line should be **exactly as written in your SQL database dump file**
 
 In `handleRenderingofPlanets` function:
+
 change lines
 `
 context.{new name of handlebars file} = results;
