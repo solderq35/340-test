@@ -20,7 +20,8 @@ app.set('port', process.argv[2]);
 app.set('mysql', mysql);
 app.use('/people_certs', require('./people_certs.js'));
 app.use('/people', require('./people.js'));
-app.use('/patients', require('./patients.js'));
+app.use('/doctor', require('./doctor.js'));
+app.use('/patient', require('./patient.js'));
 app.use('/', express.static('public'));
 
 app.use(function(req,res){

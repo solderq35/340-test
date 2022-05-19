@@ -1,3 +1,3 @@
 function selectPlanet(id){
-    $("#patient-selector").val(id);
+    $("#planet-selector").val(id);
 }
