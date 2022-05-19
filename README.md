@@ -78,13 +78,14 @@ Note: The entity name in this line should be **exactly as written in your SQL da
 In `handleRenderingofPlanets` function:
 
 change lines
-`
-context.{new name of handlebars file} = results;
-res.render('{new name of handlebars file}', context)
-`
+
+`context.{new name of handlebars file} = results;`
+
+`res.render('{new name of handlebars file}', context)`
 
 Ex: 
 `context.doctorhb = results`
+
 `res.render('doctorhb', context)`
 
 **Make sure that "new name of handlebars file" matches handlebars file name in step 3.**
@@ -94,8 +95,9 @@ Go to
 `main.js `file in root directory.
 
 change `app.use` lines to redirect to the correct webpage.
-`app.use('/{desired webpage name}', require('./{webpage js file}'));
-`
+
+`app.use('/{desired webpage name}', require('./{webpage js file}'));`
+
 Ex:`app.use('/doctor', require('./doctor.js'));`
 
 
