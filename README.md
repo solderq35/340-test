@@ -73,7 +73,7 @@ Change line `var query = 'SELECT * FROM {entityname}';`
 
 Ex: `var query = 'SELECT * FROM patient';`
 
-Note: The entity name in this line should be **exactly as written in your SQL database dump file**
+Note: The entity name in the `var query` line should be **exactly as written in your SQL database dump file**
 
 In `handleRenderingofPlanets` function:
 
