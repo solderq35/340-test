@@ -43,12 +43,11 @@
         <th>Age</th>  
     </thead> 
     <tbody>
-        {{#each people}} 
+        {{#each medicationhb}} 
         <tr> 
-            <td>{{fname}}</td> 
-            <td>{{lname}}</td> 
-            <td>{{homeworld}}</td> 
-            <td>{{age}}</td>
+            <td>{{medication_id}}</td> 
+            <td>{{medication_name}}</td> 
+            <td>{{manufacturer}}</td> 
             <td><button onclick="deletePerson({{id}})">Delete</button></td>
             <td><a href="/people/{{id}}">Update</a></td>
         </tr> 

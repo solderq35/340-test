@@ -16,6 +16,8 @@ Create new folder on ENGR servers.
 
 Git clone or download the repository to your new ENGR server folder.
 
+Edit the dbcon.js to contain your own credentials
+
 ### NPM Modules
 Run in terminal/Putty:
 `npm install`
