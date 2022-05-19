@@ -139,11 +139,11 @@ module.exports = function(){
     /* Adds a person, redirects to the people page after adding */
 
     router.post('/', function(req, res){
-        console.log(req.body.homeworld)
+        console.log(req.body.medicationhb)
         console.log(req.body)
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO bsg_people (fname, lname, homeworld, age) VALUES (?,?,?,?)";
-        var inserts = [req.body.fname, req.body.lname, req.body.homeworld, req.body.age];
+        var sql = "INSERT INTO medication (medication_name,manufacturer) VALUES (?,?)";
+        var inserts = [req.body.medication_name, req.body.manufacturer];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(JSON.stringify(error))
@@ -162,7 +162,7 @@ module.exports = function(){
         console.log(req.body)
         console.log(req.params.id)
         var sql = "UPDATE bsg_people SET fname=?, lname=?, homeworld=?, age=? WHERE character_id=?";
-        var inserts = [req.body.fname, req.body.lname, req.body.homeworld, req.body.age, req.params.id];
+        var inserts = [req.body.medication_name, req.body.manufacturer];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(error)
