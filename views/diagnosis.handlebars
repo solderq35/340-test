@@ -2,11 +2,27 @@
 {{#each foo}}
 {{this}}
 {{/each}}
-<h3>Add new Doctor:</h3>
-<form id="addperson" action="/doctor1" method="post">
-    Doctor First Name: <input type="text" name="doctor_first_name"><br>
-    Doctor Last Name: <input type="text" name="doctor_last_name"><br>
-    Doctor Contact: <input type="text" name="doctor_contact"><br>
+<h3>Add new Diagnosis:</h3>
+<form id="addperson" action="/diagnosis" method="post">
+    Medication ID: <select name="medication_id"> 
+        {{#each medicationhb}}
+        <option value="{{medication_id}}">{{medication_id}}</option>
+        {{/each}}
+    Patient ID: <select name="patient_id"> 
+        {{#each patienthb}}
+        <option value="{{patient_id}}">{{patient_id}}</option>
+        {{/each}}
+    Pharmacy ID: <select name="pharmacy_id"> 
+        {{#each pharmacyhd}}
+        <option value="{{pharmacy_id}}">{{pharmacy_id}}</option>
+        {{/each}}
+    Doctor ID: <select name="doctor_id"> 
+        {{#each doctor1}}
+        <option value="{{doctor_id}}">{{doctor_id}}</option>
+        {{/each}}
+    Description: <input type="text" name="description"><br>
+    Charge: <input type="text" name="charge"><br>
+    Date: <input type="datetime" name="date"><br>
     
     <input type="submit" value="Submit">
  </form>
@@ -30,16 +46,16 @@
     <input type="button" value="Search" onclick="searchPeopleByFirstName()">
 </form>
 
-<h3>Current Doctor:</h3>
+<h3>Current Diagnosis:</h3>
 <table>
     <thead> 
-        <th>Doctor ID</th> 
+        <th>Diagnosis ID</th> 
         <th>Doctor First Name</th> 
         <th>Doctor Last Name</th>
         <th>Doctor Contact</th>  
     </thead> 
     <tbody>
-        {{#each doctor1}} 
+        {{#each diagnosis}} 
         <tr> 
             <td>{{doctor_id}}</td> 
             <td>{{doctor_first_name}}</td> 
