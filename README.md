@@ -39,7 +39,7 @@ Run following in terminal:
 
 `npm i mysql express forever --save`
 
-`alias forever='./node_modules/forever/bin/forever`
+`alias forever='./node_modules/forever/bin/forever'`
 
 `forever start main.js {PORT}`
 
@@ -154,7 +154,13 @@ On lines 39 to 42, fill out the row names of table you want.
 
 On lines 47 to 49, fill in the attributes you want listed in the SELECT table.
 
+On line 51: ` <td><a href="/PRIMARYJS/{{id}}">Update</a></td>`
+
+where PRIMARYJS is the JS file you want to change
+
 #### For people.js file
+Line 6- Change `<form id="addperson" action="/PRIMARYJS" method="post">`
+
 Line 17: change `mysql.pool.query("SELECT * from ENTITYNAME", function(error, results, fields){`
 
 Where ENTITYNAME = entity name as defined in SQL data dump.
@@ -162,6 +168,12 @@ Where ENTITYNAME = entity name as defined in SQL data dump.
 Line 22: Change 	`context.HANDLEBARNAME = results;`
 
 Where HANDLEBARNAME = name of relevant handlebar file (check "views" folder)
+
+Line 82: `res.render('PRIMARYJS', context);`
+
+Line 99- change `res.render('PRIMARYJS', context);`
+
+Line 133- `res.redirect('/PRIMARYJS');`
 
 Line 142: Change 	`console.log(req.body.HANDLEBARNAME)`
 
@@ -172,3 +184,21 @@ Where ENTITYNAME and ATTRIBUTE1,2 are as they are defined in SQL data dump.
 Line 146: Change `var inserts = [req.body.ATTRIBUTE1, req.body.ATTRIBUTE2];`
 
 Line 165: `var inserts = [req.body.ATTRIBUTE1, req.body.ATTRIBUTE2];`
+
+
+#### pharmacy-insert-handlebars
+Below, let Where PRIMARYJS = file name of the JS file you want to use. In this case, `pharmacy-insert`
+
+Line 6- Change `<form id="addperson" action="/PRIMARYJS" method="post">`
+
+Line 49- change `td><a href="/PRIMARYJS/{{id}}">Update</a></td>`
+
+#### pharmacy-insert.js
+
+line 82 - change `res.render('PRIMARYJS', context);`
+
+Leaving it as `people` causes the wrong page to be shown.
+
+Line 99- change `res.render('PRIMARYJS', context);`
+
+Line 153- `res.redirect('/PRIMARYJS');`

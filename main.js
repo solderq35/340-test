@@ -21,6 +21,7 @@ app.set('mysql', mysql);
 app.use('/people_certs', require('./people_certs.js'));
 app.use('/people', require('./people.js'));
 app.use('/pharmacy-insert', require('./pharmacy-insert.js'));
+app.use('/pharmacy-insert2', require('./pharmacy-insert2.js'));
 app.use('/doctor', require('./doctor.js'));
 app.use('/medication', require('./medication.js'));
 app.use('/patient', require('./patient.js'));
