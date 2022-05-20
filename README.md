@@ -1,4 +1,5 @@
 
+
 # JeffLee Prototype
 More info (first link has mostly everything you need, second link has info on permanent URL):
 https://canvas.oregonstate.edu/courses/1870048/pages/learn-using-javascript-and-node-dot-js?module_item_id=21479576
@@ -71,9 +72,7 @@ Ex: `doctor.js`
 
 Enter this JS file.
 
-Change line `var query = 'SELECT * FROM {entityname}';`
-
-Ex: `var query = 'SELECT * FROM patient';`
+Change line `var query = 'SELECT * FROM ENTITYNAME';`
 
 Note: The entity name in the `var query` line should be **exactly as written in your SQL database dump file**
 
@@ -81,16 +80,13 @@ In `handleRenderingofPlanets` function:
 
 change lines
 
-`context.{new name of handlebars file} = results;`
+`context.{HANDLEBARNAME} = results;`
 
-`res.render('{new name of handlebars file}', context)`
+`res.render('{HANDLEBARNAME}', context)`
 
-Ex: 
-`context.doctorhb = results`
+Ex: `context.doctorhb = results;`
 
-`res.render('doctorhb', context)`
-
-**Make sure that "new name of handlebars file" matches handlebars file name in step 3.**
+**Make sure that "HANDLEBARNAME" matches handlebars file name in step 3.**
 
 2.
 Go to 
@@ -98,7 +94,7 @@ Go to
 
 change `app.use` lines to redirect to the correct webpage.
 
-`app.use('/{desired webpage name}', require('./{webpage js file}'));`
+`app.use('/{NEW_WEBPAGE_NAME}', require('./{WEBPAGE_JS_FILE_NAME}'));`
 
 Ex:`app.use('/doctor', require('./doctor.js'));`
 
@@ -106,7 +102,7 @@ Ex:`app.use('/doctor', require('./doctor.js'));`
 3. 
 Go to `views` folder.
 
-Create new handlebars file with the same {new name of handlebars file} as you set back in step 1.
+Create new handlebars file with the same {HANDLEBARNAME} as you set back in step 1.
 
 Ex: `doctorhb.handlebars`
 
@@ -135,3 +131,44 @@ e.g. if your handlebar file name for this entity is `patienthb`, write `each pat
 ```
 4. Optional:
 Consider inserting your new webpages (as defined by {entityname}.js) into public > index.html to make site easier to navigate.
+
+## INSERT Page Construction Tips
+These are the lines I edited. You can compare the originals (https://github.com/knightsamar/cs340_sample_nodejs_app/blob/master/people.js) and https://github.com/knightsamar/cs340_sample_nodejs_app/blob/master/views/people.handlebars
+
+If the line references here break due to later edits, ah well. 
+#### For views > `people.handlebars`
+
+/people webpage on Flip
+
+**Note: Filter and Delete on this page are NOT updated**
+
+In line 7, you need to edit `First name: <input type="text" name="ATTRIBUTE1"><br>`, where ATTRIBUTE1 = the first attribute you want inserted. 
+
+In line 10, you need to edit `<option value="{{ATTRIBUTE2}}">{{manufacturer}}</option>` where ATTRIBUTE2 = second attribute you want inserted.
+
+On line 9, edit this to be
+`#each HANDLEBARNAME`
+where HANDLEBARNAME = handlebar file name of the entity you want (check "views" folder).
+
+On lines 39 to 42, fill out the row names of table you want.
+
+On lines 47 to 49, fill in the attributes you want listed in the SELECT table.
+
+#### For people.js file
+Line 17: change `mysql.pool.query("SELECT * from ENTITYNAME", function(error, results, fields){`
+
+Where ENTITYNAME = entity name as defined in SQL data dump.
+
+Line 22: Change 	`context.HANDLEBARNAME = results;`
+
+Where HANDLEBARNAME = name of relevant handlebar file (check "views" folder)
+
+Line 142: Change 	`console.log(req.body.HANDLEBARNAME)`
+
+Line 145: Change `var sql = "INSERT INTO ENTITYNAME (ATTRIBUTE1,ATTRIBUTE2) VALUES (?,?)";`
+
+Where ENTITYNAME and ATTRIBUTE1,2 are as they are defined in SQL data dump.
+
+Line 146: Change `var inserts = [req.body.ATTRIBUTE1, req.body.ATTRIBUTE2];`
+
+Line 165: `var inserts = [req.body.ATTRIBUTE1, req.body.ATTRIBUTE2];`
