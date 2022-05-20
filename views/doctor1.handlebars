@@ -3,7 +3,7 @@
 {{this}}
 {{/each}}
 <h3>Add new Doctor:</h3>
-<form id="addperson" action="/doctor" method="post">
+<form id="addperson" action="/doctor1" method="post">
     Doctor First Name: <input type="text" name="doctor_first_name"><br>
     Doctor Last Name: <input type="text" name="doctor_last_name"><br>
     Doctor Contact: <input type="text" name="doctor_contact"><br>
@@ -33,18 +33,18 @@
 <h3>Current people:</h3>
 <table>
     <thead> 
-        <th>Pharmacy ID</th> 
-        <th>Pharmacy Name</th> 
-        <th>Pharmacy Address</th>
-        <th>Pharmacy Contact</th>  
+        <th>Doctor ID</th> 
+        <th>Doctor First Name</th> 
+        <th>Doctor Last Name</th>
+        <th>Doctor Contact</th>  
     </thead> 
     <tbody>
-        {{#each pharmacyhd}} 
+        {{#each doctor1}} 
         <tr> 
-            <td>{{pharmacy_id}}</td> 
-            <td>{{pharmacy_name}}</td> 
-            <td>{{pharmacy_address}}</td> 
-            <td>{{pharmacy_contact}}</td> 
+            <td>{{doctor_id}}</td> 
+            <td>{{doctor_first_name}}</td> 
+            <td>{{doctor_last_name}}</td> 
+            <td>{{doctor_contact}}</td> 
           <!---   <td><button onclick="deletePerson({{id}})">Delete</button></td> <-->
             <!---<td><a href="/pharmacy-insert2/{{id}}">Update</a></td>-->
         </tr> 

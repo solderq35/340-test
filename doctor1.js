@@ -79,7 +79,7 @@ module.exports = function(){
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
-                res.render('doctor', context);
+                res.render('doctor1', context);
             }
 
         }
@@ -96,7 +96,7 @@ module.exports = function(){
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
-                res.render('doctor', context);
+                res.render('doctor1', context);
             }
 
         }
@@ -139,7 +139,7 @@ module.exports = function(){
     /* Adds a person, redirects to the people page after adding */
 
     router.post('/', function(req, res){
-        console.log(req.body.pharmacyhd)
+        console.log(req.body.doctor1)
         console.log(req.body)
         var mysql = req.app.get('mysql');
         var sql = "INSERT INTO doctor (doctor_first_name,doctor_last_name,doctor_contact) VALUES (?,?,?)";
@@ -150,7 +150,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }else{
-                res.redirect('/doctor');
+                res.redirect('/doctor1');
             }
         });
     });
