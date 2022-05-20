@@ -27,15 +27,13 @@
         <th>Certificate</th> 
     </thead> 
     <tbody> 
-        {{#each people_with_certs}} 
+        {{#each diagnosis2}} 
         <tr> 
-            <td>{{name}}</td> 
-            <td>{{certificate}}</td> 
-            <td><button onclick="deletePeopleCert({{pid}},{{cid}})">Delete</button></td>
-            <td><a href='#' onclick='javascript: alert("You can implement it just like the Add form.")'>Update</a></td>
+            <td>{{medication_id}}</td> 
+            <td>{{pharmacy_id}}</td> 
+
         </tr>
-        {{else}}
-        <b> No people with any certifications found! Grant some using the form. </b>
+
         {{/each}} 
 
     </tbody>
