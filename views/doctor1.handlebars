@@ -30,7 +30,7 @@
     <input type="button" value="Search" onclick="searchPeopleByFirstName()">
 </form>
 
-<h3>Current people:</h3>
+<h3>Current Doctor:</h3>
 <table>
     <thead> 
         <th>Doctor ID</th> 
@@ -39,7 +39,7 @@
         <th>Doctor Contact</th>  
     </thead> 
     <tbody>
-        {{#each doctor1}} 
+        {{#each doctorhd}} 
         <tr> 
             <td>{{doctor_id}}</td> 
             <td>{{doctor_first_name}}</td> 
