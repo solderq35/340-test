@@ -79,7 +79,7 @@ module.exports = function(){
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
-                res.render('doctor1', context);
+                res.render('diagnosis', context);
             }
 
         }
@@ -96,7 +96,7 @@ module.exports = function(){
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
-                res.render('doctor1', context);
+                res.render('diagnosis', context);
             }
 
         }
@@ -142,7 +142,7 @@ module.exports = function(){
         console.log(req.body.doctor1)
         console.log(req.body)
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO doctor (doctor_first_name,doctor_last_name,doctor_contact) VALUES (?,?,?)";
+        var sql = "INSERT INTO diagnosis (doctor_first_name,doctor_last_name,doctor_contact) VALUES (?,?,?)";
         var inserts = [req.body.doctor_first_name, req.body.doctor_last_name, req.body.doctor_contact];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
@@ -150,7 +150,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }else{
-                res.redirect('/doctor1');
+                res.redirect('/diagnosis');
             }
         });
     });
