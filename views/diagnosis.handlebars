@@ -5,15 +5,15 @@
 <h3>Add new Diagnosis:</h3>
 <form id="addperson" action="/diagnosis" method="post">
     Medication ID: <select name="medication_id"> 
-        {{#each medicationhb}}
+        {{#each medication2}}
         <option value="{{medication_id}}">{{medication_id}}</option>
         {{/each}}</select><br>
     Patient ID: <select name="patient_id"> 
-        {{#each patienthb}}
+        {{#each patient2}}
         <option value="{{patient_id}}">{{patient_id}}</option>
         {{/each}}</select><br>
     Pharmacy ID: <select name="pharmacy_id"> 
-        {{#each pharmacyhd}}
+        {{#each pharmacy-insert}}
         <option value="{{pharmacy_id}}">{{pharmacy_id}}</option>
         {{/each}}</select><br>
     Doctor ID: <select name="doctor_id"> 
