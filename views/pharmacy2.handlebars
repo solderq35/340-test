@@ -3,7 +3,7 @@
 {{this}}
 {{/each}}
 <h3>Add new Pharmacy:</h3>
-<form id="addperson" action="/pharmacy-insert" method="post">
+<form id="addperson" action="/pharmacy2" method="post">
     Pharmacy Name: <input type="text" name="pharmacy_name"><br>
     Pharmacy Address: <input type="text" name="pharmacy_address"><br>
     Pharmacy Contact: <input type="text" name="pharmacy_contact"><br>
@@ -21,7 +21,7 @@
         <th>Contact</th>  
     </thead> 
     <tbody>
-        {{#each pharmacy-insert}} 
+        {{#each pharmacy2}} 
         <tr> 
             <td>{{pharmacy_id}}</td> 
             <td>{{pharmacy_name}}</td> 

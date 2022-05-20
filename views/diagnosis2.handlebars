@@ -3,18 +3,17 @@
 {{this}}
 {{/each}}
 <div>
-<h3> Associate Certificate(s) with a Person </h3>
+<h3> MediPhar </h3>
     <form id="add_people_certificates" action="/diagnosis2" method="post">
-    Person: <select name='medication_id'>
+    Medication ID: <select name='medication_id'>
         {{#each medication2}}
           <option value='{{medication_id}}'>{{medication_id}}</option>
         {{/each}}
     </select>
     <br>
-    Certificates: <select name="certs"> 
-        {{!-- We display title but the value that is submitted through the form is actually the certificate's id --}}
-        {{#each certificates}}
-        <option value="{{cid}}">{{title}}</option>
+	    Pharmacy ID: <select name='pharmacy_id'>
+        {{#each pharmacy2}}
+          <option value='{{pharmacy_id}}'>{{pharmacy_id}}</option>
         {{/each}}
     </select><br>
     <input type="submit" value="Submit">

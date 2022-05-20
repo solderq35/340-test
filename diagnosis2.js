@@ -4,7 +4,7 @@ module.exports = function(){
 
     /* get people to populate in dropdown */
     function getPeople(res, mysql, context, complete){
-        mysql.pool.query("SELECT medication_id AS medication_id, medication_id FROm medication", function(error, results, fields){
+        mysql.pool.query("SELECT medication_id AS medication_id, medication_id FROM medication", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -16,13 +16,12 @@ module.exports = function(){
 
     /* get certificates to populate in dropdown */
     function getCertificates(res, mysql, context, complete){
-        sql = "SELECT certification_id AS cid, title FROM bsg_cert";
-        mysql.pool.query(sql, function(error, results, fields){
+		mysql.pool.query("SELECT pharmacy_id AS pharmacy_id, pharmacy_id FROM pharmacy", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end()
             }
-            context.certificates = results
+            context.pharmacy2 = results;
             complete();
         });
     }

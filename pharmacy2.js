@@ -19,7 +19,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.pharmacyhd = results;
+            context.pharmacy2 = results;
             complete();
         });
     }
@@ -79,7 +79,7 @@ module.exports = function(){
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
-                res.render('pharmacy-insert', context);
+                res.render('pharmacy2', context);
             }
 
         }
@@ -96,7 +96,7 @@ module.exports = function(){
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
-                res.render('pharmacy-insert', context);
+                res.render('pharmacy2', context);
             }
 
         }
@@ -139,7 +139,7 @@ module.exports = function(){
     /* Adds a person, redirects to the people page after adding */
 
     router.post('/', function(req, res){
-        console.log(req.body.pharmacyhd)
+        console.log(req.body.pharmacy2)
         console.log(req.body)
         var mysql = req.app.get('mysql');
         var sql = "INSERT INTO pharmacy (pharmacy_name,pharmacy_address,pharmacy_contact) VALUES (?,?,?)";
@@ -150,7 +150,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }else{
-                res.redirect('/pharmacy-insert');
+                res.redirect('/pharmacy2');
             }
         });
     });
