@@ -1,0 +1,62 @@
+<html>
+{{#each foo}}
+{{this}}
+{{/each}}
+<h3>Add new Patient:</h3>
+<form id="addperson" action="/patient2" method="post">
+    Patient First Name: <input type="text" name="patient_first_name"><br>
+    Patient Last Name: <input type="text" name="patient_last_name"><br>
+	Patient Birth: <input type="date" name="patient_birth"><br>
+	Patient Address: <input type="text" name="patient_address"><br>
+	Patient Email: <input type="text" name="patient_email"><br>
+	Patient Contact: <input type="text" name="patient_contact"><br>
+    <input type="submit" value="Submit">
+ </form>
+<br/>
+
+<form id='filter_people' action='' method=''>
+<!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <label> Filter by homeworld </label>
+    <select id='homeworld_filter' name="homeworld"> 
+        {{#each planets}}
+        <option value="{{id}}">{{name}}</option>
+        {{/each}}
+    </select><br>
+  <!---  <input type="button" value="Filter" onclick="filterPeopleByHomeworld()">-->
+</form>
+
+<form id='search_people' action='' method=''>
+<!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <label> Search people for first name starting with:</label>
+    <input id='first_name_search_string' type='text' name='first_name_search_string' value=''>
+    <input type="button" value="Search" onclick="searchPeopleByFirstName()">
+</form>
+
+<h3>Current Patients:</h3>
+<table>
+    <thead> 
+        <th>ID</th> 
+        <th>First Name</th> 
+        <th>Last Name</th> 
+		<th>Birthdate</th> 
+		<th>Address</th> 
+		<th>Email</th> 
+		<th>Contact</th> 
+    </thead> 
+    <tbody>
+        {{#each patient2}} 
+        <tr> 
+            <td>{{patient_id}}</td> 
+            <td>{{patient_first_name}}</td> 
+            <td>{{patient_last_name}}</td> 
+			<td>{{patient_birthdate}}</td> 
+			<td>{{patient_address}}</td> 
+			<td>{{patient_email}}</td> 
+			<td>{{patient_contact}}</td> 
+          <!---   <td><button onclick="deletePerson({{id}})">Delete</button></td> <-->
+            <!---<td><a href="/medication2/{{id}}">Update</a></td>-->
+        </tr> 
+        {{/each}} 
+    </tbody> 
+</table> 
+</html>

@@ -16,6 +16,7 @@
 <!--- this form does not submit directly, the button handles all the interaction with backend -->
     <label> Filter by homeworld </label>
     <select id='homeworld_filter' name="homeworld"> 
+
         {{#each planets}}
         <option value="{{id}}">{{name}}</option>
         {{/each}}
