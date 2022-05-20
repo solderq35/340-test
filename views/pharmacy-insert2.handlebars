@@ -20,7 +20,7 @@
         <option value="{{id}}">{{name}}</option>
         {{/each}}
     </select><br>
-    <input type="button" value="Filter" onclick="filterPeopleByHomeworld()">
+  <!---  <input type="button" value="Filter" onclick="filterPeopleByHomeworld()">-->
 </form>
 
 <form id='search_people' action='' method=''>
@@ -45,7 +45,7 @@
             <td>{{pharmacy_name}}</td> 
             <td>{{pharmacy_address}}</td> 
             <td>{{pharmacy_contact}}</td> 
-            <td><button onclick="deletePerson({{id}})">Delete</button></td>
+          <!---   <td><button onclick="deletePerson({{id}})">Delete</button></td> <-->
             <td><a href="/pharmacy-insert2/{{id}}">Update</a></td>
         </tr> 
         {{/each}} 
