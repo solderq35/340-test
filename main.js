@@ -23,6 +23,7 @@ app.use('/people', require('./people.js'));
 app.use('/doctor', require('./doctor.js'));
 app.use('/medication', require('./medication.js'));
 app.use('/patient', require('./patient.js'));
+app.use('/pharmacy', require('./pharmacy.js'));
 app.use('/', express.static('public'));
 
 app.use(function(req,res){
