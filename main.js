@@ -30,6 +30,7 @@ app.use('/patient2', require('./patient2.js'));
 //app.use('/patient', require('./patient.js'));
 //app.use('/pharmacy', require('./pharmacy.js'));
 app.use('/diagnosis', require('./diagnosis.js'));
+app.use('/mediphar', require('./mediphar.js'));
 app.use('/', express.static('public'));
 
 app.use(function(req,res){
