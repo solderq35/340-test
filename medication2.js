@@ -142,7 +142,7 @@ module.exports = function(){
         console.log(req.body.medication2)
         console.log(req.body)
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO medication2 (medication_name,manufacturer) VALUES (?,?)";
+        var sql = "INSERT INTO medication (medication_name,manufacturer) VALUES (?,?)";
         var inserts = [req.body.medication_name, req.body.manufacturer];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
