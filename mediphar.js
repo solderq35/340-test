@@ -14,7 +14,7 @@ module.exports = function(){
     }
 
     function getPeople(res, mysql, context, complete){
-        mysql.pool.query("SELECT * from pharmacy", function(error, results, fields){
+        mysql.pool.query("SELECT * from medication_pharmacy", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -79,7 +79,7 @@ module.exports = function(){
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
-                res.render('pharmacy-insert', context);
+                res.render('mediphar', context);
             }
 
         }
@@ -96,7 +96,7 @@ module.exports = function(){
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
-                res.render('pharmacy-insert', context);
+                res.render('mediphar', context);
             }
 
         }
@@ -142,7 +142,7 @@ module.exports = function(){
         console.log(req.body.pharmacyhd)
         console.log(req.body)
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO pharmacy (pharmacy_name,pharmacy_address,pharmacy_contact) VALUES (?,?,?)";
+        var sql = "INSERT INTO medication_pharmacy (medicaton_id,pharmacy_id) VALUES (?,?)";
         var inserts = [req.body.pharmacy_name, req.body.pharmacy_address, req.body.pharmacy_contact];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
@@ -150,7 +150,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }else{
-                res.redirect('/pharmacy-insert');
+                res.redirect('/mediphar');
             }
         });
     });
