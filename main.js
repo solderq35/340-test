@@ -23,6 +23,7 @@ app.use('/people', require('./people.js'));
 app.use('/pharmacy-insert', require('./pharmacy-insert.js'));
 app.use('/pharmacy-insert2', require('./pharmacy-insert2.js'));
 app.use('/doctor', require('./doctor.js'));
+app.use('/doctor1', require('./doctor1.js'));
 app.use('/medication', require('./medication.js'));
 app.use('/medication2', require('./medication2.js'));
 app.use('/patient', require('./patient.js'));

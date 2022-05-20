@@ -2,11 +2,11 @@
 {{#each foo}}
 {{this}}
 {{/each}}
-<h3>Add new Pharmacy:</h3>
-<form id="addperson" action="/pharmacy-insert" method="post">
-    Pharmacy Name: <input type="text" name="pharmacy_name"><br>
-    Pharmacy Address: <input type="text" name="pharmacy_address"><br>
-    Pharmacy Contact: <input type="text" name="pharmacy_contact"><br>
+<h3>Add new Doctor:</h3>
+<form id="addperson" action="/doctor1" method="post">
+    Doctor First Name: <input type="text" name="doctor_first_name"><br>
+    Doctor Last Name: <input type="text" name="doctor_last_name"><br>
+    Doctor Contact: <input type="text" name="doctor_contact"><br>
     
     <input type="submit" value="Submit">
  </form>
@@ -20,6 +20,7 @@
         <option value="{{id}}">{{name}}</option>
         {{/each}}
     </select><br>
+  <!---  <input type="button" value="Filter" onclick="filterPeopleByHomeworld()">-->
 </form>
 
 <form id='search_people' action='' method=''>
@@ -29,21 +30,23 @@
     <input type="button" value="Search" onclick="searchPeopleByFirstName()">
 </form>
 
-<h3>Current people:</h3>
+<h3>Current Doctor:</h3>
 <table>
     <thead> 
-        <th>Pharmacy ID</th> 
-        <th>Pharmacy Name</th> 
-        <th>Pharmacy Address</th>
-        <th>Pharmacy Contact</th>  
+        <th>Doctor ID</th> 
+        <th>Doctor First Name</th> 
+        <th>Doctor Last Name</th>
+        <th>Doctor Contact</th>  
     </thead> 
     <tbody>
-        {{#each pharmacyhd}} 
+        {{#each doctor1}} 
         <tr> 
-            <td>{{pharmacy_id}}</td> 
-            <td>{{pharmacy_name}}</td> 
-            <td>{{pharmacy_address}}</td> 
-            <td>{{pharmacy_contact}}</td> 
+            <td>{{doctor_id}}</td> 
+            <td>{{doctor_first_name}}</td> 
+            <td>{{doctor_last_name}}</td> 
+            <td>{{doctor_contact}}</td> 
+          <!---   <td><button onclick="deletePerson({{id}})">Delete</button></td> <-->
+            <!---<td><a href="/pharmacy-insert2/{{id}}">Update</a></td>-->
         </tr> 
         {{/each}} 
     </tbody> 

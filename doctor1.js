@@ -14,12 +14,12 @@ module.exports = function(){
     }
 
     function getPeople(res, mysql, context, complete){
-        mysql.pool.query("SELECT * from pharmacy", function(error, results, fields){
+        mysql.pool.query("SELECT * from doctor", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.pharmacyhd = results;
+            context.doctorhd = results;
             complete();
         });
     }
@@ -79,7 +79,7 @@ module.exports = function(){
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
-                res.render('pharmacy-insert', context);
+                res.render('doctor1', context);
             }
 
         }
@@ -96,7 +96,7 @@ module.exports = function(){
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
-                res.render('pharmacy-insert', context);
+                res.render('doctor1', context);
             }
 
         }
@@ -139,18 +139,18 @@ module.exports = function(){
     /* Adds a person, redirects to the people page after adding */
 
     router.post('/', function(req, res){
-        console.log(req.body.pharmacyhd)
+        console.log(req.body.doctor1)
         console.log(req.body)
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO pharmacy (pharmacy_name,pharmacy_address,pharmacy_contact) VALUES (?,?,?)";
-        var inserts = [req.body.pharmacy_name, req.body.pharmacy_address, req.body.pharmacy_contact];
+        var sql = "INSERT INTO doctor (doctor_first_name,doctor_last_name,doctor_contact) VALUES (?,?,?)";
+        var inserts = [req.body.doctor_first_name, req.body.doctor_last_name, req.body.doctor_contact];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(JSON.stringify(error))
                 res.write(JSON.stringify(error));
                 res.end();
             }else{
-                res.redirect('/pharmacy-insert');
+                res.redirect('/doctor1');
             }
         });
     });
