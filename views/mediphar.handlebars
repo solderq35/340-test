@@ -1,0 +1,58 @@
+<html>
+{{#each foo}}
+{{this}}
+{{/each}}
+<h3>Add new Medication & Pharmacy:</h3>
+<form id="addperson" action="/mediphar" method="post">
+    Medication ID: <select name="medication_id"> 
+        {{#each medicationhb}}
+        <option value="{{medication_id}}">{{medication_id}}</option>
+        {{/each}}</select><br>
+    Pharmacy ID: <select name="pharmacy_id"> 
+        {{#each pharmacyhd}}
+        <option value="{{pharmacy_id}}">{{pharmacy_id}}</option>
+        {{/each}}</select><br>
+    <input type="submit" value="Submit">
+ </form>
+<br/>
+
+<form id='filter_people' action='' method=''>
+<!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <label> Filter by homeworld </label>
+    <select id='homeworld_filter' name="homeworld"> 
+        {{#each planets}}
+        <option value="{{id}}">{{name}}</option>
+        {{/each}}
+    </select><br>
+  <!---  <input type="button" value="Filter" onclick="filterPeopleByHomeworld()">-->
+</form>
+
+<form id='search_people' action='' method=''>
+<!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <label> Search people for first name starting with:</label>
+    <input id='first_name_search_string' type='text' name='first_name_search_string' value=''>
+    <input type="button" value="Search" onclick="searchPeopleByFirstName()">
+</form>
+
+<h3>Current Doctor:</h3>
+<table>
+    <thead> 
+        <th>Doctor ID</th> 
+        <th>Doctor First Name</th> 
+        <th>Doctor Last Name</th>
+        <th>Doctor Contact</th>  
+    </thead> 
+    <tbody>
+        {{#each doctor1}} 
+        <tr> 
+            <td>{{doctor_id}}</td> 
+            <td>{{doctor_first_name}}</td> 
+            <td>{{doctor_last_name}}</td> 
+            <td>{{doctor_contact}}</td> 
+          <!---   <td><button onclick="deletePerson({{id}})">Delete</button></td> <-->
+            <!---<td><a href="/pharmacy-insert2/{{id}}">Update</a></td>-->
+        </tr> 
+        {{/each}} 
+    </tbody> 
+</table> 
+</html>
