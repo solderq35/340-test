@@ -150,7 +150,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }else{
-                res.redirect('/people');
+                res.redirect('/pharmacy-insert');
             }
         });
     });
