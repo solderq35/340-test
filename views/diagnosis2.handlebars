@@ -4,10 +4,10 @@
 {{/each}}
 <div>
 <h3> Associate Certificate(s) with a Person </h3>
-    <form id="add_people_certificates" action="/people_certs" method="post">
-    Person: <select name="pid">
-        {{#each people}}
-          <option value="{{pid}}">{{fname}} {{lname}}</option>
+    <form id="add_people_certificates" action="/diagnosis2" method="post">
+    Person: <select name='medication_id'>
+        {{#each medication2}}
+          <option value='{{medication_id}}'>{{medication_id}}</option>
         {{/each}}
     </select>
     <br>

@@ -5,9 +5,9 @@
 <h3>Add new people:</h3>
 <form id="addperson" action="/people" method="post">
     First name: <input type="text" name="medication_name"><br>
-    Homeworld: <select name="manufacturer"> 
-        {{#each medicationhb}}
-        <option value="{{manufacturer}}">{{manufacturer}}</option>
+    Homeworld: <select name="pharmacy_name"> 
+        {{#each pharmacy2}}
+        <option value="{{pharmacy_name}}">{{pharmacy_name}}</option>
         {{/each}}
     </select><br>
     
@@ -47,6 +47,26 @@
             <td>{{medication_id}}</td> 
             <td>{{medication_name}}</td> 
             <td>{{manufacturer}}</td> 
+            <td><button onclick="deletePerson({{id}})">Delete</button></td>
+            <td><a href="/people/{{id}}">Update</a></td>
+        </tr> 
+        {{/each}} 
+    </tbody> 
+</table> 
+<table>
+    <thead> 
+        <th>First Name</th> 
+        <th>Last Name</th> 
+		<th>Homeworld</th>
+        <th>Age</th>  
+    </thead> 
+    <tbody>
+        {{#each pharmacy2}} 
+        <tr> 
+            <td>{{pharmacy_id}}</td> 
+            <td>{{pharmacy_name}}</td> 
+            <td>{{pharmacy_address}}</td> 
+			<td>{{pharmacy_contact}}</td> 
             <td><button onclick="deletePerson({{id}})">Delete</button></td>
             <td><a href="/people/{{id}}">Update</a></td>
         </tr> 
