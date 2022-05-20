@@ -72,7 +72,7 @@ module.exports = function(){
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deleteperson.js","filterpeople.js","searchpeople.js"];
+        context.jsscripts = ["deleteperson.js","filterpeople.js","searchpatients.js"];
         var mysql = req.app.get('mysql');
         getPeople(res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
@@ -84,36 +84,19 @@ module.exports = function(){
 
         }
     });
-
-    /*Display all people from a given homeworld. Requires web based javascript to delete users with AJAX*/
-    router.get('/filter/:homeworld', function(req, res){
-        var callbackCount = 0;
-        var context = {};
-        context.jsscripts = ["deleteperson.js","filterpeople.js","searchpeople.js"];
-        var mysql = req.app.get('mysql');
-        getPeoplebyHomeworld(req,res, mysql, context, complete);
-        getPlanets(res, mysql, context, complete);
-        function complete(){
-            callbackCount++;
-            if(callbackCount >= 2){
-                res.render('patient2', context);
-            }
-
-        }
-    });
-
+    
     /*Display all people whose name starts with a given string. Requires web based javascript to delete users with AJAX */
     router.get('/search/:s', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deleteperson.js","filterpeople.js","searchpeople.js"];
+        context.jsscripts = ["deleteperson.js","filterpeople.js","searchpatients.js"];
         var mysql = req.app.get('mysql');
         getPeopleWithNameLike(req, res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
-                res.render('people', context);
+                res.render('patient2', context);
             }
         }
     });
