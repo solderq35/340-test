@@ -19,7 +19,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.medication2 = results;
+            context.medication = results;
             complete();
         });
     }
@@ -79,7 +79,7 @@ module.exports = function(){
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
-                res.render('medication2', context);
+                res.render('medication', context);
             }
 
         }
@@ -96,7 +96,7 @@ module.exports = function(){
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
-                res.render('medication2', context);
+                res.render('medication', context);
             }
 
         }
@@ -139,7 +139,7 @@ module.exports = function(){
     /* Adds a person, redirects to the people page after adding */
 
     router.post('/', function(req, res){
-        console.log(req.body.medication2)
+        console.log(req.body.medication)
         console.log(req.body)
         var mysql = req.app.get('mysql');
         var sql = "INSERT INTO medication (medication_name,manufacturer) VALUES (?,?)";
@@ -150,7 +150,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }else{
-                res.redirect('/medication2');
+                res.redirect('/medication');
             }
         });
     });

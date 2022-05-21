@@ -1,27 +1,6 @@
 module.exports = function(){
     var express = require('express');
     var router = express.Router();
-	
-    function servePlanets(req, res){
-        console.log("You asked me for some planets?")
-        var query = 'SELECT * FROM medication_pharmacy';
-        var mysql = req.app.get('mysql');
-        var context = {};
-
-        function handleRenderingOfPlanets(error, results, fields){
-          console.log(error)
-          console.log(results)
-          console.log(fields)
-          //take the results of that query and store ti inside context
-          context.mediphar = results;
-          //pass it to handlebars to put inside a file
-          res.render('mediphar', context)
-        }
-        //execute the sql query
-        mysql.pool.query(query, handleRenderingOfPlanets)
-
-        //res.send('Here you go!');
-    }
 
  //   router.get('/', servePlanets);
     /* get people to populate in dropdown */
@@ -32,6 +11,17 @@ module.exports = function(){
                 res.end();
             }
             context.medication2 = results;
+            complete();
+        });
+    }
+
+    function getPeople2(res, mysql, context, complete){
+        mysql.pool.query("SELECT * from medication_pharmacy", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.mediphar = results;
             complete();
         });
     }
@@ -106,27 +96,28 @@ module.exports = function(){
     /*Display all people. Requires web based javascript to delete users with AJAX*/
 
 
-
-    function servePlanets2(req, res){
+router.get('/', function(req, res){
+   // function servePlanets2(req, res){
 		
         var callbackCount = 0;
         var context = {};
         context.jsscripts = ["deleteperson.js","filterpeople.js","searchpeople.js"];
         var mysql = req.app.get('mysql');
-		servePlanets(res,mysql,context,complete);
+		//servePlanets(res,mysql,context,complete);
         getPeople(res, mysql, context, complete);
         getCertificates(res, mysql, context, complete);
+		getPeople2(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 2){
+            if(callbackCount >= 3){
                 res.render('mediphar', context);
             }
 
         }
-    }
+    });
 
 //router.get('/',servePlanets2);
-router.get('/',servePlanets);
+//router.get('/',servePlanets);
 
     /*Display all people from a given homeworld. Requires web based javascript to delete users with AJAX*/
     router.get('/filter/:homeworld', function(req, res){

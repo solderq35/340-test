@@ -1,6 +1,52 @@
 module.exports = function(){
     var express = require('express');
     var router = express.Router();
+	
+    function servePlanets(req, res){
+        console.log("You asked me for some planets?")
+        var query = 'SELECT * FROM medication_pharmacy';
+        var mysql = req.app.get('mysql');
+        var context = {};
+
+        function handleRenderingOfPlanets(error, results, fields){
+          console.log(error)
+          console.log(results)
+          console.log(fields)
+          //take the results of that query and store ti inside context
+          context.mediphar = results;
+          //pass it to handlebars to put inside a file
+          res.render('mediphar', context)
+        }
+        //execute the sql query
+        mysql.pool.query(query, handleRenderingOfPlanets)
+
+        //res.send('Here you go!');
+    }
+
+ //   router.get('/', servePlanets);
+    /* get people to populate in dropdown */
+    function getPeople(res, mysql, context, complete){
+        mysql.pool.query("SELECT medication_id AS medication_id, medication_id FROM medication", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.medication2 = results;
+            complete();
+        });
+    }
+
+    /* get certificates to populate in dropdown */
+    function getCertificates(res, mysql, context, complete){
+		mysql.pool.query("SELECT pharmacy_id AS pharmacy_id, pharmacy_id FROM pharmacy", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end()
+            }
+            context.pharmacy2 = results;
+            complete();
+        });
+    }
 
     function getPlanets(res, mysql, context, complete){
         mysql.pool.query("SELECT planet_id as id, name FROM bsg_planets", function(error, results, fields){
@@ -9,17 +55,6 @@ module.exports = function(){
                 res.end();
             }
             context.planets  = results;
-            complete();
-        });
-    }
-
-    function getPeople(res, mysql, context, complete){
-        mysql.pool.query("SELECT * from doctor", function(error, results, fields){
-            if(error){
-                res.write(JSON.stringify(error));
-                res.end();
-            }
-            context.doctor1 = results;
             complete();
         });
     }
@@ -66,37 +101,45 @@ module.exports = function(){
             complete();
         });
     }
+	
 
     /*Display all people. Requires web based javascript to delete users with AJAX*/
 
-    router.get('/', function(req, res){
+
+
+    function servePlanets2(req, res){
+		
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deleteperson.js","filterpeople.js","searchdoctor.js"];
+        context.jsscripts = ["deleteperson.js","filterpeople.js","searchpeople.js"];
         var mysql = req.app.get('mysql');
+		servePlanets(res,mysql,context,complete);
         getPeople(res, mysql, context, complete);
-        getPlanets(res, mysql, context, complete);
+        getCertificates(res, mysql, context, complete);
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
-                res.render('doctor1', context);
+                res.render('mediphar', context);
             }
 
         }
-    });
+    }
+
+//router.get('/',servePlanets2);
+router.get('/',servePlanets);
 
     /*Display all people from a given homeworld. Requires web based javascript to delete users with AJAX*/
     router.get('/filter/:homeworld', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deleteperson.js","filterpeople.js","searchdoctor.js"];
+        context.jsscripts = ["deleteperson.js","filterpeople.js","searchpeople.js"];
         var mysql = req.app.get('mysql');
         getPeoplebyHomeworld(req,res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
-                res.render('doctor1', context);
+                res.render('mediphar', context);
             }
 
         }
@@ -106,21 +149,21 @@ module.exports = function(){
     router.get('/search/:s', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deleteperson.js","filterpeople.js","searchdoctor.js"];
+        context.jsscripts = ["deleteperson.js","filterpeople.js","searchpeople.js"];
         var mysql = req.app.get('mysql');
         getPeopleWithNameLike(req, res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
-                res.render('doctor1', context);
+                res.render('people', context);
             }
         }
     });
 
     /* Display one person for the specific purpose of updating people */
 
-    router.get('/:id', function(req, res){
+     router.get('/:id', function(req, res){
         callbackCount = 0;
         var context = {};
         context.jsscripts = ["selectedplanet.js", "updateperson.js"];
@@ -139,18 +182,18 @@ module.exports = function(){
     /* Adds a person, redirects to the people page after adding */
 
     router.post('/', function(req, res){
-        console.log(req.body.doctor1)
+        console.log(req.body.medicationphar)
         console.log(req.body)
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO doctor (doctor_first_name,doctor_last_name,doctor_contact) VALUES (?,?,?)";
-        var inserts = [req.body.doctor_first_name, req.body.doctor_last_name, req.body.doctor_contact];
+        var sql = "INSERT INTO medication_pharmacy (medication_id,pharmacy_id) VALUES (?,?)";
+        var inserts = [req.body.medication_id, req.body.pharmacy_id];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(JSON.stringify(error))
                 res.write(JSON.stringify(error));
                 res.end();
             }else{
-                res.redirect('/doctor1');
+                res.redirect('/mediphar');
             }
         });
     });
@@ -162,7 +205,7 @@ module.exports = function(){
         console.log(req.body)
         console.log(req.params.id)
         var sql = "UPDATE bsg_people SET fname=?, lname=?, homeworld=?, age=? WHERE character_id=?";
-        var inserts = [req.body.pharmacy_name, req.body.pharmacy_address, req.body.pharmacy_contact];
+        var inserts = [req.body.medication_id, req.body.pharmacy_id];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(error)
@@ -192,6 +235,8 @@ module.exports = function(){
             }
         })
     })
+
+
 
     return router;
 }();

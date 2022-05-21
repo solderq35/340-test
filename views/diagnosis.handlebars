@@ -3,60 +3,65 @@
 {{this}}
 {{/each}}
 <h3>Add new Diagnosis:</h3>
-<form id="addperson" action="/diagnosis" method="post">
-    Medication ID: <select name="medication_id"> 
+    <form id="add_people_certificates" action="/diagnosis" method="post">
+    Medication ID: <select name='medication_id'>
         {{#each medication2}}
-        <option value="{{medication_id}}">{{medication_id}}</option>
-        {{/each}}</select><br>
-    Patient ID: <select name="patient_id"> 
+          <option value='{{medication_id}}'>{{medication_id}}</option>
+        {{/each}}
+    </select>
+	 <br>
+	    Patient ID: <select name='patient_id'>
         {{#each patient2}}
-        <option value="{{patient_id}}">{{patient_id}}</option>
-        {{/each}}</select><br>
-    Pharmacy ID: <select name="pharmacy_id"> 
-        {{#each pharmacy-insert}}
-        <option value="{{pharmacy_id}}">{{pharmacy_id}}</option>
-        {{/each}}</select><br>
-    Doctor ID: <select name="doctor_id"> 
+          <option value='{{patient_id}}'>{{patient_id}}</option>
+        {{/each}}
+    </select><br>
+		 <br>
+	    Doctor ID: <select name='doctor_id'>
         {{#each doctor1}}
-        <option value="{{doctor_id}}">{{doctor_id}}</option>
-        {{/each}}</select><br>
-    Description: <input type="text" name="description"><br>
-    Charge: <input type="text" name="charge"><br>
-    Date: <input type="date" name="diagnosis_date"><br>
-    
+          <option value='{{doctor_id}}'>{{doctor_id}}</option>
+        {{/each}}
+    </select><br>
+    <br>
+	    Pharmacy ID: <select name='pharmacy_id'>
+        {{#each pharmacy2}}
+          <option value='{{pharmacy_id}}'>{{pharmacy_id}}</option>
+        {{/each}}
+    </select><br>
+
+	Description: <input type="text" name="description"><br>
+	Charge: <input type="int" name="charge"><br>
+	Date: <input type="date" name="diagnosis_date"><br>
     <input type="submit" value="Submit">
  </form>
 <br/>
 
+
 <h3>Current Diagnosis:</h3>
 <table>
     <thead> 
-        <th>Diagnosis ID</th> 
+		<th>Diagnosis ID </th>
         <th>Medication ID</th> 
-        <th>Patient ID</th>
-        <th>Pharmacy ID</th>  
-		<th>Doctor ID</th>  
-		<th>Charge</th>  
-		<th>Description</th>
-		<th>Date</th>		
+        <th>Patient ID</th> 
+		<th>Doctor ID</th> 
+		<th>Pharmacy ID</th> 
+		<th>Description</th> 
+		<th>Charge</th> 
+		<th>Diagnosis Date</th> 
     </thead> 
     <tbody>
         {{#each diagnosis}} 
         <tr> 
-            <td>{{diagnosis_id}}</td> 
+			<td>{{diagnosis_id}}</td> 
             <td>{{medication_id}}</td> 
-            <td>{{patient_id}}</td> 
-            <td>{{pharmacy_id}}</td> 
+			<td>{{patient_id}}</td> 
 			<td>{{doctor_id}}</td> 
-			<td>{{charge}}</td> 
+            <td>{{pharmacy_id}}</td> 
 			<td>{{description}}</td> 
+			<td>{{charge}}</td> 
 			<td>{{diagnosis_date}}</td> 
-          <!---   <td><button onclick="deletePerson({{id}})">Delete</button></td> <-->
-            <!---<td><a href="/pharmacy-insert2/{{id}}">Update</a></td>-->
         </tr> 
         {{/each}} 
     </tbody> 
 </table> 
-		
 
 </html>

@@ -1,7 +1,11 @@
 add citations for the example node github from knight to the readme or report
 
-Works (Select and Insert): patient, doctor, medication, pharmacy
+add sql ddq and dmq to his repo
 
-Not work: diagnosis, medication_pharmacy
+hard to tell what id points to what for diagnosis-more select tables? two attributes on one dropdown?
 
-Search/Filter: not working for any
+composite or primary key on intersection table
+
+repeats
+
+date becoming datetime (remove hours/min/sec)

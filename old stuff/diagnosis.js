@@ -2,74 +2,6 @@ module.exports = function(){
     var express = require('express');
     var router = express.Router();
 
- //   router.get('/', servePlanets);
-    /* get people to populate in dropdown */
-    function getPeople(res, mysql, context, complete){
-        mysql.pool.query("SELECT medication_id AS medication_id, medication_id FROM medication", function(error, results, fields){
-            if(error){
-                res.write(JSON.stringify(error));
-                res.end();
-            }
-            context.medication2 = results;
-            complete();
-        });
-    }
-
-    function getPeople2(res, mysql, context, complete){
-        mysql.pool.query("SELECT * from patient", function(error, results, fields){
-            if(error){
-                res.write(JSON.stringify(error));
-                res.end();
-            }
-            context.patient2 = results;
-            complete();
-        });
-    }
-	    function getPeople3(res, mysql, context, complete){
-        mysql.pool.query("SELECT * from doctor", function(error, results, fields){
-            if(error){
-                res.write(JSON.stringify(error));
-                res.end();
-            }
-            context.doctor1 = results;
-            complete();
-        });
-    }
-	
-		    function getPeople4(res, mysql, context, complete){
-        mysql.pool.query("SELECT * from pharmacy", function(error, results, fields){
-            if(error){
-                res.write(JSON.stringify(error));
-                res.end();
-            }
-            context.pharmacy2 = results;
-            complete();
-        });
-    }
-	
-			    function getPeople5(res, mysql, context, complete){
-        mysql.pool.query("SELECT * from diagnosis", function(error, results, fields){
-            if(error){
-                res.write(JSON.stringify(error));
-                res.end();
-            }
-            context.diagnosis2 = results;
-            complete();
-        });
-    }
-
-    /* get certificates to populate in dropdown */
-    function getCertificates(res, mysql, context, complete){
-		mysql.pool.query("SELECT pharmacy_id AS pharmacy_id, pharmacy_id FROM pharmacy", function(error, results, fields){
-            if(error){
-                res.write(JSON.stringify(error));
-                res.end()
-            }
-            context.pharmacy2 = results;
-            complete();
-        });
-    }
-
     function getPlanets(res, mysql, context, complete){
         mysql.pool.query("SELECT planet_id as id, name FROM bsg_planets", function(error, results, fields){
             if(error){
@@ -77,6 +9,17 @@ module.exports = function(){
                 res.end();
             }
             context.planets  = results;
+            complete();
+        });
+    }
+
+    function getPeople(res, mysql, context, complete){
+        mysql.pool.query("SELECT * from diagnosis", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.doctorhd = results;
             complete();
         });
     }
@@ -123,36 +66,24 @@ module.exports = function(){
             complete();
         });
     }
-	
 
     /*Display all people. Requires web based javascript to delete users with AJAX*/
 
-
-router.get('/', function(req, res){
-   // function servePlanets2(req, res){
-		
+    router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
         context.jsscripts = ["deleteperson.js","filterpeople.js","searchpeople.js"];
         var mysql = req.app.get('mysql');
-		//servePlanets(res,mysql,context,complete);
         getPeople(res, mysql, context, complete);
-		getPeople2(res, mysql, context, complete);
-		getPeople3(res, mysql, context, complete);
-		getPeople4(res, mysql, context, complete);
-		getPeople5(res, mysql, context, complete);
-		// getCertificates(res, mysql, context, complete);
+        getPlanets(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 5){
-                res.render('diagnosis2', context);
+            if(callbackCount >= 2){
+                res.render('diagnosis', context);
             }
 
         }
     });
-
-//router.get('/',servePlanets2);
-//router.get('/',servePlanets);
 
     /*Display all people from a given homeworld. Requires web based javascript to delete users with AJAX*/
     router.get('/filter/:homeworld', function(req, res){
@@ -165,7 +96,7 @@ router.get('/', function(req, res){
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
-                res.render('diagnosis2', context);
+                res.render('diagnosis', context);
             }
 
         }
@@ -189,7 +120,7 @@ router.get('/', function(req, res){
 
     /* Display one person for the specific purpose of updating people */
 
-     router.get('/:id', function(req, res){
+    router.get('/:id', function(req, res){
         callbackCount = 0;
         var context = {};
         context.jsscripts = ["selectedplanet.js", "updateperson.js"];
@@ -208,18 +139,18 @@ router.get('/', function(req, res){
     /* Adds a person, redirects to the people page after adding */
 
     router.post('/', function(req, res){
-        console.log(req.body.medicationphar)
+        console.log(req.body.doctor1)
         console.log(req.body)
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO diagnosis (medication_id,patient_id,doctor_id,pharmacy_id,description,charge,diagnosis_date) VALUES (?,?,?,?,?,?,?)";
-        var inserts = [req.body.medication_id,req.body.patient_id, req.body.doctor_id,req.body.pharmacy_id,req.body.description,req.body.charge,req.body.diagnosis_date];
+        var sql = "INSERT INTO diagnosis (doctor_first_name,doctor_last_name,doctor_contact) VALUES (?,?,?)";
+        var inserts = [req.body.doctor_first_name, req.body.doctor_last_name, req.body.doctor_contact];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(JSON.stringify(error))
                 res.write(JSON.stringify(error));
                 res.end();
             }else{
-                res.redirect('/diagnosis2');
+                res.redirect('/diagnosis');
             }
         });
     });
@@ -231,7 +162,7 @@ router.get('/', function(req, res){
         console.log(req.body)
         console.log(req.params.id)
         var sql = "UPDATE bsg_people SET fname=?, lname=?, homeworld=?, age=? WHERE character_id=?";
-        var inserts = [req.body.medication_id, req.body.pharmacy_id];
+        var inserts = [req.body.pharmacy_name, req.body.pharmacy_address, req.body.pharmacy_contact];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(error)
@@ -261,8 +192,6 @@ router.get('/', function(req, res){
             }
         })
     })
-
-
 
     return router;
 }();

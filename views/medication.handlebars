@@ -3,7 +3,7 @@
 {{this}}
 {{/each}}
 <h3>Add new Medication:</h3>
-<form id="addperson" action="/medication2" method="post">
+<form id="addperson" action="/medication" method="post">
     Medication Name: <input type="text" name="medication_name"><br>
     Medication Address: <input type="text" name="manufacturer"><br>
     
@@ -19,7 +19,7 @@
         <th>Address</th> 
     </thead> 
     <tbody>
-        {{#each medication2}} 
+        {{#each medication}} 
         <tr> 
             <td>{{medication_id}}</td> 
             <td>{{medication_name}}</td> 

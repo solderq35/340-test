@@ -20,21 +20,23 @@ app.set('port', process.argv[2]);
 app.set('mysql', mysql);
 app.use('/people_certs', require('./people_certs.js'));
 app.use('/people', require('./people.js'));
-app.use('/pharmacy2', require('./pharmacy2.js'));
-//app.use('/pharmacy-insert2', require('./pharmacy-insert2.js'));
-//app.use('/doctor', require('./doctor.js'));
-app.use('/doctor1', require('./doctor1.js'));
+app.use('/pharmacy', require('./pharmacy.js'));
+app.use('/doctor', require('./doctor.js'));
+app.use('/medication', require('./medication.js'));
+app.use('/patient', require('./patient.js'));
+app.use('/diagnosis', require('./diagnosis.js'));
+app.use('/mediphar', require('./mediphar.js'));
+app.use('/', express.static('public'));
+
 //app.use('/medication', require('./medication.js'));
-app.use('/medication2', require('./medication2.js'));
-app.use('/patient2', require('./patient2.js'));
 //app.use('/patient', require('./patient.js'));
 //app.use('/pharmacy', require('./pharmacy.js'));
-app.use('/diagnosis', require('./diagnosis.js'));
-app.use('/diagnosis2', require('./diagnosis2.js'));
-app.use('/mediphar', require('./mediphar.js'));
-app.use('/mediphar3', require('./mediphar3.js'));
-app.use('/mediphar_insert', require('./mediphar_insert.js'));
-app.use('/', express.static('public'));
+//app.use('/diagnosis', require('./diagnosis.js'));
+//app.use('/mediphar', require('./mediphar.js'));
+//app.use('/mediphar3', require('./mediphar3.js'));
+//app.use('/pharmacy-insert2', require('./pharmacy-insert2.js'));
+//app.use('/doctor', require('./doctor.js'));
+
 
 app.use(function(req,res){
   res.status(404);
