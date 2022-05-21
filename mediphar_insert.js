@@ -1,8 +1,6 @@
 module.exports = function(){
     var express = require('express');
     var router = express.Router();
-	
-
 
  //   router.get('/', servePlanets);
     /* get people to populate in dropdown */
@@ -98,8 +96,8 @@ module.exports = function(){
     /*Display all people. Requires web based javascript to delete users with AJAX*/
 
 
-
-    function servePlanets2(req, res){
+router.get('/', function(req, res){
+   // function servePlanets2(req, res){
 		
         var callbackCount = 0;
         var context = {};
@@ -116,9 +114,9 @@ module.exports = function(){
             }
 
         }
-    }
+    });
 
-router.get('/',servePlanets2);
+//router.get('/',servePlanets2);
 //router.get('/',servePlanets);
 
     /*Display all people from a given homeworld. Requires web based javascript to delete users with AJAX*/
