@@ -2,56 +2,66 @@
 {{#each foo}}
 {{this}}
 {{/each}}
-<div>
-<h3> MediPhar </h3>
+<h3>Add new Diagnosis:</h3>
     <form id="add_people_certificates" action="/diagnosis2" method="post">
     Medication ID: <select name='medication_id'>
         {{#each medication2}}
           <option value='{{medication_id}}'>{{medication_id}}</option>
         {{/each}}
     </select>
+	 <br>
+	    Patient ID: <select name='patient_id'>
+        {{#each patient2}}
+          <option value='{{patient_id}}'>{{patient_id}}</option>
+        {{/each}}
+    </select><br>
+		 <br>
+	    Doctor ID: <select name='doctor_id'>
+        {{#each doctor1}}
+          <option value='{{doctor_id}}'>{{doctor_id}}</option>
+        {{/each}}
+    </select><br>
     <br>
 	    Pharmacy ID: <select name='pharmacy_id'>
         {{#each pharmacy2}}
           <option value='{{pharmacy_id}}'>{{pharmacy_id}}</option>
         {{/each}}
     </select><br>
+
+	Description: <input type="text" name="description"><br>
+	Charge: <input type="int" name="charge"><br>
+	Date: <input type="date" name="diagnosis_date"><br>
     <input type="submit" value="Submit">
-    </form>
-</div>
+ </form>
 <br/>
 
-<h3>Current Medication & Pharmacy:</h3>
+
+<h3>Current Diagnosis:</h3>
 <table>
     <thead> 
+		<th>Diagnosis ID </th>
         <th>Medication ID</th> 
-        <th>Pharmacy ID</th> 
+        <th>Patient ID</th> 
+		<th>Doctor ID</th> 
+		<th>Pharmacy ID</th> 
+		<th>Description</th> 
+		<th>Charge</th> 
+		<th>Diagnosis Date</th> 
     </thead> 
-
-    <tbody> 
-        {{#each people_with_certs}} 
-        <tr> 
-            <td>{{name}}</td> 
-            <td>{{certificate}}</td> 
-            <td><button onclick="deletePeopleCert({{pid}},{{cid}})">Delete</button></td>
-            <td><a href='#' onclick='javascript: alert("You can implement it just like the Add form.")'>Update</a></td>
-        </tr>
-        {{else}}
-        <b> No people with any certifications found! Grant some using the form. </b>
-        {{/each}} 
-
-    </tbody>
-
     <tbody>
-        {{#each medication2}} 
+        {{#each diagnosis2}} 
         <tr> 
-            <td>{{medication_id}}</td>  
-        {{#each pharmacy2}} 
+			<td>{{diagnosis_id}}</td> 
+            <td>{{medication_id}}</td> 
+			<td>{{patient_id}}</td> 
+			<td>{{doctor_id}}</td> 
             <td>{{pharmacy_id}}</td> 
-        </tr>
-        {{/each}}
+			<td>{{description}}</td> 
+			<td>{{charge}}</td> 
+			<td>{{diagnosis_date}}</td> 
+        </tr> 
         {{/each}} 
     </tbody> 
-
 </table> 
+
 </html>
