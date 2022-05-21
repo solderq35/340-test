@@ -1,5 +1,7 @@
 add citations for the example node github from knight to the readme or report
 
-add sql ddq and dmq to his repo
+Works (Select and Insert): patient, doctor, medication, pharmacy
 
-hard to tell what id points to what for diagnosis-more select tables? two attributes on one dropdown?
+Not work: diagnosis, medication_pharmacy
+
+Search/Filter: not working for any
