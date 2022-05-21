@@ -30,7 +30,7 @@
     <tbody>
         {{#each medication2}} 
         <tr> 
-            <td>{{medication_id}}</td>  
+            <td>{{medication_id}} {{#each pharmacy2}}{{pharmacy_id}}{{/each}}</td>  
         {{/each}} 
         {{#each pharmacy2}} 
             <td>{{pharmacy_id}}</td> 
