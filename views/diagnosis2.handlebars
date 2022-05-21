@@ -28,14 +28,14 @@
         <th>Pharmacy ID</th> 
     </thead> 
     <tbody>
+        {{#each medication2}} 
         <tr> 
-            {{#each medication2}} 
             <td>{{medication_id}}</td>  
-        {{/each}} 
         {{#each pharmacy2}} 
             <td>{{pharmacy_id}}</td> 
         </tr>
         {{/each}}
+        {{/each}} 
     </tbody> 
 </table> 
 </html>
