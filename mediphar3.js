@@ -4,24 +4,25 @@ module.exports = function(){
 
     /* get people to populate in dropdown */
     function getPeople(res, mysql, context, complete){
-        mysql.pool.query("SELECT medication_id AS medication_id, medication_id FROM medication", function(error, results, fields){
+        mysql.pool.query("SELECT character_id AS pid, fname, lname FROm bsg_people", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.medication2 = results;
+            context.people = results;
             complete();
         });
     }
 
     /* get certificates to populate in dropdown */
     function getCertificates(res, mysql, context, complete){
-		mysql.pool.query("SELECT pharmacy_id AS pharmacy_id, pharmacy_id FROM pharmacy", function(error, results, fields){
+        sql = "SELECT certification_id AS cid, title FROM bsg_cert";
+        mysql.pool.query(sql, function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end()
             }
-            context.pharmacy2 = results;
+            context.certificates = results
             complete();
         });
     }
@@ -37,7 +38,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end()
             }
-            context.people_with_certs = results
+            context.mediphar3 = results
             complete();
         });
     }
@@ -51,7 +52,7 @@ module.exports = function(){
         var context = {};
         context.jsscripts = ["deleteperson.js"];
         var mysql = req.app.get('mysql');
-        var handlebars_file = 'mediphar'
+        var handlebars_file = 'mediphar3'
 
         getPeople(res, mysql, context, complete);
         getCertificates(res, mysql, context, complete);
@@ -88,7 +89,7 @@ module.exports = function(){
             }
           });
         } //for loop ends here 
-        res.redirect('/diagnosis2');
+        res.redirect('/mediphar3');
     });
 
     /* Delete a person's certification record */

@@ -32,6 +32,8 @@ app.use('/patient2', require('./patient2.js'));
 app.use('/diagnosis', require('./diagnosis.js'));
 app.use('/diagnosis2', require('./diagnosis2.js'));
 app.use('/mediphar', require('./mediphar.js'));
+app.use('/mediphar3', require('./mediphar3.js'));
+app.use('/mediphar_insert', require('./mediphar_insert.js'));
 app.use('/', express.static('public'));
 
 app.use(function(req,res){
