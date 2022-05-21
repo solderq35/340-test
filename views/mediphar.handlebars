@@ -3,6 +3,7 @@
 {{this}}
 {{/each}}
 <h3>Add new Medication & Pharmacy:</h3>
+<h4>	Note: Duplicate inserts will not be processed! </h4>
     <form id="add_people_certificates" action="/mediphar" method="post">
     Medication ID: <select name='medication_id'>
         {{#each medication2}}
@@ -23,14 +24,14 @@
 <h3>Current Medication & Pharmacy:</h3>
 <table>
     <thead> 
-		<th>MediPharm ID </th>
+		<!-- <th>MediPharm ID </th> -->
         <th>Medication ID</th> 
         <th>Pharmacy iD</th> 
     </thead> 
     <tbody>
         {{#each mediphar}} 
         <tr> 
-			<td>{{medication_pharmacy_id}}</td> 
+		<!--	<td>{{medication_pharmacy_id}}</td>  -->
             <td>{{medication_id}}</td> 
             <td>{{pharmacy_id}}</td> 
         </tr> 

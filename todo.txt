@@ -9,3 +9,5 @@ composite or primary key on intersection table
 repeats
 
 date becoming datetime (remove hours/min/sec)
+
+add forever alias to readme

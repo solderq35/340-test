@@ -29,8 +29,14 @@
     </select><br>
 
 	Description: <input type="text" name="description"><br>
+	
+	<h4>	Note: Please use integer values for the Charge input! </h4>
 	Charge: <input type="int" name="charge"><br>
 	Date: <input type="date" name="diagnosis_date"><br>
+	<script language = Javascript>
+		var moment = require('moment');
+	var diagnosis_date = moment(diagnosis_date).format('YYYY/MM/DD HH:MM:SS').toISOString();
+	</script>
     <input type="submit" value="Submit">
  </form>
 <br/>

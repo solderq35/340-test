@@ -179,10 +179,19 @@ router.get('/', function(req, res){
         var sql = "INSERT INTO medication_pharmacy (medication_id,pharmacy_id) VALUES (?,?)";
         var inserts = [req.body.medication_id, req.body.pharmacy_id];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
-            if(error){
-                console.log(JSON.stringify(error))
-                res.write(JSON.stringify(error));
-                res.end();
+            if(error=1062){
+				//let alert = require('alert'); 
+				//alert("Hello! I am an alert box!!");
+			//	res.redirect('/mediphar');
+//var alert = require("alert")
+			//	alert('howdy')
+                
+            //    res.write(JSON.stringify(error));
+            //    res.end();
+
+			//	return false;
+				res.redirect('/mediphar');
+		
             }else{
                 res.redirect('/mediphar');
             }
