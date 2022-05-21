@@ -25,8 +25,9 @@
 <table>
     <thead> 
         <th>Medication ID</th> 
-        <th>Pharmacy iD</th> 
+        <th>Pharmacy ID</th> 
     </thead> 
+
     <tbody> 
         {{#each people_with_certs}} 
         <tr> 
@@ -40,5 +41,17 @@
         {{/each}} 
 
     </tbody>
+
+    <tbody>
+        {{#each medication2}} 
+        <tr> 
+            <td>{{medication_id}}</td>  
+        {{#each pharmacy2}} 
+            <td>{{pharmacy_id}}</td> 
+        </tr>
+        {{/each}}
+        {{/each}} 
+    </tbody> 
+
 </table> 
 </html>
