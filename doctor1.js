@@ -19,7 +19,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.doctorhd = results;
+            context.doctor1 = results;
             complete();
         });
     }
@@ -113,7 +113,7 @@ module.exports = function(){
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
-                res.render('people', context);
+                res.render('doctor1', context);
             }
         }
     });
