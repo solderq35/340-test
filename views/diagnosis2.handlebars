@@ -20,22 +20,23 @@
     </form>
 </div>
 <br/>
-<h3> List of People with their Certifications </h3>
+
+<h3>Current Medication & Pharmacy:</h3>
 <table>
     <thead> 
-        <th>Name</th> 
-        <th>Certificate</th> 
+        <th>Medication ID</th> 
+        <th>Pharmacy iD</th> 
     </thead> 
-    <tbody> 
-        {{#each diagnosis2}} 
-        <tr> 
+    <tbody>
+        <tr>
+            {{#each medication2}} 
             <td>{{medication_id}}</td> 
+            {{/each}}
+
+            {{#each pharmacy2}} 
             <td>{{pharmacy_id}}</td> 
-
-        </tr>
-
-        {{/each}} 
-
-    </tbody>
+            {{/each}}
+        </tr> 
+    </tbody> 
 </table> 
 </html>
