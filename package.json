@@ -4,10 +4,13 @@
   "description": "Hello world with express and node.js",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-    	"start": "node main.js"
+	  "start": "node main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"  	
   },
   "author": "OSU",
+    "engines": {
+    "node": "16.13.0"
+  },
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.13.3",
