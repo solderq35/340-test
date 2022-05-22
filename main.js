@@ -8,9 +8,7 @@ var mysql = require('./dbcon.js');
 var bodyParser = require('body-parser');
 
 var app = express();
-var handlebars = require('express-handlebars').create({
-        defaultLayout:'main',
-        });
+var handlebars = require('express-handlebars').create({defaultLayout: 'main'});
 
 app.engine('handlebars', handlebars.engine);
 app.use(bodyParser.urlencoded({extended:true}));
