@@ -8,7 +8,9 @@ var mysql = require('./dbcon.js');
 var bodyParser = require('body-parser');
 
 var app = express();
-var handlebars = require('express-handlebars').create({defaultLayout: 'main'});
+var handlebars = require('express-handlebars').create({
+        defaultLayout:'main',
+        });
 
 app.engine('handlebars', handlebars.engine);
 app.use(bodyParser.urlencoded({extended:true}));
@@ -47,11 +49,6 @@ app.use(function(err, req, res, next){
   res.render('500');
 });
 
-let port = process.env.PORT;
-if (port == null || port == "") {
-  port = 3000;
-}
-
-app.listen(port, function() {
-  console.log("Server started succesfully");
-}); 
+app.listen(app.get('port'), function(){
+  console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
+});
