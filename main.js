@@ -2,7 +2,6 @@
     Uses express, dbcon for database connection, body parser to parse form data
     handlebars for HTML templates
 */
-// let's test it out
 
 var express = require('express');
 var mysql = require('./dbcon.js');
@@ -49,7 +48,6 @@ app.use(function(err, req, res, next){
 });
 
 let port = process.env.PORT;
-
 if (port == null || port == "") {
   port = 3000;
 }
