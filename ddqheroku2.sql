@@ -1,3 +1,4 @@
+USE yourDB;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET SQL_SAFE_UPDATES = 0;
 
@@ -315,5 +316,3 @@ ALTER TABLE `bsg_people`
   ADD CONSTRAINT `bsg_people_ibfk_1` FOREIGN KEY (`homeworld`) REFERENCES `bsg_planets` (`planet_id`) ON DELETE SET NULL ON UPDATE CASCADE;
 SET @@auto_increment_increment=1;
 COMMIT;
-
-SELECT @@auto_increment_increment;
