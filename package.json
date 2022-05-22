@@ -4,8 +4,8 @@
   "description": "Hello world with express and node.js",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-	"start": "node main.js"
+	"start": "node main.js 3000",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "OSU",
   "license": "ISC",
