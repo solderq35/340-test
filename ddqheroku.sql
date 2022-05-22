@@ -2,7 +2,7 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET SQL_SAFE_UPDATES = 0;
 
 
-SET @@auto_increment_increment=1;
+SET @@auto_increment_increment=10;
 -- drop diagnosis here to prevent error
 DROP TABLE IF EXISTS `diagnosis`;
 
@@ -53,8 +53,9 @@ CREATE TABLE `medication_pharmacy` (
 	) ENGINE=InnoDB;
 
 INSERT INTO `medication_pharmacy`(medication_id,pharmacy_id) VALUES ('1','3'),('1','2'),('4','2'),('3','2');
-	
+
 DROP TABLE IF EXISTS `doctor`;
+
 CREATE TABLE doctor (
     doctor_id int AUTO_INCREMENT UNIQUE NOT NULL PRIMARY KEY,
     doctor_first_name varchar(255) NOT NULL,
@@ -65,7 +66,7 @@ CREATE TABLE doctor (
 
 INSERT INTO `doctor`(doctor_first_name,doctor_last_name,doctor_contact) 
 	VALUES ('Jonathan','Kingsley','493-232-1023'),('Mary','Jane','420-666-6969'),('Dom','Torreto','192-394-1029'),('Jimmy','Fallon','492-293-4922');
-    
+
 CREATE TABLE diagnosis (
 	diagnosis_id int AUTO_INCREMENT UNIQUE NOT NULL PRIMARY KEY,
 	medication_id int,
@@ -315,5 +316,3 @@ ALTER TABLE `bsg_people`
   ADD CONSTRAINT `bsg_people_ibfk_1` FOREIGN KEY (`homeworld`) REFERENCES `bsg_planets` (`planet_id`) ON DELETE SET NULL ON UPDATE CASCADE;
 SET @@auto_increment_increment=1;
 COMMIT;
-
-SELECT @@auto_increment_increment;
