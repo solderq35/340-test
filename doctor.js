@@ -14,7 +14,7 @@ module.exports = function(){
     }
 
     function getPeople(res, mysql, context, complete){
-        mysql.pool.query("SELECT * from doctor", function(error, results, fields){
+        mysql.pool.query("SELECT doctor_id as id, doctor_first_name, doctor_last_name, doctor_contact from doctor", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -162,7 +162,7 @@ module.exports = function(){
         console.log(req.body)
         console.log(req.params.id)
         var sql = "UPDATE doctor SET doctor_first_name=?, doctor_last_name=?, doctor_contact=? WHERE doctor_id = ?";
-        var inserts = [req.body.doctor_first_name, req.body.doctor_last_name, req.body.doctor_contact];
+        var inserts = [req.body.doctor_first_name, req.body.doctor_last_name, req.body.doctor_contact, req.params.id];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(error)
