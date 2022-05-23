@@ -29,12 +29,15 @@
         <th>Pharmacy iD</th> 
     </thead> 
     <tbody>
-        {{#each mediphar}} 
+ {{#each mediphar}} 
         <tr> 
-		<!--	<td>{{medication_pharmacy_id}}</td>  -->
             <td>{{medication_id}}</td> 
             <td>{{pharmacy_id}}</td> 
-        </tr> 
+            <td><button onclick="deletemediphar({{medication_id}},{{pharmacy_id}})">Delete</button></td>
+
+        </tr>
+        {{else}}
+        <b> No people with any certifications found! Grant some using the form. </b>
         {{/each}} 
     </tbody> 
 </table> 
