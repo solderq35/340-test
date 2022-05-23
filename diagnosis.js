@@ -214,6 +214,15 @@ router.get('/', function(req, res){
         var sql = "INSERT INTO diagnosis (medication_id,patient_id,doctor_id,pharmacy_id,description,charge,diagnosis_date) VALUES (?,?,?,?,?,?,?)";
         var inserts = [req.body.medication_id,req.body.patient_id, req.body.doctor_id,req.body.pharmacy_id,req.body.description,req.body.charge,req.body.diagnosis_date];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+			//console.log("Hello world!");
+			//console.log(inserts[5]);
+/*		
+		if (typeof (inserts[5]) === 'string')
+			{
+				//res.redirect('/diagnosis');
+				console.log("string detected");
+			}
+			*/
             if(error){
                 console.log(JSON.stringify(error))
                 res.write(JSON.stringify(error));

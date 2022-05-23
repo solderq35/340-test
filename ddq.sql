@@ -91,7 +91,7 @@ CREATE TABLE diagnosis (
 	doctor_id int,
 	pharmacy_id int,
 	description text,
-	charge int,
+	charge int CHECK(charge > 0),
 	diagnosis_date date,
 	CONSTRAINT FOREIGN KEY (`medication_id`) REFERENCES `medication` (`medication_id`) ON DELETE SET NULL ON UPDATE CASCADE,
 	CONSTRAINT FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`) ON DELETE SET NULL ON UPDATE CASCADE,
