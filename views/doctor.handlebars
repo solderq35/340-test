@@ -12,12 +12,7 @@
  </form>
 <br/>
 
-<form id='search_people' action='' method=''>
-<!--- this form does not submit directly, the button handles all the interaction with backend -->
-    <label> Search doctor for first name starting with:</label>
-    <input id='first_name_search_string' type='text' name='first_name_search_string' value=''>
-    <input type="button" value="Search" onclick="searchdoctorByFirstName()">
-</form>
+
 
 <h3>Current doctor:</h3>
 <table>
@@ -34,8 +29,8 @@
             <td>{{doctor_first_name}}</td> 
             <td>{{doctor_last_name}}</td> 
             <td>{{doctor_contact}}</td> 
-          <!---   <td><button onclick="deletePerson({{id}})">Delete</button></td> <-->
-            <!---<td><a href="/pharmacy-insert2/{{id}}">Update</a></td>-->
+            <td><button onclick="deletedoctor({{id}})">Delete</button></td>
+			<td><a href="/doctor/{{id}}">Update</a></td>
         </tr> 
         {{/each}} 
     </tbody> 

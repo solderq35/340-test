@@ -55,7 +55,7 @@ module.exports = function(){
     }
 
     function getPerson(res, mysql, context, id, complete){
-        var sql = "SELECT character_id as id, fname, lname, homeworld, age FROM bsg_people WHERE character_id = ?";
+        var sql = "SELECT doctor_id as doctor_id, doctor_first_name, doctor_last_name FROM doctor WHERE doctor_id = ?";
         var inserts = [id];
         mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
@@ -72,7 +72,7 @@ module.exports = function(){
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deleteperson.js","filterpeople.js","searchdoctor.js"];
+        context.jsscripts = ["deletedoctor.js","filterpeople.js","searchdoctor.js"];
         var mysql = req.app.get('mysql');
         getPeople(res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
@@ -89,7 +89,7 @@ module.exports = function(){
     router.get('/filter/:homeworld', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deleteperson.js","filterpeople.js","searchdoctor.js"];
+        context.jsscripts = ["deletedoctor.js","filterpeople.js","searchdoctor.js"];
         var mysql = req.app.get('mysql');
         getPeoplebyHomeworld(req,res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
@@ -106,7 +106,7 @@ module.exports = function(){
     router.get('/search/:s', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deleteperson.js","filterpeople.js","searchdoctor.js"];
+        context.jsscripts = ["deletedoctor.js","filterpeople.js","searchdoctor.js"];
         var mysql = req.app.get('mysql');
         getPeopleWithNameLike(req, res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
@@ -123,14 +123,14 @@ module.exports = function(){
     router.get('/:id', function(req, res){
         callbackCount = 0;
         var context = {};
-        context.jsscripts = ["selectedplanet.js", "updateperson.js"];
+        context.jsscripts = ["updatedoctor.js"];
         var mysql = req.app.get('mysql');
-        getPerson(res, mysql, context, req.params.id, complete);
-        getPlanets(res, mysql, context, complete);
+       getPerson(res, mysql, context, req.params.id, complete);
+       // getPlanets(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 2){
-                res.render('update-person', context);
+            if(callbackCount >= 1){
+                res.render('update-doctor', context);
             }
 
         }
@@ -161,8 +161,8 @@ module.exports = function(){
         var mysql = req.app.get('mysql');
         console.log(req.body)
         console.log(req.params.id)
-        var sql = "UPDATE bsg_people SET fname=?, lname=?, homeworld=?, age=? WHERE character_id=?";
-        var inserts = [req.body.pharmacy_name, req.body.pharmacy_address, req.body.pharmacy_contact];
+        var sql = "UPDATE doctor SET doctor_first_name=?, doctor_last_name=?, doctor_contact=? WHERE doctor_id = ?";
+        var inserts = [req.body.doctor_first_name, req.body.doctor_last_name, req.body.doctor_contact];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(error)
@@ -179,7 +179,7 @@ module.exports = function(){
 
     router.delete('/:id', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "DELETE FROM bsg_people WHERE character_id = ?";
+        var sql = "DELETE FROM doctor WHERE doctor_id = ?";
         var inserts = [req.params.id];
         sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){

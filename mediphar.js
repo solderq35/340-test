@@ -190,7 +190,7 @@ router.get('/', function(req, res){
             //    res.end();
 
 			//	return false;
-				res.redirect('/mediphar');
+				res.redirect('/duplicate.html');
 		
             }else{
                 res.redirect('/mediphar');
@@ -220,7 +220,7 @@ router.get('/', function(req, res){
 
     /* Route to delete a person, simply returns a 202 upon success. Ajax will handle this. */
 
-    router.delete('/:id', function(req, res){
+router.delete('/:id', function(req, res){
         var mysql = req.app.get('mysql');
         var sql = "DELETE FROM bsg_people WHERE character_id = ?";
         var inserts = [req.params.id];
@@ -235,8 +235,6 @@ router.get('/', function(req, res){
             }
         })
     })
-
-
 
     return router;
 }();

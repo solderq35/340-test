@@ -1,0 +1,10 @@
+<html>
+<h1>Update {{doctor.doctor_first_name}} {{doctor.doctor_last_name}}:</h1>
+<form id="update-doctor" action="/doctor" method="post">
+    First name: <input type="text" name="doctor_first_name" value="{{doctor.doctor_first_name}}"><br>
+    Last name: <input type="text" name="doctor_last_name" value="{{doctor_last_name}}"><br>
+   Contact: <input type="text" name="doctor_contact" value="{{doctor_contact}}"><br>
+    </select><br>
+</form>
+<button onclick="updatedoctor({{doctor.id}})">Update</button>
+</html>

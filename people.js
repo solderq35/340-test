@@ -41,7 +41,7 @@ module.exports = function(){
     /* Find people whose fname starts with a given string in the req */
     function getPeopleWithNameLike(req, res, mysql, context, complete) {
       //sanitize the input as well as include the % character
-       var query = "SELECT * FROM bsg_people WHERE bsg_people.fname LIKE " + mysql.pool.escape(req.params.s + '%');
+       var query = "SELECT bsg_people.character_id as id, fname, lname, bsg_planets.name AS homeworld, age FROM bsg_people INNER JOIN bsg_planets ON homeworld = bsg_planets.planet_id WHERE bsg_people.fname LIKE " + mysql.pool.escape(req.params.s + '%');
       console.log(query)
 
       mysql.pool.query(query, function(error, results, fields){
@@ -126,10 +126,10 @@ module.exports = function(){
         context.jsscripts = ["selectedplanet.js", "updateperson.js"];
         var mysql = req.app.get('mysql');
         getPerson(res, mysql, context, req.params.id, complete);
-        getPlanets(res, mysql, context, complete);
+     //   getPlanets(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 2){
+            if(callbackCount >= 1){
                 res.render('update-person', context);
             }
 
@@ -161,8 +161,8 @@ module.exports = function(){
         var mysql = req.app.get('mysql');
         console.log(req.body)
         console.log(req.params.id)
-        var sql = "UPDATE bsg_people SET fname=?, lname=?, homeworld=?, age=? WHERE character_id=?";
-        var inserts = [req.body.fname, req.body.lname, req.body.homeworld, req.body.age, req.params.id];
+        var sql = "UPDATE bsg_people SET fname=?, lname=?, age=? WHERE character_id=?";
+        var inserts = [req.body.fname, req.body.lname, req.body.age, req.params.id];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(error)
