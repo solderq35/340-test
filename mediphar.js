@@ -101,7 +101,7 @@ router.get('/', function(req, res){
 		
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deleteperson.js","filterpeople.js","searchpeople.js"];
+        context.jsscripts = ["deletedoctor.js","filterpeople.js","searchpeople.js"];
         var mysql = req.app.get('mysql');
 		//servePlanets(res,mysql,context,complete);
         getPeople(res, mysql, context, complete);
@@ -179,18 +179,18 @@ router.get('/', function(req, res){
         var sql = "INSERT INTO medication_pharmacy (medication_id,pharmacy_id) VALUES (?,?)";
         var inserts = [req.body.medication_id, req.body.pharmacy_id];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
-            if(error=1062){
+            if(error){
 				//let alert = require('alert'); 
 				//alert("Hello! I am an alert box!!");
 			//	res.redirect('/mediphar');
 //var alert = require("alert")
 			//	alert('howdy')
                 
-            //    res.write(JSON.stringify(error));
-            //    res.end();
+              //  res.write(JSON.stringify(error));
+               // res.end();
 
 			//	return false;
-				res.redirect('/mediphar');
+				res.redirect('/duplicate.html');
 		
             }else{
                 res.redirect('/mediphar');
@@ -220,23 +220,23 @@ router.get('/', function(req, res){
 
     /* Route to delete a person, simply returns a 202 upon success. Ajax will handle this. */
 
-    router.delete('/:id', function(req, res){
+    router.delete('/medication_id/:medication_id/pharmacy_id/:pharmacy_id', function(req, res){
+        //console.log(req) //I used this to figure out where did pid and cid go in the request
+        console.log(req.params.medication_id)
+        console.log(req.params.pharmacy_id)
         var mysql = req.app.get('mysql');
-        var sql = "DELETE FROM bsg_people WHERE character_id = ?";
-        var inserts = [req.params.id];
+        var sql = "DELETE FROM medication_pharmacy WHERE medication_id = ? AND pharmacy_id = ?";
+        var inserts = [req.params.medication_id, req.params.pharmacy_id];
         sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
-                console.log(error)
                 res.write(JSON.stringify(error));
-                res.status(400);
-                res.end();
+                res.status(400); 
+                res.end(); 
             }else{
                 res.status(202).end();
             }
         })
     })
-
-
 
     return router;
 }();
