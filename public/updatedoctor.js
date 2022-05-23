@@ -1,6 +1,6 @@
-function updatedoctor(doctor_id){
+function updateDoctor(id){
     $.ajax({
-        url: '/doctor/' + doctor_id,
+        url: '/doctor/' + id,
         type: 'PUT',
         data: $('#update-doctor').serialize(),
         success: function(result){

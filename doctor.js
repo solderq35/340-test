@@ -55,14 +55,14 @@ module.exports = function(){
     }
 
     function getPerson(res, mysql, context, id, complete){
-        var sql = "SELECT doctor_id as doctor_id, doctor_first_name, doctor_last_name FROM doctor WHERE doctor_id = ?";
+        var sql = "SELECT doctor_id as id, doctor_first_name, doctor_last_name, doctor_contact FROM doctor WHERE doctor_id = ?";
         var inserts = [id];
         mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.person = results[0];
+            context.doctor = results[0];
             complete();
         });
     }
@@ -125,7 +125,7 @@ module.exports = function(){
         var context = {};
         context.jsscripts = ["updatedoctor.js"];
         var mysql = req.app.get('mysql');
-       getPerson(res, mysql, context, req.params.id, complete);
+        getPerson(res, mysql, context, req.params.id, complete);
        // getPlanets(res, mysql, context, complete);
         function complete(){
             callbackCount++;

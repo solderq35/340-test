@@ -123,13 +123,13 @@ module.exports = function(){
     router.get('/:id', function(req, res){
         callbackCount = 0;
         var context = {};
-        context.jsscripts = ["selectedplanet.js", "updateperson.js"];
+        context.jsscripts = ["updateperson.js"];
         var mysql = req.app.get('mysql');
         getPerson(res, mysql, context, req.params.id, complete);
      //   getPlanets(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 1){
+            if(callbackCount >= 0){
                 res.render('update-person', context);
             }
 
