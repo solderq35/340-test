@@ -64,7 +64,7 @@ function geterrormessage(res, context, complete){
     }
 	
 			    function getEntity5(res, mysql, context, complete){
-        mysql.pool.query("SELECT diagnosis_id, medication_id, medication_name, patient_id, concat(patient_first_name,' ', patient_last_name) as patient_fullname, doctor_id, concat(doctor_first_name,' ', doctor_last_name) as doctor_fullname,pharmacy_id, pharmacy_name, description, cast((charge/1.00) as decimal(16,2)) as 'charge2', left(cast(diagnosis_date as date), 10) as diagnosis_date from diagnosis join medication using (medication_id) join patient using (patient_id) join doctor using (doctor_id) join pharmacy using (pharmacy_id) order by diagnosis_date", function(error, results, fields){
+        mysql.pool.query("SELECT diagnosis_id, diagnosis_name, medication_id, medication_name, patient_id, concat(patient_first_name,' ', patient_last_name) as patient_fullname, doctor_id, concat(doctor_first_name,' ', doctor_last_name) as doctor_fullname,pharmacy_id, pharmacy_name, cast((charge/1.00) as decimal(16,2)) as 'charge2', left(cast(diagnosis_date as date), 10) as diagnosis_date from diagnosis join medication using (medication_id) join patient using (patient_id) join doctor using (doctor_id) join pharmacy using (pharmacy_id) order by diagnosis_date", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
