@@ -234,8 +234,8 @@ router.get('/', function(req, res){
         console.log(req.body.medicationphar)
         console.log(req.body)
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO diagnosis (medication_id,patient_id,doctor_id,pharmacy_id,description,charge,diagnosis_date) VALUES (?,?,?,?,?,?,?)";
-        var inserts = [req.body.medication_id,req.body.patient_id, req.body.doctor_id,req.body.pharmacy_id,req.body.description,req.body.charge,req.body.diagnosis_date];
+        var sql = "INSERT INTO diagnosis (diagnosis_name,medication_id,patient_id,doctor_id,pharmacy_id,charge,diagnosis_date) VALUES (?,?,?,?,?,?,?)";
+        var inserts = [req.body.diagnosis_name,req.body.medication_id,req.body.patient_id, req.body.doctor_id,req.body.pharmacy_id,req.body.charge,req.body.diagnosis_date];
 		//console.log(inserts[5]);
 	
 		var chargecheck = Number(inserts[5]);
