@@ -2,9 +2,16 @@ module.exports = function(){
     var express = require('express');
     var router = express.Router();
 	        var errormessage = '';
+			var errormessage2 = '';
 function geterrormessage(res, context, complete){
     
             context.errormessage = errormessage;
+            complete();
+    }
+
+function geterrormessage2(res, context, complete){
+    
+            context.errormessage2 = errormessage2;
             complete();
     }
 
@@ -84,13 +91,13 @@ function geterrormessage(res, context, complete){
         getPeople(res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
 						geterrormessage(res, context, complete);
-		
+		geterrormessage2(res, context, complete);
 				console.log("hahgotem2");
 
 				
         function complete(){
             callbackCount++;
-            if(callbackCount >= 3){
+            if(callbackCount >= 4){
                 res.render('doctor', context);
             }
 
@@ -159,8 +166,12 @@ function geterrormessage(res, context, complete){
         var mysql = req.app.get('mysql');
         var sql = "INSERT INTO doctor (doctor_first_name,doctor_last_name,doctor_contact) VALUES (?,?,?)";
         var inserts = [req.body.doctor_first_name, req.body.doctor_last_name, req.body.doctor_contact];
-
-
+	if (!inserts[0] === true || !inserts[1] === true || inserts[2] === true)
+		{
+			errormessage2 = "Invalid Input! Please fill in all input fields.";
+			res.redirect('/doctor');
+		}
+		else{
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(JSON.stringify(error))
@@ -170,6 +181,7 @@ function geterrormessage(res, context, complete){
                 res.redirect('/doctor');
             }
         });
+		}
     });
 
     /* The URI that update data is sent to in order to update a person */
@@ -185,7 +197,7 @@ function geterrormessage(res, context, complete){
 		console.log(req.body.doctor_first_name);
 		//geterrormessage(res, context, complete);
 			console.log(!inserts[0]);
-			if (!inserts[0] === true)
+	if (!inserts[0] === true || !inserts[1] === true || !inserts[2] === true)
 			{
 				errormessage = "Invalid Input! Please fill in all input fields.";
 				res.redirect(req.get('referer'));
