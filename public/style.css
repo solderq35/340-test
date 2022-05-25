@@ -15,3 +15,55 @@ html, body {
     font-weight: bold;
     cursor: default;
   }
+  
+  ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li.nonhome {
+  float: left;
+}
+
+li a {
+  display: block;
+  text-align: left;
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+.active {
+  background-color: rgba(106, 140, 182, 1);
+}
+
+.topnav {
+  border-top: 3px solid red;
+
+}
+
+h1.home {
+	text-align:left;
+}
+
+.mainbody{
+
+  padding-left: 20px;
+
+}
+
+.indexlink{
+padding-left: 20px;
+font-size: 20px;
+}
+
+table, th, td {
+  border: 1px solid black;
+}

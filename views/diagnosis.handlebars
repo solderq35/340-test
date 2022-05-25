@@ -2,17 +2,20 @@
 {{#each foo}}
 {{this}}
 {{/each}}
+		<link rel="stylesheet" href="./style.css" media="screen">
+		<h1>Diagnosis</h1>
 <h3>Add new Diagnosis:</h3>
+<h4>{{errormessage}}</h4>
     <form id="add_people_certificates" action="/diagnosis" method="post">
     Medication ID: <select name='medication_id'>
-        {{#each medication2}}
-          <option value='{{medication_id}}'>{{medication_id}}</option>
+        {{#each medication}}
+          <option value='{{medication_id}}',>{{medication_id}} ({{medication_name}})</option>
         {{/each}}
     </select>
 	 <br>
 	    Patient ID: <select name='patient_id'>
         {{#each patient2}}
-          <option value='{{patient_id}}'>{{patient_id}}</option>
+          <option value='{{patient_id}}'>{{patient_id}} {{fullname}}</option>
         {{/each}}
     </select><br>
 		 <br>
@@ -30,13 +33,9 @@
 
 	Description: <input type="text" name="description"><br>
 	
-	<h4>	Note: Please use integer values for the Charge input! </h4>
-	Charge: <input type="int" name="charge"><br>
+	Charge: <input type="decimal" name="charge"><br>
 	Date: <input type="date" name="diagnosis_date"><br>
-	<script language = Javascript>
-		var moment = require('moment');
-	var diagnosis_date = moment(diagnosis_date).format('YYYY/MM/DD HH:MM:SS').toISOString();
-	</script>
+
     <input type="submit" value="Submit">
  </form>
 <br/>
@@ -47,11 +46,12 @@
     <thead> 
 		<th>Diagnosis ID </th>
         <th>Medication ID</th> 
+		<th>Medication Name</th>
         <th>Patient ID</th> 
 		<th>Doctor ID</th> 
 		<th>Pharmacy ID</th> 
 		<th>Description</th> 
-		<th>Charge</th> 
+		<th>Charge ($)</th> 
 		<th>Diagnosis Date</th> 
     </thead> 
     <tbody>
@@ -59,11 +59,12 @@
         <tr> 
 			<td>{{diagnosis_id}}</td> 
             <td>{{medication_id}}</td> 
+			<td>{{medication_name}}</td>
 			<td>{{patient_id}}</td> 
 			<td>{{doctor_id}}</td> 
             <td>{{pharmacy_id}}</td> 
 			<td>{{description}}</td> 
-			<td>{{charge}}</td> 
+			<td>{{charge2}}</td> 
 			<td>{{diagnosis_date}}</td> 
         </tr> 
         {{/each}} 

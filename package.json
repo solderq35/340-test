@@ -4,22 +4,16 @@
   "description": "Hello world with express and node.js",
   "main": "app.js",
   "scripts": {
-	  "start": "node main.js",
-    "test": "echo \"Error: no test specified\" && exit 1"  	
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "OSU",
-    "engines": {
-    "node": "16.13.0"
-  },
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.13.3",
     "express": "^4.18.1",
-    "express-handlebars": "^6.0.6",
+    "express-handlebars": "^2.0.1",
     "express-session": "^1.11.3",
     "forever": "^4.0.3",
-    "i": "^0.3.7",
-    "moment": "^2.29.3",
     "mysql": "^2.18.1"
   }
 }

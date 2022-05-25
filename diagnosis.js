@@ -1,22 +1,38 @@
+
+
 module.exports = function(){
     var express = require('express');
     var router = express.Router();
+        var errormessage = '';
+		var errormessage2 = '';
+var valid = 0;
 
+function geterrormessage(res, context, complete){
+
+    
+            context.errormessage = errormessage;
+            complete();
+
+    }
+	
+	
+
+//$('header').append(template(person));
  //   router.get('/', servePlanets);
     /* get people to populate in dropdown */
     function getEntity(res, mysql, context, complete){
-        mysql.pool.query("SELECT medication_id AS medication_id, medication_id FROM medication", function(error, results, fields){
+        mysql.pool.query("SELECT medication_id AS medication_id, medication_id,medication_name FROM medication", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.medication2 = results;
+            context.medication = results;
             complete();
         });
     }
 
     function getEntity2(res, mysql, context, complete){
-        mysql.pool.query("SELECT * from patient", function(error, results, fields){
+        mysql.pool.query("select patient_id, concat(patient_first_name,' ', patient_last_name) as fullname, patient_birth, patient_address, patient_email, patient_contact from patient", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -48,11 +64,13 @@ module.exports = function(){
     }
 	
 			    function getEntity5(res, mysql, context, complete){
-        mysql.pool.query("SELECT * from diagnosis", function(error, results, fields){
+        mysql.pool.query("SELECT diagnosis_id, medication_id, medication_name, patient_id, doctor_id, pharmacy_id, description, cast((charge/1.00) as decimal(16,2)) as 'charge2', left(cast(diagnosis_date as date), 10) as diagnosis_date from diagnosis join medication using (medication_id) order by diagnosis_date", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
             }
+			console.log(fields);
+			console.log('hi');
             context.diagnosis = results;
             complete();
         });
@@ -141,10 +159,12 @@ router.get('/', function(req, res){
 		getEntity3(res, mysql, context, complete);
 		getEntity4(res, mysql, context, complete);
 		getEntity5(res, mysql, context, complete);
+		geterrormessage(res, context, complete);
+		
 		// getCertificates(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 5){
+            if(callbackCount >= 6){
                 res.render('diagnosis', context);
             }
 
@@ -190,6 +210,7 @@ router.get('/', function(req, res){
     /* Display one person for the specific purpose of updating people */
 
      router.get('/:id', function(req, res){
+		 
         callbackCount = 0;
         var context = {};
         context.jsscripts = ["selectedplanet.js", "updateperson.js"];
@@ -213,24 +234,37 @@ router.get('/', function(req, res){
         var mysql = req.app.get('mysql');
         var sql = "INSERT INTO diagnosis (medication_id,patient_id,doctor_id,pharmacy_id,description,charge,diagnosis_date) VALUES (?,?,?,?,?,?,?)";
         var inserts = [req.body.medication_id,req.body.patient_id, req.body.doctor_id,req.body.pharmacy_id,req.body.description,req.body.charge,req.body.diagnosis_date];
+		//console.log(inserts[5]);
+	
+		var chargecheck = Number(inserts[5]);
+	var nancheck = isNaN(Number(inserts[5]));
+
+		var datecheck = Number(inserts[6]);
+		//	console.log(datecheck);
+			console.log("hi2");
+			
+						console.log(chargecheck);
+			console.log(nancheck);
+			console.log(!inserts[6]);
+			
+			
+		//var chargecheck2 = 
+		if (((!inserts[6]) === true) || (chargecheck===0) || (nancheck === true))
+			{
+				errormessage = "Invalid Input. Make sure you entered a valid numerical value for Charge, and entered a valid date.";
+			res.redirect('/diagnosis');
+			//console.log(chargecheck);
+			console.log("string ddetected");
+			}	
+		else{
+				errormessage = "";
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
 			//console.log("Hello world!");
 			//console.log(inserts[5]);
-/*		
-		if (typeof (inserts[5]) === 'string')
-			{
-				//res.redirect('/diagnosis');
-				console.log("string detected");
-			}
-			*/
-            if(error){
-                console.log(JSON.stringify(error))
-                res.write(JSON.stringify(error));
-                res.end();
-            }else{
-                res.redirect('/diagnosis');
-            }
+			res.redirect('/diagnosis');
+
         });
+			}
     });
 
     /* The URI that update data is sent to in order to update a person */
@@ -270,6 +304,7 @@ router.get('/', function(req, res){
             }
         })
     })
+
 
 
 

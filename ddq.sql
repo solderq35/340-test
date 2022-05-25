@@ -91,7 +91,7 @@ CREATE TABLE diagnosis (
 	doctor_id int,
 	pharmacy_id int,
 	description text,
-	charge int CHECK(charge > 0),
+	charge decimal(10,2),
 	diagnosis_date date,
 	CONSTRAINT FOREIGN KEY (`medication_id`) REFERENCES `medication` (`medication_id`) ON DELETE SET NULL ON UPDATE CASCADE,
 	CONSTRAINT FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`) ON DELETE SET NULL ON UPDATE CASCADE,
@@ -103,8 +103,8 @@ CREATE TABLE diagnosis (
 LOCK TABLES `diagnosis` WRITE;
 INSERT INTO `diagnosis`(medication_id,patient_id,doctor_id,pharmacy_id,description,charge,diagnosis_date) 
 	VALUES 
-	('1','1','4','1','AIDS','5000','2020-04-18'),
-	('1','2','3','2','Malaria','200','2020-05-19'),
-	('3','3','2','4','Common Cold','800','2021-05-21'),
-	('2','3','1','4','Smallpox','300','2022-03-30');
+	('1','1','4','1','AIDS','5000.00','2020-04-18'),
+	('1','2','3','2','Malaria','200.04','2020-05-19'),
+	('3','3','2','4','Common Cold','800.00','2021-05-21'),
+	('2','3','1','4','Smallpox','300.00','2022-03-30');
 UNLOCK TABLES;	

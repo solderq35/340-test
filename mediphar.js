@@ -15,6 +15,15 @@ module.exports = function(){
         });
     }
 
+function geterrormessage(res, context, complete){
+
+    
+            context.errormessage = errormessage;
+            complete();
+
+    }
+	
+
     function getPeople2(res, mysql, context, complete){
         mysql.pool.query("SELECT * from medication_pharmacy", function(error, results, fields){
             if(error){
