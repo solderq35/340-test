@@ -6,7 +6,7 @@
 <h3>Add new Medication:</h3>
 <form id="addperson" action="/medication" method="post">
     Medication Name: <input type="text" name="medication_name"><br>
-    Medication Address: <input type="text" name="manufacturer"><br>
+   Manufacturer: <input type="text" name="manufacturer"><br>
     
     <input type="submit" value="Submit">
  </form>
@@ -16,15 +16,16 @@
 <table>
     <thead> 
         <th>ID</th> 
-        <th>Name</th> 
-        <th>Address</th> 
+        <th>Medication Name</th> 
+        <th>Manufacturer</th> 
     </thead> 
     <tbody>
         {{#each medication}} 
         <tr> 
-            <td>{{medication_id}}</td> 
+            <td>{{id}}</td> 
             <td>{{medication_name}}</td> 
             <td>{{manufacturer}}</td> 
+			<td><button onclick="deletemedication({{id}})">Delete</button></td>
         </tr> 
         {{/each}} 
     </tbody> 
