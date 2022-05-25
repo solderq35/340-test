@@ -2,8 +2,11 @@
 {{#each foo}}
 {{this}}
 {{/each}}
-		<link rel="stylesheet" href="./style.css" media="screen">
-<h3>Add new Patient:</h3>
+		
+				<h1>Patient</h1>
+<h3>Add new Patient (Please fill in all Input Fields):</h3>
+
+<h4>{{errormessage2}}</h4>
 <form id="addperson" action="/patient" method="post">
     Patient First Name: <input type="text" name="patient_first_name"><br>
     Patient Last Name: <input type="text" name="patient_last_name"><br>
@@ -16,7 +19,8 @@
 <br/>
 
 <form id='search_people' action='' method=''>
-    <label> Search Patient for first name starting with:</label>
+    <label> Search for Patient by First Name:</label>
+	<h4>{{errormessage}}</h4>
     <input id='first_name_search_string' type='text' name='first_name_search_string' value=''>
     <input type="button" value="Search" onclick="searchPatientByFirstName()">
 </form>

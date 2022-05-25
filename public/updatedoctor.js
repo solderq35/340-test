@@ -6,5 +6,8 @@ function updateDoctor(id){
         success: function(result){
             window.location.replace("./");
         }
+		
+		
     })
+	window.location.reload();
 };

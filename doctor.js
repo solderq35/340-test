@@ -1,6 +1,13 @@
 module.exports = function(){
     var express = require('express');
     var router = express.Router();
+	        var errormessage = '';
+function geterrormessage(res, context, complete){
+    
+            context.errormessage = errormessage;
+            complete();
+    }
+
 
     function getPlanets(res, mysql, context, complete){
         mysql.pool.query("SELECT planet_id as id, name FROM bsg_planets", function(error, results, fields){
@@ -72,13 +79,18 @@ module.exports = function(){
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deletedoctor.js","filterpeople.js","searchdoctor.js"];
+        context.jsscripts = ["deletedoctor.js","filterpeople.js","searchdoctor.js","updatedoctor.js"];
         var mysql = req.app.get('mysql');
         getPeople(res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
+						geterrormessage(res, context, complete);
+		
+				console.log("hahgotem2");
+
+				
         function complete(){
             callbackCount++;
-            if(callbackCount >= 2){
+            if(callbackCount >= 3){
                 res.render('doctor', context);
             }
 
@@ -110,6 +122,7 @@ module.exports = function(){
         var mysql = req.app.get('mysql');
         getPeopleWithNameLike(req, res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
+		console.log(errormessage);
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
@@ -125,11 +138,13 @@ module.exports = function(){
         var context = {};
         context.jsscripts = ["updatedoctor.js"];
         var mysql = req.app.get('mysql');
+		
         getPerson(res, mysql, context, req.params.id, complete);
+		geterrormessage(res, context, complete);
        // getPlanets(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 1){
+            if(callbackCount >= 2){
                 res.render('update-doctor', context);
             }
 
@@ -144,6 +159,8 @@ module.exports = function(){
         var mysql = req.app.get('mysql');
         var sql = "INSERT INTO doctor (doctor_first_name,doctor_last_name,doctor_contact) VALUES (?,?,?)";
         var inserts = [req.body.doctor_first_name, req.body.doctor_last_name, req.body.doctor_contact];
+
+
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(JSON.stringify(error))
@@ -164,6 +181,16 @@ module.exports = function(){
         var sql = "UPDATE doctor SET doctor_first_name=?, doctor_last_name=?, doctor_contact=? WHERE doctor_id = ?";
         var inserts = [req.body.doctor_first_name, req.body.doctor_last_name, req.body.doctor_contact, req.params.id];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+				//	console.log("testdoggo");
+		console.log(req.body.doctor_first_name);
+		//geterrormessage(res, context, complete);
+			console.log(!inserts[0]);
+			if (!inserts[0] === true)
+			{
+				errormessage = "Invalid Input! Please fill in all input fields.";
+				res.redirect(req.get('referer'));
+				console.log(errormessage);
+			}
             if(error){
                 console.log(error)
                 res.write(JSON.stringify(error));

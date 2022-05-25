@@ -1,6 +1,20 @@
 module.exports = function(){
     var express = require('express');
     var router = express.Router();
+        var errormessage = '';
+		var errormessage2 = '';
+		//var search_error = '';
+function geterrormessage(res, context, complete){
+    
+            context.errormessage = errormessage;
+            complete();
+    }
+	
+	function geterrormessage2(res, context, complete){
+    
+            context.errormessage2 = errormessage2;
+            complete();
+    }
 
     function getPlanets(res, mysql, context, complete){
         mysql.pool.query("SELECT planet_id as id, name FROM bsg_planets", function(error, results, fields){
@@ -14,7 +28,7 @@ module.exports = function(){
     }
 
     function getPeople(res, mysql, context, complete){
-        mysql.pool.query("SELECT * from patient", function(error, results, fields){
+        mysql.pool.query("select patient_id, patient_first_name, patient_last_name, left(cast(patient_birth as date), 10) as patient_birth, patient_address, patient_email, patient_contact from patient", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -41,9 +55,9 @@ module.exports = function(){
     /* Find people whose fname starts with a given string in the req */
     function getPeopleWithNameLike(req, res, mysql, context, complete) {
       //sanitize the input as well as include the % character
-       var query = "SELECT * FROM patient WHERE patient.patient_first_name LIKE " + mysql.pool.escape(req.params.s + '%');
-      console.log(query)
-
+       var query = "select patient_id, patient_first_name, patient_last_name, left(cast(patient_birth as date), 10) as patient_birth, patient_address, patient_email, patient_contact from patient WHERE patient.patient_first_name LIKE " + mysql.pool.escape(req.params.s + '%');
+     // console.log(query);
+		//console.log(context);
       mysql.pool.query(query, function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
@@ -76,9 +90,11 @@ module.exports = function(){
         var mysql = req.app.get('mysql');
         getPeople(res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
+		geterrormessage(res, context, complete);
+		geterrormessage2(res, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 2){
+            if(callbackCount >= 4){
                 res.render('patient', context);
             }
 
@@ -87,12 +103,18 @@ module.exports = function(){
     
     /*Display all people whose name starts with a given string. Requires web based javascript to delete users with AJAX */
     router.get('/search/:s', function(req, res){
+		
         var callbackCount = 0;
         var context = {};
         context.jsscripts = ["deleteperson.js","filterpeople.js","searchpatient.js"];
         var mysql = req.app.get('mysql');
+		
         getPeopleWithNameLike(req, res, mysql, context, complete);
        getPlanets(res, mysql, context, complete);
+	  
+	   		//console.log(context);
+			//console.log(first_name_search_string);
+			console.log(req.params.s);
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
@@ -108,13 +130,25 @@ module.exports = function(){
         var context = {};
         context.jsscripts = ["selectedplanet.js", "updateperson.js"];
         var mysql = req.app.get('mysql');
+					if (req.params.id === "search")
+			{
+				errormessage = "Invalid Input, please enter a search term.";
+				res.redirect('/patient');
+			}
+			else{
         getPerson(res, mysql, context, req.params.id, complete);
         getPlanets(res, mysql, context, complete);
+		
         function complete(){
             callbackCount++;
+			console.log(req.params.id);
+			console.log("here");
+
+			
             if(callbackCount >= 2){
                 res.render('update-person', context);
             }
+			}
 
         }
     });
@@ -127,7 +161,17 @@ module.exports = function(){
         var mysql = req.app.get('mysql');
         var sql = "INSERT INTO patient (patient_first_name,patient_last_name,patient_birth,patient_address,patient_email,patient_contact) VALUES (?,?,?,?,?,?)";
         var inserts = [req.body.patient_first_name, req.body.patient_last_name,req.body.patient_birth,req.body.patient_address,req.body.patient_email,req.body.patient_contact];
-        sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+		console.log(!inserts[4]);
+		console.log("detected");
+		if ((!inserts[0]) === true || (!inserts[1]) === true || (!inserts[2]) === true || (!inserts[3]) === true || (!inserts[4]) === true || (!inserts[5]) === true)
+		{
+			errormessage2 = "Invalid Input! Please fill in all input fields.";
+			res.redirect('/patient');
+			//console.log(chargecheck);
+		}   
+else{
+errormessage2 = "";	
+   sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(JSON.stringify(error))
                 res.write(JSON.stringify(error));
@@ -136,6 +180,7 @@ module.exports = function(){
                 res.redirect('/patient');
             }
         });
+}
     });
 
     /* The URI that update data is sent to in order to update a person */

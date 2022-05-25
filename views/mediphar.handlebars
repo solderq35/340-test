@@ -8,13 +8,13 @@
     <form id="add_people_certificates" action="/mediphar" method="post">
     Medication ID: <select name='medication_id'>
         {{#each medication2}}
-          <option value='{{medication_id}}'>{{medication_id}}</option>
+          <option value='{{medication_id}}'>{{medication_id}} {{medication_name}}</option>
         {{/each}}
     </select>
     <br>
 	    Pharmacy ID: <select name='pharmacy_id'>
         {{#each pharmacy2}}
-          <option value='{{pharmacy_id}}'>{{pharmacy_id}}</option>
+          <option value='{{pharmacy_id}}'>{{pharmacy_id}} {{pharmacy_name}}</option>
         {{/each}}
     </select><br>
     <input type="submit" value="Submit">
@@ -27,14 +27,19 @@
     <thead> 
 		<!-- <th>MediPharm ID </th> -->
         <th>Medication ID</th> 
-        <th>Pharmacy iD</th> 
+		<th>Medication Name</th> 
+        <th>Pharmacy ID</th> 
+		<th>Pharmacy Name</th> 
     </thead> 
     <tbody>
  {{#each mediphar}} 
         <tr> 
             <td>{{medication_id}}</td> 
+			<td>{{medication_name}}</td> 
             <td>{{pharmacy_id}}</td> 
+			<td>{{pharmacy_name}}</td> 
             <td><button onclick="deletemediphar({{medication_id}},{{pharmacy_id}})">Delete</button></td>
+			
 
         </tr>
         {{else}}

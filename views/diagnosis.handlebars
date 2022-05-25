@@ -4,7 +4,7 @@
 {{/each}}
 		<link rel="stylesheet" href="./style.css" media="screen">
 		<h1>Diagnosis</h1>
-<h3>Add new Diagnosis:</h3>
+<h3>Add new Diagnosis (Please fill in all Input Fields):</h3>
 <h4>{{errormessage}}</h4>
     <form id="add_people_certificates" action="/diagnosis" method="post">
     Medication ID: <select name='medication_id'>
@@ -15,26 +15,26 @@
 	 <br>
 	    Patient ID: <select name='patient_id'>
         {{#each patient2}}
-          <option value='{{patient_id}}'>{{patient_id}} {{fullname}}</option>
+          <option value='{{patient_id}}'>{{patient_id}} ({{patient_fullname}})</option>
         {{/each}}
     </select><br>
 		 <br>
 	    Doctor ID: <select name='doctor_id'>
         {{#each doctor1}}
-          <option value='{{doctor_id}}'>{{doctor_id}}</option>
+          <option value='{{doctor_id}}'>{{doctor_id}} {{doctor_fullname}}</option>
         {{/each}}
     </select><br>
     <br>
 	    Pharmacy ID: <select name='pharmacy_id'>
         {{#each pharmacy2}}
-          <option value='{{pharmacy_id}}'>{{pharmacy_id}}</option>
+          <option value='{{pharmacy_id}}'>{{pharmacy_id}} {{pharmacy_name}}</option>
         {{/each}}
     </select><br>
 
-	Description: <input type="text" name="description"><br>
+	Description: <input type="text" name="description"  placeholder="Enter Description">  <br>
 	
-	Charge: <input type="decimal" name="charge"><br>
-	Date: <input type="date" name="diagnosis_date"><br>
+	Charge <input type="decimal" name="charge"  placeholder="Enter Charge (USD)"> <br>
+	Date: <input type="date" name="diagnosis_date">   <br>
 
     <input type="submit" value="Submit">
  </form>
@@ -45,11 +45,14 @@
 <table>
     <thead> 
 		<th>Diagnosis ID </th>
-        <th>Medication ID</th> 
-		<th>Medication Name</th>
+        <th>Med ID</th> 
+		<th>Med Name</th>
         <th>Patient ID</th> 
+		<th>Patient Name</th>
 		<th>Doctor ID</th> 
-		<th>Pharmacy ID</th> 
+		<th>Doctor Name</th>
+		<th>Pharma ID</th> 
+		<th>Pharma Name</th>
 		<th>Description</th> 
 		<th>Charge ($)</th> 
 		<th>Diagnosis Date</th> 
@@ -61,11 +64,16 @@
             <td>{{medication_id}}</td> 
 			<td>{{medication_name}}</td>
 			<td>{{patient_id}}</td> 
+			<td>{{patient_fullname}}</td> 
 			<td>{{doctor_id}}</td> 
+			<td>{{doctor_fullname}}</td>
             <td>{{pharmacy_id}}</td> 
+			<td>{{pharmacy_name}}</td>
 			<td>{{description}}</td> 
 			<td>{{charge2}}</td> 
 			<td>{{diagnosis_date}}</td> 
+			            <td><button onclick="deletedoctor({{id}})">Delete</button></td>
+			<td><a href="/doctor/{{id}}">Update</a></td>
         </tr> 
         {{/each}} 
     </tbody> 

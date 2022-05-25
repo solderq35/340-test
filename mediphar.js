@@ -5,7 +5,7 @@ module.exports = function(){
  //   router.get('/', servePlanets);
     /* get people to populate in dropdown */
     function getPeople(res, mysql, context, complete){
-        mysql.pool.query("SELECT medication_id AS medication_id, medication_id FROM medication", function(error, results, fields){
+        mysql.pool.query("SELECT medication_id AS medication_id, medication_id, medication_name FROM medication", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -25,7 +25,7 @@ function geterrormessage(res, context, complete){
 	
 
     function getPeople2(res, mysql, context, complete){
-        mysql.pool.query("SELECT * from medication_pharmacy", function(error, results, fields){
+        mysql.pool.query("SELECT medication_id, medication_name, pharmacy_id, pharmacy_name from medication_pharmacy join medication using (medication_id) join pharmacy using (pharmacy_id)", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -37,7 +37,7 @@ function geterrormessage(res, context, complete){
 
     /* get certificates to populate in dropdown */
     function getCertificates(res, mysql, context, complete){
-		mysql.pool.query("SELECT pharmacy_id AS pharmacy_id, pharmacy_id FROM pharmacy", function(error, results, fields){
+		mysql.pool.query("SELECT pharmacy_id AS pharmacy_id, pharmacy_id, pharmacy_name FROM pharmacy", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end()

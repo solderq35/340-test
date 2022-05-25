@@ -4,7 +4,7 @@ module.exports = function(){
     var express = require('express');
     var router = express.Router();
         var errormessage = '';
-		var errormessage2 = '';
+
 var valid = 0;
 
 function geterrormessage(res, context, complete){
@@ -32,7 +32,7 @@ function geterrormessage(res, context, complete){
     }
 
     function getEntity2(res, mysql, context, complete){
-        mysql.pool.query("select patient_id, concat(patient_first_name,' ', patient_last_name) as fullname, patient_birth, patient_address, patient_email, patient_contact from patient", function(error, results, fields){
+        mysql.pool.query("select patient_id, concat(patient_first_name,' ', patient_last_name) as patient_fullname, patient_birth, patient_address, patient_email, patient_contact from patient", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -42,7 +42,7 @@ function geterrormessage(res, context, complete){
         });
     }
 	    function getEntity3(res, mysql, context, complete){
-        mysql.pool.query("SELECT * from doctor", function(error, results, fields){
+        mysql.pool.query("SELECT doctor_id, concat(doctor_first_name,' ', doctor_last_name) as doctor_fullname, doctor_contact from doctor", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -64,7 +64,7 @@ function geterrormessage(res, context, complete){
     }
 	
 			    function getEntity5(res, mysql, context, complete){
-        mysql.pool.query("SELECT diagnosis_id, medication_id, medication_name, patient_id, doctor_id, pharmacy_id, description, cast((charge/1.00) as decimal(16,2)) as 'charge2', left(cast(diagnosis_date as date), 10) as diagnosis_date from diagnosis join medication using (medication_id) order by diagnosis_date", function(error, results, fields){
+        mysql.pool.query("SELECT diagnosis_id, medication_id, medication_name, patient_id, concat(patient_first_name,' ', patient_last_name) as patient_fullname, doctor_id, concat(doctor_first_name,' ', doctor_last_name) as doctor_fullname,pharmacy_id, pharmacy_name, description, cast((charge/1.00) as decimal(16,2)) as 'charge2', left(cast(diagnosis_date as date), 10) as diagnosis_date from diagnosis join medication using (medication_id) join patient using (patient_id) join doctor using (doctor_id) join pharmacy using (pharmacy_id) order by diagnosis_date", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -148,7 +148,7 @@ function geterrormessage(res, context, complete){
 
 router.get('/', function(req, res){
    // function servePlanets2(req, res){
-		
+			
         var callbackCount = 0;
         var context = {};
         context.jsscripts = ["deleteperson.js","filterpeople.js","searchpeople.js"];
@@ -197,6 +197,7 @@ router.get('/', function(req, res){
         var context = {};
         context.jsscripts = ["deleteperson.js","filterpeople.js","searchpeople.js"];
         var mysql = req.app.get('mysql');
+
         getEntityWithNameLike(req, res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
         function complete(){
@@ -229,6 +230,7 @@ router.get('/', function(req, res){
     /* Adds a person, redirects to the people page after adding */
 
     router.post('/', function(req, res){
+		
         console.log(req.body.medicationphar)
         console.log(req.body)
         var mysql = req.app.get('mysql');
@@ -242,6 +244,7 @@ router.get('/', function(req, res){
 		var datecheck = Number(inserts[6]);
 		//	console.log(datecheck);
 			console.log("hi2");
+			console.log(!inserts[4]);
 			
 						console.log(chargecheck);
 			console.log(nancheck);
@@ -249,9 +252,9 @@ router.get('/', function(req, res){
 			
 			
 		//var chargecheck2 = 
-		if (((!inserts[6]) === true) || (chargecheck===0) || (nancheck === true))
+		if (((!inserts[6]) === true) || (chargecheck===0) || (nancheck === true) || (!inserts[4]) === true)
 			{
-				errormessage = "Invalid Input. Make sure you entered a valid numerical value for Charge, and entered a valid date.";
+				errormessage = "Invalid Input. Make sure you entered a valid numerical value for Charge, that you have entered a description, and that you entered a valid date.";
 			res.redirect('/diagnosis');
 			//console.log(chargecheck);
 			console.log("string ddetected");
