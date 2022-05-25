@@ -18,6 +18,16 @@ function deletemedication(medication_id){
     })
 };
 
+function deletepatient(patient_id){
+    $.ajax({
+        url: '/patient/' + patient_id,
+        type: 'DELETE',
+        success: function(result){
+            window.location.reload(true);
+        }
+    })
+};
+
 function deletePeopleCert(pid, cid){
   $.ajax({
       url: '/people_certs/pid/' + pid + '/cert/' + cid,

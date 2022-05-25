@@ -86,7 +86,7 @@ function geterrormessage(res, context, complete){
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deleteperson.js","filterpeople.js","searchpatient.js"];
+        context.jsscripts = ["deletedoctor.js","filterpeople.js","searchpatient.js"];
         var mysql = req.app.get('mysql');
         getPeople(res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
@@ -106,7 +106,7 @@ function geterrormessage(res, context, complete){
 		
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deleteperson.js","filterpeople.js","searchpatient.js"];
+        context.jsscripts = ["deletedoctor.js","filterpeople.js","searchpatient.js"];
         var mysql = req.app.get('mysql');
 		
         getPeopleWithNameLike(req, res, mysql, context, complete);
@@ -117,7 +117,7 @@ function geterrormessage(res, context, complete){
 			console.log(req.params.s);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 2){
+            if(callbackCount >= 3){
                 res.render('patient', context);
             }
         }
@@ -207,7 +207,7 @@ errormessage2 = "";
 
     router.delete('/:id', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "DELETE FROM bsg_people WHERE character_id = ?";
+        var sql = "DELETE FROM patient WHERE patient_id = ?";
         var inserts = [req.params.id];
         sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
