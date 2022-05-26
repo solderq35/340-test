@@ -2,9 +2,15 @@ module.exports = function(){
     var express = require('express');
     var router = express.Router();
 	var errormessage = '';
+	var errormessage2 = '';
 	function geterrormessage(res, context, complete){
     
             context.errormessage = errormessage;
+            complete();
+    }
+		function geterrormessage2(res, context, complete){
+    
+            context.errormessage2 = errormessage2;
             complete();
     }
     function getPlanets(res, mysql, context, complete){
@@ -46,7 +52,7 @@ module.exports = function(){
     /* Find people whose fname starts with a given string in the req */
     function getPeopleWithNameLike(req, res, mysql, context, complete) {
       //sanitize the input as well as include the % character
-       var query = "SELECT bsg_people.character_id as id, fname, lname, bsg_planets.name AS homeworld, age FROM bsg_people INNER JOIN bsg_planets ON homeworld = bsg_planets.planet_id WHERE bsg_people.fname LIKE " + mysql.pool.escape(req.params.s + '%');
+       var query = "select pharmacy_id as id, pharmacy_name, pharmacy_address, pharmacy_contact from pharmacy WHERE pharmacy.pharmacy_name LIKE " + mysql.pool.escape(req.params.s + '%');
       console.log(query)
 
       mysql.pool.query(query, function(error, results, fields){
@@ -54,7 +60,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.people = results;
+            context.pharmacy = results;
             complete();
         });
     }
@@ -77,14 +83,15 @@ module.exports = function(){
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deletefunction.js","filterpeople.js","searchpeople.js"];
+        context.jsscripts = ["deletefunction.js","filterpeople.js","searchfunction.js"];
         var mysql = req.app.get('mysql');
         getPeople(res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
 		geterrormessage(res, context, complete);
+		geterrormessage2(res, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 3){
+            if(callbackCount >= 4){
                 res.render('pharmacy', context);
             }
 
@@ -112,14 +119,14 @@ module.exports = function(){
     router.get('/search/:s', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deleteperson.js","filterpeople.js","searchpeople.js"];
+        context.jsscripts = ["deletefunction.js","filterpeople.js","searchfunction.js"];
         var mysql = req.app.get('mysql');
         getPeopleWithNameLike(req, res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
-                res.render('people', context);
+                res.render('pharmacy', context);
             }
         }
     });
@@ -129,8 +136,14 @@ module.exports = function(){
     router.get('/:id', function(req, res){
         callbackCount = 0;
         var context = {};
-        context.jsscripts = ["selectedplanet.js", "updateperson.js"];
+        context.jsscripts = ["deletefunction.js","searchfunction.js", "updateperson.js"];
         var mysql = req.app.get('mysql');
+		if (req.params.id === "search")
+			{
+				errormessage2 = "Invalid Input, please enter a search term.";
+				res.redirect('/pharmacy');
+			}
+			else{
         getPerson(res, mysql, context, req.params.id, complete);
         getPlanets(res, mysql, context, complete);
         function complete(){
@@ -140,6 +153,7 @@ module.exports = function(){
             }
 
         }
+			}
     });
 
     /* Adds a person, redirects to the people page after adding */
