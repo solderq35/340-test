@@ -3,7 +3,6 @@ module.exports = function(){
     var router = express.Router();
         var errormessage = '';
 		var errormessage2 = '';
-		//var search_error = '';
 function geterrormessage(res, context, complete){
     
             context.errormessage = errormessage;
@@ -86,7 +85,7 @@ function geterrormessage(res, context, complete){
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deletefunction.js","filterpeople.js","searchpatient.js"];
+        context.jsscripts = ["deletefunction.js","filterpeople.js","searchfunction.js"];
         var mysql = req.app.get('mysql');
         getPeople(res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
@@ -106,14 +105,14 @@ function geterrormessage(res, context, complete){
 		
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deletefunction.js","filterpeople.js","searchpatient.js"];
+        context.jsscripts = ["deletefunction.js","filterpeople.js","searchfunction.js"];
         var mysql = req.app.get('mysql');
 		
         getPeopleWithNameLike(req, res, mysql, context, complete);
        getPlanets(res, mysql, context, complete);
 	  
 	   		//console.log(context);
-			//console.log(first_name_search_string);
+			//console.log(search_string);
 			console.log(req.params.s);
         function complete(){
             callbackCount++;
