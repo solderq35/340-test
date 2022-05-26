@@ -70,14 +70,14 @@ function geterrormessage(res, context, complete){
     }
 
     function getPerson(res, mysql, context, id, complete){
-        var sql = "SELECT character_id as id, fname, lname, homeworld, age FROM bsg_people WHERE character_id = ?";
+        var sql = "select patient_id as id, patient_first_name, patient_last_name, patient_birth, patient_address, patient_email, patient_contact FROM patient WHERE patient_id = ?";
         var inserts = [id];
         mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.person = results[0];
+            context.patient = results[0];
             complete();
         });
     }
@@ -87,7 +87,7 @@ function geterrormessage(res, context, complete){
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deletefunction.js","filterpeople.js","searchfunction.js"];
+        context.jsscripts = ["deletefunction.js","filterpeople.js","searchfunction.js","updatefunction.js"];
         var mysql = req.app.get('mysql');
         getPeople(res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
@@ -130,7 +130,7 @@ function geterrormessage(res, context, complete){
     router.get('/:id', function(req, res){
         callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deletefunction.js","searchfunction.js", "updateperson.js"];
+        context.jsscripts = ["deletefunction.js","searchfunction.js", "updatefunction.js"];
         var mysql = req.app.get('mysql');
 					if (req.params.id === "search")
 			{
@@ -148,7 +148,7 @@ function geterrormessage(res, context, complete){
 
 			
             if(callbackCount >= 2){
-                res.render('update-person', context);
+                res.render('update-patient', context);
             }
 			}
 
@@ -186,8 +186,8 @@ errormessage2 = "";
         var mysql = req.app.get('mysql');
         console.log(req.body)
         console.log(req.params.id)
-        var sql = "UPDATE bsg_people SET fname=?, lname=?, homeworld=?, age=? WHERE character_id=?";
-        var inserts = [req.body.medication_name, req.body.manufacturer];
+        var sql = "UPDATE patient SET patient_first_name=?, patient_last_name=?, patient_birth=?, patient_address=?, patient_email=?, patient_contact=? WHERE patient_id = ?";
+        var inserts = [req.body.patient_first_name, req.body.patient_last_name, req.body.patient_birth, req.body.patient_address, req.body.patient_email, req.body.patient_contact, req.params.id];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(error)

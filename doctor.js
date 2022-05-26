@@ -87,7 +87,7 @@ function geterrormessage2(res, context, complete){
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deletefunction.js","filterpeople.js","searchfunction.js","updatedoctor.js"];
+        context.jsscripts = ["deletefunction.js","filterpeople.js","searchfunction.js","updatefunction.js"];
         var mysql = req.app.get('mysql');
         getPeople(res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
@@ -145,7 +145,7 @@ function geterrormessage2(res, context, complete){
     router.get('/:id', function(req, res){
         callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deletefunction.js","searchfunction.js", "updatedoctor.js"];
+        context.jsscripts = ["deletefunction.js","searchfunction.js", "updatefunction.js"];
         var mysql = req.app.get('mysql');
 					if (req.params.id === "search")
 			{
