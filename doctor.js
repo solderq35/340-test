@@ -144,17 +144,27 @@ function geterrormessage2(res, context, complete){
     router.get('/:id', function(req, res){
         callbackCount = 0;
         var context = {};
-        context.jsscripts = ["updatedoctor.js"];
+        context.jsscripts = ["deletefunction.js","searchfunction.js", "updateperson.js"];
         var mysql = req.app.get('mysql');
-		
+					if (req.params.id === "search")
+			{
+				errormessage = "Invalid Input, please enter a search term.";
+				res.redirect('/doctor');
+			}
+			else{
         getPerson(res, mysql, context, req.params.id, complete);
-		geterrormessage(res, context, complete);
-       // getPlanets(res, mysql, context, complete);
+        getPlanets(res, mysql, context, complete);
+		
         function complete(){
             callbackCount++;
+			console.log(req.params.id);
+			console.log("here");
+
+			
             if(callbackCount >= 2){
-                res.render('update-doctor', context);
+                res.render('update-person', context);
             }
+			}
 
         }
     });

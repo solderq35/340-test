@@ -13,6 +13,14 @@
  </form>
 <br/>
 
+<form id='search_people' action='' method=''>
+    <label> Search for Doctor by First Name:</label>
+	<h4>{{errormessage}}</h4>
+    <input id='search_string' type='text' name='search_string' value=''>
+    <input type="button" value="Search" onclick="searchDoctor()"> <a href="/doctor">Back from Search Results</a>
+
+</form>
+
 <h3>Current Medication:</h3>
 <table>
     <thead> 

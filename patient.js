@@ -127,7 +127,7 @@ function geterrormessage(res, context, complete){
     router.get('/:id', function(req, res){
         callbackCount = 0;
         var context = {};
-        context.jsscripts = ["selectedplanet.js", "updateperson.js"];
+        context.jsscripts = ["deletefunction.js","searchfunction.js", "updateperson.js"];
         var mysql = req.app.get('mysql');
 					if (req.params.id === "search")
 			{
