@@ -1,0 +1,12 @@
+<html>
+
+<h1>Update {{medication.medication_name}} {{medication.manufacturer}} (medication: {{medication.id}})</h1>
+<h4>{{errormessage3}}</h4>
+<form id="update-medication" action="/medication" method="post">
+    Medication Name: <input type="text" name="medication_name" value="{{medication.medication_name}}"><br>
+    Manufacturer: <input type="text" name="manufacturer" value="{{medication.manufacturer}}"><br>
+    </select><br>
+</form>
+
+<button onclick="updateMedication({{medication.id}})">Update</button>
+</html>
