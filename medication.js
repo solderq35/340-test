@@ -1,6 +1,12 @@
 module.exports = function(){
     var express = require('express');
     var router = express.Router();
+	var errormessage = '';
+function geterrormessage(res, context, complete){
+    
+            context.errormessage = errormessage;
+            complete();
+    }
 
     function getPlanets(res, mysql, context, complete){
         mysql.pool.query("SELECT planet_id as id, name FROM bsg_planets", function(error, results, fields){
@@ -76,9 +82,10 @@ module.exports = function(){
         var mysql = req.app.get('mysql');
         getPeople(res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
+		geterrormessage(res, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 2){
+            if(callbackCount >= 3){
                 res.render('medication', context);
             }
 
@@ -144,17 +151,19 @@ module.exports = function(){
         var mysql = req.app.get('mysql');
         var sql = "INSERT INTO medication (medication_name,manufacturer) VALUES (?,?)";
         var inserts = [req.body.medication_name, req.body.manufacturer];
-        sql = mysql.pool.query(sql,inserts,function(error, results, fields){
-            if(error){
-                console.log(JSON.stringify(error))
-                res.write(JSON.stringify(error));
-                res.end();
-            }else{
-                res.redirect('/medication');
-            }
-        });
-    });
-
+		if ((!inserts[0]) === true || (!inserts[1]) === true)
+		{
+			errormessage = "Invalid Input! Please fill in all input fields.";
+			res.redirect('/medication');
+        }
+		
+		else{
+			errormessage = "";	
+			sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+				res.redirect('/medication');
+		});
+    }
+	});
     /* The URI that update data is sent to in order to update a person */
 
     router.put('/:id', function(req, res){

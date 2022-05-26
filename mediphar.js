@@ -1,6 +1,15 @@
 module.exports = function(){
     var express = require('express');
     var router = express.Router();
+        var errormessage = '';
+
+function geterrormessage(res, context, complete){
+
+    
+            context.errormessage = errormessage;
+            complete();
+
+    }
 
  //   router.get('/', servePlanets);
     /* get people to populate in dropdown */
@@ -15,14 +24,7 @@ module.exports = function(){
         });
     }
 
-function geterrormessage(res, context, complete){
 
-    
-            context.errormessage = errormessage;
-            complete();
-
-    }
-	
 
     function getPeople2(res, mysql, context, complete){
         mysql.pool.query("SELECT medication_id, medication_name, pharmacy_id, pharmacy_name from medication_pharmacy join medication using (medication_id) join pharmacy using (pharmacy_id)", function(error, results, fields){
@@ -116,9 +118,10 @@ router.get('/', function(req, res){
         getPeople(res, mysql, context, complete);
         getCertificates(res, mysql, context, complete);
 		getPeople2(res, mysql, context, complete);
+		geterrormessage(res, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 3){
+            if(callbackCount >= 4){
                 res.render('mediphar', context);
             }
 
@@ -199,9 +202,11 @@ router.get('/', function(req, res){
                // res.end();
 
 			//	return false;
-				res.redirect('/duplicate.html');
+			errormessage = "Duplicate entry. Please ensure that at least one of your inputs is different compared to the medication_id and pharmacy_id shown on the table below.";
+				res.redirect('/mediphar');
 		
             }else{
+				errormessage = "";
                 res.redirect('/mediphar');
             }
         });

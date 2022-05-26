@@ -1,7 +1,12 @@
 module.exports = function(){
     var express = require('express');
     var router = express.Router();
-
+	var errormessage = '';
+	function geterrormessage(res, context, complete){
+    
+            context.errormessage = errormessage;
+            complete();
+    }
     function getPlanets(res, mysql, context, complete){
         mysql.pool.query("SELECT planet_id as id, name FROM bsg_planets", function(error, results, fields){
             if(error){
@@ -76,9 +81,10 @@ module.exports = function(){
         var mysql = req.app.get('mysql');
         getPeople(res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
+		geterrormessage(res, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 2){
+            if(callbackCount >= 3){
                 res.render('pharmacy', context);
             }
 
@@ -144,15 +150,17 @@ module.exports = function(){
         var mysql = req.app.get('mysql');
         var sql = "INSERT INTO pharmacy (pharmacy_name,pharmacy_address,pharmacy_contact) VALUES (?,?,?)";
         var inserts = [req.body.pharmacy_name, req.body.pharmacy_address, req.body.pharmacy_contact];
-        sql = mysql.pool.query(sql,inserts,function(error, results, fields){
-            if(error){
-                console.log(JSON.stringify(error))
-                res.write(JSON.stringify(error));
-                res.end();
-            }else{
-                res.redirect('/pharmacy');
-            }
-        });
+	if ((!inserts[0]) === true || (!inserts[1]) === true || (!inserts[2]) === true)
+		{
+			errormessage = "Invalid Input! Please fill in all input fields.";
+			res.redirect('/pharmacy');
+        }
+		else{
+			errormessage = "";	
+			sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+				res.redirect('/pharmacy');
+		});
+    }
     });
 
     /* The URI that update data is sent to in order to update a person */

@@ -173,13 +173,8 @@ function geterrormessage2(res, context, complete){
 		}
 		else{
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
-            if(error){
-                console.log(JSON.stringify(error))
-                res.write(JSON.stringify(error));
-                res.end();
-            }else{
+				errormessage2 = "";
                 res.redirect('/doctor');
-            }
         });
 		}
     });
@@ -192,26 +187,18 @@ function geterrormessage2(res, context, complete){
         console.log(req.params.id)
         var sql = "UPDATE doctor SET doctor_first_name=?, doctor_last_name=?, doctor_contact=? WHERE doctor_id = ?";
         var inserts = [req.body.doctor_first_name, req.body.doctor_last_name, req.body.doctor_contact, req.params.id];
-        sql = mysql.pool.query(sql,inserts,function(error, results, fields){
-				//	console.log("testdoggo");
-		console.log(req.body.doctor_first_name);
-		//geterrormessage(res, context, complete);
-			console.log(!inserts[0]);
-	if (!inserts[0] === true || !inserts[1] === true || !inserts[2] === true)
-			{
-				errormessage = "Invalid Input! Please fill in all input fields.";
-				res.redirect(req.get('referer'));
-				console.log(errormessage);
-			}
-            if(error){
-                console.log(error)
-                res.write(JSON.stringify(error));
-                res.end();
-            }else{
-                res.status(200);
-                res.end();
-            }
-        });
+	if ((!inserts[0]) === true || (!inserts[1]) === true || (!inserts[2]) === true)
+		{
+			errormessage = "Invalid Input! Please fill in all input fields.";
+			res.redirect('/medication');
+        }
+		
+		else{
+			errormessage = "";	
+			sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+				res.redirect('/medication');
+		});
+    }
     });
 
     /* Route to delete a person, simply returns a 202 upon success. Ajax will handle this. */
