@@ -4,6 +4,7 @@ module.exports = function(){
     var express = require('express');
     var router = express.Router();
         var errormessage = '';
+		 var errormessage2 = '';
 
 var valid = 0;
 
@@ -15,7 +16,13 @@ function geterrormessage(res, context, complete){
 
     }
 	
-	
+function geterrormessage2(res, context, complete){
+
+    
+            context.errormessage2 = errormessage2;
+            complete();
+
+    }
 
 //$('header').append(template(person));
  //   router.get('/', servePlanets);
@@ -116,7 +123,7 @@ function geterrormessage(res, context, complete){
     /* Find people whose fname starts with a given string in the req */
     function getEntityWithNameLike(req, res, mysql, context, complete) {
       //sanitize the input as well as include the % character
-       var query = "SELECT bsg_people.character_id as id, fname, lname, bsg_planets.name AS homeworld, age FROM bsg_people INNER JOIN bsg_planets ON homeworld = bsg_planets.planet_id WHERE bsg_people.fname LIKE " + mysql.pool.escape(req.params.s + '%');
+       var query = "SELECT diagnosis_id as id, diagnosis_name, medication_id, medication_name, patient_id, concat(patient_first_name,' ', patient_last_name) as patient_fullname, doctor_id, concat(doctor_first_name,' ', doctor_last_name) as doctor_fullname,pharmacy_id, pharmacy_name, cast((charge/1.00) as decimal(16,2)) as 'charge2', left(cast(diagnosis_date as date), 10) as diagnosis_date from diagnosis join medication using (medication_id) join patient using (patient_id) join doctor using (doctor_id) join pharmacy using (pharmacy_id) WHERE diagnosis.diagnosis_name LIKE " + mysql.pool.escape(req.params.s + '%');
       console.log(query)
 
       mysql.pool.query(query, function(error, results, fields){
@@ -124,7 +131,7 @@ function geterrormessage(res, context, complete){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.people = results;
+            context.diagnosis = results;
             complete();
         });
     }
@@ -148,10 +155,10 @@ function geterrormessage(res, context, complete){
 
 router.get('/', function(req, res){
    // function servePlanets2(req, res){
-			
+
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deletefunction.js","filterpeople.js","searchpeople.js"];
+        context.jsscripts = ["deletefunction.js","filterpeople.js","searchfunction.js"];
         var mysql = req.app.get('mysql');
 		//servePlanets(res,mysql,context,complete);
         getEntity(res, mysql, context, complete);
@@ -160,11 +167,12 @@ router.get('/', function(req, res){
 		getEntity4(res, mysql, context, complete);
 		getEntity5(res, mysql, context, complete);
 		geterrormessage(res, context, complete);
+		geterrormessage2(res, context, complete);
 		
 		// getCertificates(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 6){
+            if(callbackCount >= 7){
                 res.render('diagnosis', context);
             }
 
@@ -195,15 +203,15 @@ router.get('/', function(req, res){
     router.get('/search/:s', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deleteperson.js","filterpeople.js","searchpeople.js"];
+        context.jsscripts = ["deleteperson.js","filterpeople.js","searchfunction.js"];
         var mysql = req.app.get('mysql');
-
+		errormessage2 = "";
         getEntityWithNameLike(req, res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
-                res.render('people', context);
+                res.render('diagnosis', context);
             }
         }
     });
@@ -216,8 +224,15 @@ router.get('/', function(req, res){
         var context = {};
         context.jsscripts = ["selectedplanet.js", "updateperson.js"];
         var mysql = req.app.get('mysql');
+				if (req.params.id === "search")
+			{
+				errormessage2 = "Invalid Input, please enter a search term.";
+				res.redirect('/diagnosis');
+			}
+			else {
         getPerson(res, mysql, context, req.params.id, complete);
         getPlanets(res, mysql, context, complete);
+		errormessage2 = "";
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
@@ -225,6 +240,7 @@ router.get('/', function(req, res){
             }
 
         }
+			}
     });
 
     /* Adds a person, redirects to the people page after adding */

@@ -107,7 +107,7 @@ function geterrormessage(res, context, complete){
         var context = {};
         context.jsscripts = ["deletefunction.js","filterpeople.js","searchfunction.js"];
         var mysql = req.app.get('mysql');
-		
+		errormessage = "";
         getPeopleWithNameLike(req, res, mysql, context, complete);
        getPlanets(res, mysql, context, complete);
 	  

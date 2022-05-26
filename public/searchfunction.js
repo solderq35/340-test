@@ -35,3 +35,12 @@ function searchPharmacy() {
 
     window.location = '/pharmacy/search/' + encodeURI(search_string)
 }
+
+function searchDiagnosis() {
+    //get the first name 
+    var search_string  = document.getElementById('search_string').value
+
+    //construct the URL and redirect to it
+
+    window.location = '/diagnosis/search/' + encodeURI(search_string)
+}

@@ -121,6 +121,7 @@ module.exports = function(){
         var context = {};
         context.jsscripts = ["deletefunction.js","filterpeople.js","searchfunction.js"];
         var mysql = req.app.get('mysql');
+		errormessage2 = "";
         getPeopleWithNameLike(req, res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
         function complete(){
@@ -144,6 +145,7 @@ module.exports = function(){
 				res.redirect('/pharmacy');
 			}
 			else{
+				errormessage2 = "";
         getPerson(res, mysql, context, req.params.id, complete);
         getPlanets(res, mysql, context, complete);
         function complete(){
