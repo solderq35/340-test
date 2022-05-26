@@ -110,7 +110,7 @@ router.get('/', function(req, res){
 		
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deletedoctor.js","filterpeople.js","searchpeople.js"];
+        context.jsscripts = ["deletefunction.js","filterpeople.js","searchpeople.js"];
         var mysql = req.app.get('mysql');
 		//servePlanets(res,mysql,context,complete);
         getPeople(res, mysql, context, complete);

@@ -86,7 +86,7 @@ function geterrormessage2(res, context, complete){
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deletedoctor.js","filterpeople.js","searchdoctor.js","updatedoctor.js"];
+        context.jsscripts = ["deletefunction.js","filterpeople.js","searchdoctor.js","updatedoctor.js"];
         var mysql = req.app.get('mysql');
         getPeople(res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
@@ -108,7 +108,7 @@ function geterrormessage2(res, context, complete){
     router.get('/filter/:homeworld', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deletedoctor.js","filterpeople.js","searchdoctor.js"];
+        context.jsscripts = ["deletefunction.js","filterpeople.js","searchdoctor.js"];
         var mysql = req.app.get('mysql');
         getPeoplebyHomeworld(req,res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
@@ -125,7 +125,7 @@ function geterrormessage2(res, context, complete){
     router.get('/search/:s', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deletedoctor.js","filterpeople.js","searchdoctor.js"];
+        context.jsscripts = ["deletefunction.js","filterpeople.js","searchdoctor.js"];
         var mysql = req.app.get('mysql');
         getPeopleWithNameLike(req, res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);

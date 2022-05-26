@@ -8,9 +8,29 @@ function deletedoctor(doctor_id){
     })
 };
 
+function deletediagnosis(diagnosis_id){
+    $.ajax({
+        url: '/diagnosis/' + diagnosis_id,
+        type: 'DELETE',
+        success: function(result){
+            window.location.reload(true);
+        }
+    })
+};
+
 function deletemedication(medication_id){
     $.ajax({
         url: '/medication/' + medication_id,
+        type: 'DELETE',
+        success: function(result){
+            window.location.reload(true);
+        }
+    })
+};
+
+function deletepharmacy(pharmacy_id){
+    $.ajax({
+        url: '/pharmacy/' + pharmacy_id,
         type: 'DELETE',
         success: function(result){
             window.location.reload(true);

@@ -64,7 +64,7 @@ function geterrormessage(res, context, complete){
     }
 	
 			    function getEntity5(res, mysql, context, complete){
-        mysql.pool.query("SELECT diagnosis_id, diagnosis_name, medication_id, medication_name, patient_id, concat(patient_first_name,' ', patient_last_name) as patient_fullname, doctor_id, concat(doctor_first_name,' ', doctor_last_name) as doctor_fullname,pharmacy_id, pharmacy_name, cast((charge/1.00) as decimal(16,2)) as 'charge2', left(cast(diagnosis_date as date), 10) as diagnosis_date from diagnosis join medication using (medication_id) join patient using (patient_id) join doctor using (doctor_id) join pharmacy using (pharmacy_id) order by diagnosis_date", function(error, results, fields){
+        mysql.pool.query("SELECT diagnosis_id as id, diagnosis_name, medication_id, medication_name, patient_id, concat(patient_first_name,' ', patient_last_name) as patient_fullname, doctor_id, concat(doctor_first_name,' ', doctor_last_name) as doctor_fullname,pharmacy_id, pharmacy_name, cast((charge/1.00) as decimal(16,2)) as 'charge2', left(cast(diagnosis_date as date), 10) as diagnosis_date from diagnosis join medication using (medication_id) join patient using (patient_id) join doctor using (doctor_id) join pharmacy using (pharmacy_id) order by diagnosis_date", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -151,7 +151,7 @@ router.get('/', function(req, res){
 			
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deleteperson.js","filterpeople.js","searchpeople.js"];
+        context.jsscripts = ["deletefunction.js","filterpeople.js","searchpeople.js"];
         var mysql = req.app.get('mysql');
 		//servePlanets(res,mysql,context,complete);
         getEntity(res, mysql, context, complete);
@@ -178,7 +178,7 @@ router.get('/', function(req, res){
     router.get('/filter/:homeworld', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deleteperson.js","filterpeople.js","searchpeople.js"];
+        context.jsscripts = ["deletefunction.js","filterpeople.js","searchpeople.js"];
         var mysql = req.app.get('mysql');
         getEntitybyHomeworld(req,res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
@@ -294,7 +294,7 @@ router.get('/', function(req, res){
 
     router.delete('/:id', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "DELETE FROM bsg_people WHERE character_id = ?";
+        var sql = "DELETE FROM diagnosis where diagnosis_id = ?";
         var inserts = [req.params.id];
         sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){

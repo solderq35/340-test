@@ -28,7 +28,7 @@ function geterrormessage(res, context, complete){
     }
 
     function getPeople(res, mysql, context, complete){
-        mysql.pool.query("select patient_id, patient_first_name, patient_last_name, left(cast(patient_birth as date), 10) as patient_birth, patient_address, patient_email, patient_contact from patient", function(error, results, fields){
+        mysql.pool.query("select patient_id as id, patient_first_name, patient_last_name, left(cast(patient_birth as date), 10) as patient_birth, patient_address, patient_email, patient_contact from patient", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -55,7 +55,7 @@ function geterrormessage(res, context, complete){
     /* Find people whose fname starts with a given string in the req */
     function getPeopleWithNameLike(req, res, mysql, context, complete) {
       //sanitize the input as well as include the % character
-       var query = "select patient_id, patient_first_name, patient_last_name, left(cast(patient_birth as date), 10) as patient_birth, patient_address, patient_email, patient_contact from patient WHERE patient.patient_first_name LIKE " + mysql.pool.escape(req.params.s + '%');
+       var query = "select patient_id as id, patient_first_name, patient_last_name, left(cast(patient_birth as date), 10) as patient_birth, patient_address, patient_email, patient_contact from patient WHERE patient.patient_first_name LIKE " + mysql.pool.escape(req.params.s + '%');
      // console.log(query);
 		//console.log(context);
       mysql.pool.query(query, function(error, results, fields){
@@ -86,7 +86,7 @@ function geterrormessage(res, context, complete){
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deletedoctor.js","filterpeople.js","searchpatient.js"];
+        context.jsscripts = ["deletefunction.js","filterpeople.js","searchpatient.js"];
         var mysql = req.app.get('mysql');
         getPeople(res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
@@ -106,7 +106,7 @@ function geterrormessage(res, context, complete){
 		
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deletedoctor.js","filterpeople.js","searchpatient.js"];
+        context.jsscripts = ["deletefunction.js","filterpeople.js","searchpatient.js"];
         var mysql = req.app.get('mysql');
 		
         getPeopleWithNameLike(req, res, mysql, context, complete);
@@ -117,7 +117,7 @@ function geterrormessage(res, context, complete){
 			console.log(req.params.s);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 3){
+            if(callbackCount >= 2){
                 res.render('patient', context);
             }
         }

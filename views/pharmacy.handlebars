@@ -24,10 +24,11 @@
     <tbody>
         {{#each pharmacy}} 
         <tr> 
-            <td>{{pharmacy_id}}</td> 
+            <td>{{id}}</td> 
             <td>{{pharmacy_name}}</td> 
             <td>{{pharmacy_address}}</td> 
             <td>{{pharmacy_contact}}</td> 
+			<td><button onclick="deletepharmacy({{id}})">Delete</button></td>
         </tr> 
         {{/each}} 
     </tbody> 
