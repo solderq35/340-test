@@ -2,7 +2,7 @@
 
 <h1>Update {{medication.medication_name}} {{medication.manufacturer}} (medication: {{medication.id}})</h1>
 <h4>{{errormessage3}}</h4>
-<form id="update-medication" action="/medication" method="post">
+<form id="update-medication" action="/medication" method="post" onkeydown="return event.key != 'Enter';">
     Medication Name: <input type="text" name="medication_name" value="{{medication.medication_name}}"><br>
     Manufacturer: <input type="text" name="manufacturer" value="{{medication.manufacturer}}"><br>
     </select><br>

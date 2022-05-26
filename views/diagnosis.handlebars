@@ -6,7 +6,7 @@
 		<h1>Diagnosis</h1>
 <h3>Add new Diagnosis (Please fill in all Input Fields):</h3>
 <h4>{{errormessage}}</h4>
-    <form id="add_people_certificates" action="/diagnosis" method="post">
+    <form id="add_people_certificates" action="/diagnosis" method="post" onkeydown="return event.key != 'Enter';">
 	Diagnosis Name: <input type="text" name="diagnosis_name"  placeholder="Enter Diagnosis Name">  <br>
     Medication ID: <select name='medication_id'>
         {{#each medication}}
@@ -39,7 +39,7 @@
  </form>
 <br/>
 
-<form id='search_people' action='' method=''>
+<form id='search_people' action='' method='' onkeydown="return event.key != 'Enter';">
     <label> Search for Diagnosis by Diagnosis Name:</label>
 	<h4>{{errormessage2}}</h4>
     <input id='search_string' type='text' name='search_string' value=''>

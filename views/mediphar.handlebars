@@ -5,7 +5,7 @@
 
 <h3>Add new Medication & Pharmacy (Unique Combinations Only):</h3>
 <h4>{{errormessage}}</h4>
-    <form id="add_people_certificates" action="/mediphar" method="post">
+    <form id="add_people_certificates" action="/mediphar" method="post" onkeydown="return event.key != 'Enter';">
     Medication ID: <select name='medication_id'>
         {{#each medication2}}
           <option value='{{medication_id}}'>{{medication_id}} {{medication_name}}</option>

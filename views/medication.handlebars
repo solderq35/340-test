@@ -5,7 +5,7 @@
 
 <h3>Add new Medication:</h3>
 <h4>{{errormessage}}</h4>
-<form id="addperson" action="/medication" method="post">
+<form id="addperson" action="/medication" method="post" onkeydown="return event.key != 'Enter';">
     Medication Name: <input type="text" name="medication_name"><br>
    Manufacturer: <input type="text" name="manufacturer"><br>
     
@@ -13,7 +13,7 @@
  </form>
 <br/>
 
-<form id='search_people' action='' method=''>
+<form id='search_people' action='' method='' onkeydown="return event.key != 'Enter';">
     <label> Search for Medication by Medication Name:</label>
 	<h4>{{errormessage}}</h4>
     <input id='search_string' type='text' name='search_string' value=''>

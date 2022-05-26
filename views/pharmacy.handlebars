@@ -5,7 +5,7 @@
 
 <h3>Add new Pharmacy:</h3>
 <h4>{{errormessage}}</h4>
-<form id="addperson" action="/pharmacy" method="post">
+<form id="addperson" action="/pharmacy" method="post" onkeydown="return event.key != 'Enter';">
     Pharmacy Name: <input type="text" name="pharmacy_name"><br>
     Pharmacy Address: <input type="text" name="pharmacy_address"><br>
     Pharmacy Contact: <input type="text" name="pharmacy_contact"><br>
@@ -14,7 +14,7 @@
  </form>
 <br/>
 
-<form id='search_people' action='' method=''>
+<form id='search_people' action='' method='' onkeydown="return event.key != 'Enter';">
     <label> Search for Pharmacy by Name:</label>
 	<h4>{{errormessage2}}</h4>
     <input id='search_string' type='text' name='search_string' value=''>
@@ -38,6 +38,7 @@
             <td>{{pharmacy_address}}</td> 
             <td>{{pharmacy_contact}}</td> 
 			<td><button onclick="deletepharmacy({{id}})">Delete</button></td>
+			<td><a href="/pharmacy/{{id}}">Update</a></td>
         </tr> 
         {{/each}} 
     </tbody> 

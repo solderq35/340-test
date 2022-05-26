@@ -7,7 +7,7 @@
 <h3>Add new Patient (Please fill in all Input Fields):</h3>
 
 <h4>{{errormessage2}}</h4>
-<form id="addperson" action="/patient" method="post">
+<form id="addperson" action="/patient" method="post" onkeydown="return event.key != 'Enter';">
     Patient First Name: <input type="text" name="patient_first_name"><br>
     Patient Last Name: <input type="text" name="patient_last_name"><br>
 	Patient Birth: <input type="date" name="patient_birth"><br>
@@ -18,7 +18,7 @@
  </form>
 <br/>
 
-<form id='search_people' action='' method=''>
+<form id='search_people' action='' method='' onkeydown="return event.key != 'Enter';">
     <label> Search for Patient by First Name:</label>
 	<h4>{{errormessage}}</h4>
     <input id='search_string' type='text' name='search_string' value=''>

@@ -66,14 +66,14 @@ module.exports = function(){
     }
 
     function getPerson(res, mysql, context, id, complete){
-        var sql = "SELECT character_id as id, fname, lname, homeworld, age FROM bsg_people WHERE character_id = ?";
+        var sql = "select pharmacy_id as id, pharmacy_name, pharmacy_address, pharmacy_contact FROM pharmacy WHERE pharmacy_id = ?";
         var inserts = [id];
         mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.person = results[0];
+            context.pharmacy = results[0];
             complete();
         });
     }
@@ -119,7 +119,7 @@ module.exports = function(){
     router.get('/search/:s', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deletefunction.js","filterpeople.js","searchfunction.js"];
+        context.jsscripts = ["deletefunction.js","filterpeople.js","searchfunction.js","updatefunction.js"];
         var mysql = req.app.get('mysql');
 		errormessage2 = "";
         getPeopleWithNameLike(req, res, mysql, context, complete);
@@ -137,7 +137,7 @@ module.exports = function(){
     router.get('/:id', function(req, res){
         callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deletefunction.js","searchfunction.js", "updateperson.js"];
+        context.jsscripts = ["deletefunction.js","searchfunction.js", "updatefunction.js"];
         var mysql = req.app.get('mysql');
 		if (req.params.id === "search")
 			{
@@ -151,7 +151,7 @@ module.exports = function(){
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
-                res.render('update-person', context);
+                res.render('update-pharmacy', context);
             }
 
         }
@@ -185,8 +185,8 @@ module.exports = function(){
         var mysql = req.app.get('mysql');
         console.log(req.body)
         console.log(req.params.id)
-        var sql = "UPDATE bsg_people SET fname=?, lname=?, homeworld=?, age=? WHERE character_id=?";
-        var inserts = [req.body.pharmacy_name, req.body.pharmacy_address, req.body.pharmacy_contact];
+        var sql = "UPDATE pharmacy SET pharmacy_name=?, pharmacy_address=?, pharmacy_contact=? WHERE pharmacy_id = ?";
+        var inserts = [req.body.pharmacy_name, req.body.pharmacy_address, req.body.pharmacy_contact, req.params.id];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(error)

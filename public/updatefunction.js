@@ -39,3 +39,18 @@ function updateMedication(id){
     })
 	window.location.reload();
 };
+
+function updatePharmacy(id){
+    $.ajax({
+        url: '/pharmacy/' + id,
+        type: 'PUT',
+        data: $('#update-pharmacy').serialize(),
+        success: function(result){
+            window.location.replace("./");
+        }
+		
+		
+    })
+	window.location.reload();
+};
+
