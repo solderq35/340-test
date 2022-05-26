@@ -145,7 +145,7 @@ function geterrormessage2(res, context, complete){
     router.get('/:id', function(req, res){
         callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deletefunction.js","searchfunction.js", "updateperson.js"];
+        context.jsscripts = ["deletefunction.js","searchfunction.js", "updatedoctor.js"];
         var mysql = req.app.get('mysql');
 					if (req.params.id === "search")
 			{
@@ -163,7 +163,7 @@ function geterrormessage2(res, context, complete){
 
 			
             if(callbackCount >= 2){
-                res.render('update-person', context);
+                res.render('update-doctor', context);
             }
 			}
 

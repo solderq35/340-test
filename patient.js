@@ -14,6 +14,8 @@ function geterrormessage(res, context, complete){
             context.errormessage2 = errormessage2;
             complete();
     }
+	
+
 
     function getPlanets(res, mysql, context, complete){
         mysql.pool.query("SELECT planet_id as id, name FROM bsg_planets", function(error, results, fields){
@@ -91,6 +93,7 @@ function geterrormessage(res, context, complete){
         getPlanets(res, mysql, context, complete);
 		geterrormessage(res, context, complete);
 		geterrormessage2(res, context, complete);
+
         function complete(){
             callbackCount++;
             if(callbackCount >= 4){
