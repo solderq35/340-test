@@ -3,6 +3,7 @@ module.exports = function(){
     var router = express.Router();
         var errormessage = '';
 		var errormessage2 = '';
+		var errormessage3 = '';
 function geterrormessage(res, context, complete){
     
             context.errormessage = errormessage;
@@ -12,6 +13,12 @@ function geterrormessage(res, context, complete){
 	function geterrormessage2(res, context, complete){
     
             context.errormessage2 = errormessage2;
+            complete();
+    }
+	
+		function geterrormessage3(res, context, complete){
+    
+            context.errormessage3 = errormessage3;
             complete();
     }
 	
@@ -140,6 +147,7 @@ function geterrormessage(res, context, complete){
 			else{
         getPerson(res, mysql, context, req.params.id, complete);
         getPlanets(res, mysql, context, complete);
+		geterrormessage3(res, context, complete);
 		
         function complete(){
             callbackCount++;
@@ -147,7 +155,7 @@ function geterrormessage(res, context, complete){
 			console.log("here");
 
 			
-            if(callbackCount >= 2){
+            if(callbackCount >= 3){
                 res.render('update-patient', context);
             }
 			}
@@ -188,7 +196,14 @@ errormessage2 = "";
         console.log(req.params.id)
         var sql = "UPDATE patient SET patient_first_name=?, patient_last_name=?, patient_birth=?, patient_address=?, patient_email=?, patient_contact=? WHERE patient_id = ?";
         var inserts = [req.body.patient_first_name, req.body.patient_last_name, req.body.patient_birth, req.body.patient_address, req.body.patient_email, req.body.patient_contact, req.params.id];
-        sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+       			if (!inserts[0] === true || !inserts[1] === true || !inserts[2] === true || !inserts[3] === true || !inserts[4] === true || !inserts[5] === true)
+			{
+				errormessage3 = "Invalid Input! Please fill in all input fields.";
+				res.redirect(req.get('/patient'));
+				console.log(errormessage3);
+			}
+			else {
+	   sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(error)
                 res.write(JSON.stringify(error));
@@ -198,6 +213,7 @@ errormessage2 = "";
                 res.end();
             }
         });
+			}
     });
 
     /* Route to delete a person, simply returns a 202 upon success. Ajax will handle this. */
