@@ -3,7 +3,7 @@ module.exports = function(){
     var router = express.Router();
 	        var errormessage = '';
 			var errormessage2 = '';
-			var errormessage2 = '';
+			var errormessage3 = '';
 function geterrormessage(res, context, complete){
     
             context.errormessage = errormessage;
@@ -13,6 +13,12 @@ function geterrormessage(res, context, complete){
 function geterrormessage2(res, context, complete){
     
             context.errormessage2 = errormessage2;
+            complete();
+    }
+	
+	function geterrormessage3(res, context, complete){
+    
+            context.errormessage3 = errormessage3;
             complete();
     }
 
@@ -93,12 +99,13 @@ function geterrormessage2(res, context, complete){
         getPlanets(res, mysql, context, complete);
 						geterrormessage(res, context, complete);
 		geterrormessage2(res, context, complete);
+		geterrormessage3(res, context, complete);
 				console.log("hahgotem2");
 
 				
         function complete(){
             callbackCount++;
-            if(callbackCount >= 4){
+            if(callbackCount >= 5){
                 res.render('doctor', context);
             }
 
@@ -155,6 +162,7 @@ function geterrormessage2(res, context, complete){
 			else{
         getPerson(res, mysql, context, req.params.id, complete);
         getPlanets(res, mysql, context, complete);
+		geterrormessage3(res, context, complete);
 		
         function complete(){
             callbackCount++;
@@ -162,7 +170,7 @@ function geterrormessage2(res, context, complete){
 			console.log("here");
 
 			
-            if(callbackCount >= 2){
+            if(callbackCount >= 3){
                 res.render('update-doctor', context);
             }
 			}
@@ -199,17 +207,19 @@ function geterrormessage2(res, context, complete){
         console.log(req.params.id)
         var sql = "UPDATE doctor SET doctor_first_name=?, doctor_last_name=?, doctor_contact=? WHERE doctor_id = ?";
         var inserts = [req.body.doctor_first_name, req.body.doctor_last_name, req.body.doctor_contact, req.params.id];
+			if (!inserts[0] === true || !inserts[1] === true || !inserts[2] === true)
+			{
+				errormessage3 = "Invalid Input! Please fill in all input fields.";
+				res.redirect(req.get('/doctor'));
+				console.log(errormessage3);
+			}
+			else {
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
 				//	console.log("testdoggo");
 		console.log(req.body.doctor_first_name);
 		//geterrormessage(res, context, complete);
 			console.log(!inserts[0]);
-	if (!inserts[0] === true || !inserts[1] === true || !inserts[2] === true)
-			{
-				errormessage = "Invalid Input! Please fill in all input fields.";
-				res.redirect(req.get('referer'));
-				console.log(errormessage);
-			}
+
             if(error){
                 console.log(error)
                 res.write(JSON.stringify(error));
@@ -219,6 +229,7 @@ function geterrormessage2(res, context, complete){
                 res.end();
             }
         });
+	}
     });
 
     /* Route to delete a person, simply returns a 202 upon success. Ajax will handle this. */
