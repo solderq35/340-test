@@ -80,6 +80,7 @@ function geterrormessage(res, context, complete){
         var context = {};
         context.jsscripts = ["deletefunction.js","filterpeople.js","searchfunction.js"];
         var mysql = req.app.get('mysql');
+			
         getPeople(res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
 		geterrormessage(res, context, complete);
@@ -132,6 +133,12 @@ function geterrormessage(res, context, complete){
         var context = {};
         context.jsscripts = ["selectedplanet.js", "updateperson.js"];
         var mysql = req.app.get('mysql');
+		if (req.params.id === "search")
+			{
+				errormessage = "Invalid Input, please enter a search term.";
+				res.redirect('/medication');
+			}
+			else{
         getPerson(res, mysql, context, req.params.id, complete);
         getPlanets(res, mysql, context, complete);
         function complete(){
@@ -141,6 +148,7 @@ function geterrormessage(res, context, complete){
             }
 
         }
+			}
     });
 
     /* Adds a person, redirects to the people page after adding */
