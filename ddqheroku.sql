@@ -85,10 +85,10 @@ CREATE TABLE diagnosis (
 
 INSERT INTO `diagnosis`(diagnosis_name,medication_id,patient_id,doctor_id,pharmacy_id,charge,diagnosis_date) 
 	VALUES 
-	('AIDS','1','1','4','1','5000.00','2020-04-18'),
-	('Malaria','1','2','3','2','200.04','2020-05-19'),
-	('Common Cold','3','3','2','4','800.00','2021-05-21'),
-	('Smallpox','2','3','1','4','300.00','2022-03-30');
+	('AIDS','4','4','34','4','5000.00','2020-04-18'),
+	('Malaria','4','14','24','14','200.04','2020-05-19'),
+	('Common Cold','24','24','14','34','800.00','2021-05-21'),
+	('Smallpox','14','24','4','34','300.00','2022-03-30');
 
 
 -- phpMyAdmin SQL Dump

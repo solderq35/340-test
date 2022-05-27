@@ -44,5 +44,40 @@ Clarification: The entered "Diagnosis ID" can exist on the table below, and the 
         {{/each}} 
     </tbody> 
 </table> 
+<table>
+    <thead> 
+		<!-- <th>MediPharm ID </th> -->
+        <th>Medication ID</th> 
+        <th>Medication Name</th> 
+    </thead> 
+    <tbody>
+ {{#each medication2}} 
+        <tr> 
+            <td>{{medication_id}}</td> 
+            <td>{{medication_name}}</td> 
+			
+
+        </tr>
+        {{/each}} 
+    </tbody> 
+</table> 
+
+<table>
+    <thead> 
+		<!-- <th>MediPharm ID </th> -->
+        <th>Pharmacy ID</th> 
+        <th>Pharmacy Name</th> 
+    </thead> 
+    <tbody>
+ {{#each pharmacy2}} 
+        <tr> 
+            <td>{{pharmacy_id}}</td> 
+            <td>{{pharmacy_name}}</td> 
+			
+
+        </tr>
+        {{/each}} 
+    </tbody> 
+</table> 
 
 </html>
