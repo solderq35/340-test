@@ -210,17 +210,24 @@ router.get('/', function(req, res){
     });
 
     /*Display all people whose name starts with a given string. Requires web based javascript to delete users with AJAX */
-    router.get('/search/:s', function(req, res){
+  router.get('/search/:s', function(req, res){
         var callbackCount = 0;
         var context = {};
         context.jsscripts = ["deletefunction.js","filterpeople.js","searchfunction.js"];
         var mysql = req.app.get('mysql');
 		errormessage2 = "";
+		getPeople(res, mysql, context, complete);
+		getPeople2(res, mysql, context, complete);
+		getPeople3(res, mysql, context, complete);
+		getPeople4(res, mysql, context, complete);
+		getPeople5(res, mysql, context, complete);
+		getPerson(res, mysql, context, req.params.id, complete);
+		geterrormessage3(res, context, complete);
         getPeopleWithNameLike(req, res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 2){
+            if(callbackCount >= 9){
                 res.render('diagnosis', context);
             }
         }
