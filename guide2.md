@@ -209,37 +209,37 @@ Take note that UPDATE_FUNCTION_NAME needs to appear exactly as written in your U
 ## Input Validation
 The general logic of any input validation written for this program is 
 
-`
-Default: No error message shown;
 
-If (invalid logic detected)
-{
+`Default: No error message shown;`
+
+`If (invalid logic detected){`
 
 	Don't Insert, Update, Search, or Delete;
 	Show Error Message;
 
-}
+`}`
 	
-Else
+`Else`
 
-{
+`{`
 
-	Perform the Insert, Update, Search, Delete
-	Don't Show Error Message;
+`	Perform the Insert, Update, Search, Delete`
 
-}
+	`Don't Show Error Message;`
+
+`}`
 
 To create the error messages with Handlebars:
 
 Create a function with syntax 
 
-```function geterrormessage(res, context, complete){
+`function geterrormessage(res, context, complete){`
 
     
             context.errormessage = errormessage;
             complete();
 
-    }```
+  `  }`
 	
 Call `geterrormessage` in `router.get('/:id'` of main JS file to show error for UPDATE inputs. For INSERT, DELETE, SEARCH, call `geterrormessage` in `router.get/`. 
 
