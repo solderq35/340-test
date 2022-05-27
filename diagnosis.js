@@ -80,7 +80,7 @@ function geterrormessage2(res, context, complete){
     }
 	
 			    function getPeople5(res, mysql, context, complete){
-        mysql.pool.query("SELECT diagnosis_id as id, diagnosis_name, medication_id, patient_id, doctor_id,pharmacy_id, cast((charge/1.00) as decimal(16,2)) as 'charge', left(cast(diagnosis_date as date), 10) as diagnosis_date from diagnosis", function(error, results, fields){
+        mysql.pool.query("SELECT diagnosis_id as id, diagnosis_name, medication_id, medication_name, patient_id, concat(patient_first_name,' ', patient_last_name) as patient_fullname, doctor_id, concat(doctor_first_name,' ', doctor_last_name) as doctor_fullname,pharmacy_id, pharmacy_name, cast((charge/1.00) as decimal(16,2)) as 'charge', left(cast(diagnosis_date as date), 10) as diagnosis_date from diagnosis join medication using (medication_id) join patient using (patient_id) join doctor using (doctor_id) join pharmacy using (pharmacy_id) order by diagnosis_id", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -132,7 +132,7 @@ function geterrormessage2(res, context, complete){
     /* Find people whose fname starts with a given string in the req */
     function getPeopleWithNameLike(req, res, mysql, context, complete) {
       //sanitize the input as well as include the % character
-       var query = "SELECT diagnosis_id as id, diagnosis_name, medication_id, patient_id, doctor_id,pharmacy_id, cast((charge/1.00) as decimal(16,2)) as 'charge', left(cast(diagnosis_date as date), 10) as diagnosis_date from diagnosis WHERE diagnosis.diagnosis_name LIKE " + mysql.pool.escape(req.params.s + '%');
+       var query = "SELECT diagnosis_id as id, diagnosis_name, medication_id, medication_name, patient_id, concat(patient_first_name,' ', patient_last_name) as patient_fullname, doctor_id, concat(doctor_first_name,' ', doctor_last_name) as doctor_fullname,pharmacy_id, pharmacy_name, cast((charge/1.00) as decimal(16,2)) as 'charge', left(cast(diagnosis_date as date), 10) as diagnosis_date from diagnosis join medication using (medication_id) join patient using (patient_id) join doctor using (doctor_id) join pharmacy using (pharmacy_id) WHERE diagnosis.diagnosis_name LIKE " + mysql.pool.escape(req.params.s + '%');
       console.log(query)
 
       mysql.pool.query(query, function(error, results, fields){
@@ -146,7 +146,7 @@ function geterrormessage2(res, context, complete){
     }
 
     function getPerson(res, mysql, context, id, complete){
-        var sql = "SELECT diagnosis_id as id, diagnosis_name, medication_id, patient_id, doctor_id,pharmacy_id, cast((charge/1.00) as decimal(16,2)) as 'charge', left(cast(diagnosis_date as date), 10) as diagnosis_date from diagnosis WHERE diagnosis_id = ?";
+        var sql = "SELECT diagnosis_id as id, diagnosis_name, medication_id, medication_name, patient_id, concat(patient_first_name,' ', patient_last_name) as patient_fullname, doctor_id, concat(doctor_first_name,' ', doctor_last_name) as doctor_fullname,pharmacy_id, pharmacy_name, cast((charge/1.00) as decimal(16,2)) as 'charge', left(cast(diagnosis_date as date), 10) as diagnosis_date from diagnosis join medication using (medication_id) join patient using (patient_id) join doctor using (doctor_id) join pharmacy using (pharmacy_id) WHERE diagnosis_id = ?";
         var inserts = [id];
         mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){

@@ -27,7 +27,7 @@ function geterrormessage(res, context, complete){
 
 
     function getPeople2(res, mysql, context, complete){
-        mysql.pool.query("SELECT medication_id, pharmacy_id from medication_pharmacy", function(error, results, fields){
+        mysql.pool.query("SELECT medication_id, medication_name, pharmacy_id, pharmacy_name from medication_pharmacy join medication using (medication_id) join pharmacy using (pharmacy_id)", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();

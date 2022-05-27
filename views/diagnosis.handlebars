@@ -52,11 +52,15 @@
 <table>
     <thead> 
 		<th>Diagnosis ID </th>
-        <th>Diagnosis Name</th> 
-        <th>Medication ID</th> 
-		<th>Patient ID</th> 
+		<th>Diagnosis Name</th> 
+        <th>Med ID</th> 
+		<th>Med Name</th>
+        <th>Patient ID</th> 
+		<th>Patient Name</th>
 		<th>Doctor ID</th> 
-		<th>Pharmacy ID</th> 
+		<th>Doctor Name</th>
+		<th>Pharma ID</th> 
+		<th>Pharma Name</th>
 		<th>Charge ($)</th> 
 		<th>Diagnosis Date</th> 
     </thead> 
@@ -66,91 +70,20 @@
 			<td>{{id}}</td> 
 			<td>{{diagnosis_name}}</td>
             <td>{{medication_id}}</td> 
+			<td>{{medication_name}}</td>
 			<td>{{patient_id}}</td> 
+			<td>{{patient_fullname}}</td> 
 			<td>{{doctor_id}}</td> 
+			<td>{{doctor_fullname}}</td>
             <td>{{pharmacy_id}}</td> 
+			<td>{{pharmacy_name}}</td> 
 			<td>{{charge}}</td> 
 			<td>{{diagnosis_date}}</td> 
 			            <td><button onclick="deletediagnosis({{id}})">Delete</button></td>
 			<td><button><a href="/diagnosis/{{id}}">Update</button></a></td>
         </tr> 
         {{/each}} 
-		 
-		
     </tbody> 
-	
-</table> 
-<table>
-    <thead> 
-		<th>Medication ID </th>
-        <th>Medication Name</th> 
-    </thead> 
-    <tbody>
-        {{#each medication}} 
-        <tr> 
-			<td>{{medication_id}}</td> 
-			<td>{{medication_name}}</td>
-
-        </tr> 
-        {{/each}} 
-		 
-		
-    </tbody> 
-	
-</table> 
-<table>
-    <thead> 
-		<th>Patient ID </th>
-        <th>Patient Name</th> 
-    </thead> 
-    <tbody>
-        {{#each patient}} 
-        <tr> 
-			<td>{{patient_id}}</td> 
-			<td>{{patient_fullname}}</td>
-
-        </tr> 
-        {{/each}} 
-		 
-		
-    </tbody> 
-	
-</table> 
-<table>
-    <thead> 
-		<th>Doctor ID </th>
-        <th>Doctor Name</th> 
-    </thead> 
-    <tbody>
-        {{#each doctor}} 
-        <tr> 
-			<td>{{doctor_id}}</td> 
-			<td>{{doctor_fullname}}</td>
-
-        </tr> 
-        {{/each}} 
-		 
-		
-    </tbody> 
-	
-</table> 
-<table>
-    <thead> 
-		<th>Pharmacy ID </th>
-        <th>Pharmacy Name</th> 
-    </thead> 
-    <tbody>
-        {{#each pharmacy}} 
-        <tr> 
-			<td>{{pharmacy_id}}</td> 
-			<td>{{pharmacy_name}}</td>
-
-        </tr> 
-        {{/each}} 
-		 
-		
-    </tbody> 
-	
 </table> 
 
 </html>

@@ -28,54 +28,23 @@ Clarification: The entered "Diagnosis ID" can exist on the table below, and the 
     <thead> 
 		<!-- <th>MediPharm ID </th> -->
         <th>Medication ID</th> 
+		<th>Medication Name</th> 
         <th>Pharmacy ID</th> 
+		<th>Pharmacy Name</th> 
     </thead> 
     <tbody>
  {{#each mediphar}} 
         <tr> 
             <td>{{medication_id}}</td> 
+			<td>{{medication_name}}</td> 
             <td>{{pharmacy_id}}</td> 
+			<td>{{pharmacy_name}}</td> 
             <td><button onclick="deletemediphar({{medication_id}},{{pharmacy_id}})">Delete</button></td>
 			
 
         </tr>
         {{else}}
         <b> No people with any certifications found! Grant some using the form. </b>
-        {{/each}} 
-    </tbody> 
-</table> 
-<table>
-    <thead> 
-		<!-- <th>MediPharm ID </th> -->
-        <th>Medication ID</th> 
-        <th>Medication Name</th> 
-    </thead> 
-    <tbody>
- {{#each medication2}} 
-        <tr> 
-            <td>{{medication_id}}</td> 
-            <td>{{medication_name}}</td> 
-			
-
-        </tr>
-        {{/each}} 
-    </tbody> 
-</table> 
-
-<table>
-    <thead> 
-		<!-- <th>MediPharm ID </th> -->
-        <th>Pharmacy ID</th> 
-        <th>Pharmacy Name</th> 
-    </thead> 
-    <tbody>
- {{#each pharmacy2}} 
-        <tr> 
-            <td>{{pharmacy_id}}</td> 
-            <td>{{pharmacy_name}}</td> 
-			
-
-        </tr>
         {{/each}} 
     </tbody> 
 </table> 
