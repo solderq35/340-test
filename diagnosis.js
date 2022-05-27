@@ -273,21 +273,12 @@ router.get('/', function(req, res){
 	
 		var chargecheck = Number(inserts[5]);
 	var nancheck = isNaN(Number(inserts[5]));
-
-		var datecheck = Number(inserts[6]);
-		//	console.log(datecheck);
-			console.log("hi2");
-			console.log(!inserts[4]);
-			
-						console.log(chargecheck);
-			console.log(nancheck);
-			console.log(!inserts[6]);
 			
 			
 		//var chargecheck2 = 
-		if (((!inserts[6]) === true) || (chargecheck===0) || (nancheck === true) || (!inserts[4]) === true)
+		if (((!inserts[6]) === true) || (chargecheck<=0) || (nancheck === true) || ((!inserts[5]) === true) || ((!inserts[0]) === true)  || (inserts[5] < 0))
 			{
-				errormessage = "Invalid Input. Make sure you entered a valid numerical value for Charge, that you have entered a description, and that you entered a valid date.";
+				errormessage = "Invalid Input. Make sure you entered a positive numerical value for Charge, that you have entered a Description, and that you entered a valid Date.";
 			res.redirect('/diagnosis');
 			//console.log(chargecheck);
 			console.log("string ddetected");
@@ -307,14 +298,17 @@ router.get('/', function(req, res){
 
     router.put('/:id', function(req, res){
         var mysql = req.app.get('mysql');
+		
         console.log(req.body)
         console.log(req.params.id)
         var sql = "UPDATE diagnosis SET diagnosis_name=?, medication_id=?, patient_id=?, doctor_id=?, pharmacy_id=?, charge=?, diagnosis_date=? WHERE diagnosis_id = ?";
         var inserts = [req.body.diagnosis_name, req.body.medication_id, req.body.patient_id, req.body.doctor_id, req.body.pharmacy_id, req.body.charge, req.body.diagnosis_date, req.params.id];
-		if (!inserts[0] === true || !inserts[1] === true || !inserts[2] === true || !inserts[3] === true || !inserts[4] === true || !inserts[5] === true || !inserts[6] === true)
+				var chargecheck = Number(inserts[5]);
+	var nancheck = isNaN(Number(inserts[5]));
+		if (((!inserts[6]) === true) || (chargecheck<=0) || (nancheck === true) || ((!inserts[5]) === true) || ((!inserts[0]) === true) || (inserts[5] < 0))
 			{
-				errormessage3 = "Invalid Input! Please fill in all input fields.";
-				res.redirect(req.get('/medication'));
+				errormessage3 = "Invalid Input. Make sure you entered a positive numerical value for Charge, that you have entered a Description, and that you entered a valid Date.";
+				res.redirect(req.get('/diagnosis'));
 				console.log(errormessage3);
 			}	
 			else{
