@@ -1,15 +1,38 @@
 <html>
 
-<h1>Update Doctor {{doctor.id}} ({{doctor.doctor_first_name}} {{doctor.doctor_last_name}})</h1>
+  <h1>Update Doctor
+    {{doctor.id}}
+    ({{doctor.doctor_first_name}}
+    {{doctor.doctor_last_name}})</h1>
 
-<h4>{{errormessage3}}</h4>
-<form id="update-doctor" action="/doctor" method="post" onkeydown="return event.key != 'Enter';">
-    First name: <input type="text" name="doctor_first_name" value="{{doctor.doctor_first_name}}"><br>
-    Last name: <input type="text" name="doctor_last_name" value="{{doctor.doctor_last_name}}"><br>
-   Contact: <input type="text" name="doctor_contact" value="{{doctor.doctor_contact}}"><br>
-    </select><br>
-</form>
+  <h4>{{errormessage3}}</h4>
+  <form
+    id="update-doctor"
+    action="/doctor"
+    method="post"
+    onkeydown="return event.key != 'Enter';"
+  >
+    First name:
+    <input
+      type="text"
+      name="doctor_first_name"
+      value="{{doctor.doctor_first_name}}"
+    /><br />
+    Last name:
+    <input
+      type="text"
+      name="doctor_last_name"
+      value="{{doctor.doctor_last_name}}"
+    /><br />
+    Contact:
+    <input
+      type="text"
+      name="doctor_contact"
+      value="{{doctor.doctor_contact}}"
+    /><br />
+    <br />
+  </form>
 
-<button onclick="updateDoctor({{doctor.id}})">Update</button>
-<a href="/doctor"><button>Cancel Update</button></a>
+  <button onclick="updateDoctor({{doctor.id}})">Update</button>
+  <button><a href="/doctor">Cancel Update</a></button>
 </html>

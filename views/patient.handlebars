@@ -1,55 +1,102 @@
 <html>
-{{#each foo}}
-{{this}}
-{{/each}}
-		
-				<h1>Patient</h1>
-<h3>Add New Patient (Please fill in all Input Fields):</h3>
+  {{#each foo}}
+    {{this}}
+  {{/each}}
 
-<h4>{{errormessage2}}</h4>
-<form id="addperson" action="/patient" method="post" onkeydown="return event.key != 'Enter';">
-    Patient First Name: <input type="text" name="patient_first_name" placeholder="Enter Patient First Name"><br>
-    Patient Last Name: <input type="text" name="patient_last_name" placeholder="Enter Patient Last Name"><br>
-	Patient Birth: <input type="date" name="patient_birth" placeholder="Enter Patient Birthdate"><br>
-	Patient Address: <input type="text" name="patient_address" placeholder="Enter Patient Address"><br>
-	Patient Email: <input type="text" name="patient_email" placeholder="Enter Patient Email"><br>
-	Patient Contact: <input type="text" name="patient_contact" placeholder="Enter Contact (Phone #)"><br>
-    <input type="submit" value="Submit">
- </form>
-<br/>
+  <h1>Patient</h1>
+  <h3>Add New Patient (Please fill in all Input Fields):</h3>
 
-<form id='search_people' action='' method='' onkeydown="return event.key != 'Enter';">
+  <h4>{{errormessage2}}</h4>
+  <form
+    id="addperson"
+    action="/patient"
+    method="post"
+    onkeydown="return event.key != 'Enter';"
+  >
+    Patient First Name:
+    <input
+      type="text"
+      name="patient_first_name"
+      placeholder="Enter Patient First Name"
+    /><br />
+    Patient Last Name:
+    <input
+      type="text"
+      name="patient_last_name"
+      placeholder="Enter Patient Last Name"
+    /><br />
+    Patient Birth:
+    <input
+      type="date"
+      name="patient_birth"
+      placeholder="Enter Patient Birthdate"
+    /><br />
+    Patient Address:
+    <input
+      type="text"
+      name="patient_address"
+      placeholder="Enter Patient Address"
+    /><br />
+    Patient Email:
+    <input
+      type="text"
+      name="patient_email"
+      placeholder="Enter Patient Email"
+    /><br />
+    Patient Contact:
+    <input
+      type="text"
+      name="patient_contact"
+      placeholder="Enter Contact (Phone #)"
+    /><br />
+    <input type="submit" value="Submit" />
+  </form>
+  <br />
+
+  <form
+    id="search_people"
+    action=""
+    method=""
+    onkeydown="return event.key != 'Enter';"
+  >
     <label> Search for Patient by First Name:</label>
-	<h4>{{errormessage}}</h4>
-    <input id='search_string' type='text' name='search_string' value='' placeholder="Enter Patient First Name">
-    <input type="button" value="Search" onclick="searchPatient()">  <button><a href="/patient">Cancel Search</button></a>
-</form>
+    <h4>{{errormessage}}</h4>
+    <input
+      id="search_string"
+      type="text"
+      name="search_string"
+      value=""
+      placeholder="Enter Patient First Name"
+    />
+    <input type="button" value="Search" onclick="searchPatient()" />
+    <button><a href="/patient">Cancel Search</a></button>
+  </form>
 
-<h3>Current Patients:</h3>
-<table>
-    <thead> 
-        <th>ID</th> 
-        <th>First Name</th> 
-        <th>Last Name</th> 
-		<th>Birthdate</th> 
-		<th>Address</th> 
-		<th>Email</th> 
-		<th>Contact</th> 
-    </thead> 
+  <h3>Current Patients:</h3>
+  <table>
+    <thead>
+      <th>ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Birthdate</th>
+      <th>Address</th>
+      <th>Email</th>
+      <th>Contact</th>
+    </thead>
     <tbody>
-        {{#each patient}} 
-        <tr> 
-            <td>{{id}}</td> 
-            <td>{{patient_first_name}}</td> 
-            <td>{{patient_last_name}}</td> 
-			<td>{{patient_birth}}</td> 
-			<td>{{patient_address}}</td> 
-			<td>{{patient_email}}</td> 
-			<td>{{patient_contact}}</td> 
+      {{#each patient}}
+        <tr>
+          <td>{{id}}</td>
+          <td>{{patient_first_name}}</td>
+          <td>{{patient_last_name}}</td>
+          <td>{{patient_birth}}</td>
+          <td>{{patient_address}}</td>
+          <td>{{patient_email}}</td>
+          <td>{{patient_contact}}</td>
           <td><button onclick="deletepatient({{id}})">Delete</button></td>
-           <td><button><a href="/patient/{{id}}">Update</button></a></td>
-        </tr> 
-        {{/each}} 
-    </tbody> 
-</table> 
+          <td><button><a href="/patient/{{id}}">Update</a></button></td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
 </html>

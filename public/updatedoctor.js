@@ -1,8 +1,8 @@
-function updatePerson(id) {
+function updateDoctor(id) {
   $.ajax({
-    url: "/people/" + id,
+    url: "/doctor/" + id,
     type: "PUT",
-    data: $("#update-person").serialize(),
+    data: $("#update-doctor").serialize(),
     success: function (result) {
       window.location.replace("./");
     },

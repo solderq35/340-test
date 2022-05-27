@@ -1,3 +1,3 @@
-function selectPlanet(id){
-    $("#planet-selector").val(id);
+function selectPlanet(id) {
+  $("#planet-selector").val(id);
 }

@@ -1,47 +1,44 @@
-
-
 function searchPatient() {
-    //get the first name 
-    var search_string  = document.getElementById('search_string').value
-	
+  //get the first name
+  var search_string = document.getElementById("search_string").value;
 
-    //construct the URL and redirect to it
+  //construct the URL and redirect to it
 
-    window.location = '/patient/search/' + encodeURI(search_string)
+  window.location = "/patient/search/" + encodeURI(search_string);
 }
 
 function searchDoctor() {
-    //get the first name 
-    var search_string  = document.getElementById('search_string').value
+  //get the first name
+  var search_string = document.getElementById("search_string").value;
 
-    //construct the URL and redirect to it
+  //construct the URL and redirect to it
 
-    window.location = '/doctor/search/' + encodeURI(search_string)
+  window.location = "/doctor/search/" + encodeURI(search_string);
 }
 
 function searchMedication() {
-    //get the first name 
-    var search_string  = document.getElementById('search_string').value
+  //get the first name
+  var search_string = document.getElementById("search_string").value;
 
-    //construct the URL and redirect to it
+  //construct the URL and redirect to it
 
-    window.location = '/medication/search/' + encodeURI(search_string)
+  window.location = "/medication/search/" + encodeURI(search_string);
 }
 
 function searchPharmacy() {
-    //get the first name 
-    var search_string  = document.getElementById('search_string').value
+  //get the first name
+  var search_string = document.getElementById("search_string").value;
 
-    //construct the URL and redirect to it
+  //construct the URL and redirect to it
 
-    window.location = '/pharmacy/search/' + encodeURI(search_string)
+  window.location = "/pharmacy/search/" + encodeURI(search_string);
 }
 
 function searchDiagnosis() {
-    //get the first name 
-    var search_string  = document.getElementById('search_string').value
+  //get the first name
+  var search_string = document.getElementById("search_string").value;
 
-    //construct the URL and redirect to it
+  //construct the URL and redirect to it
 
-    window.location = '/diagnosis/search/' + encodeURI(search_string)
+  window.location = "/diagnosis/search/" + encodeURI(search_string);
 }

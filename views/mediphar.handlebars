@@ -1,52 +1,65 @@
 <html>
-{{#each foo}}
-{{this}}
-{{/each}}
-<h1>MediPhar</h1>
-<h3>Add new Medication & Pharmacy (Unique Combinations Only):</h3>
-Clarification: The entered "Diagnosis ID" can exist on the table below, and the entered "Pharmacy ID" can exist on the "Current Mediphar" table below, but not both.
-<h4>{{errormessage}}</h4>
-    <form id="add_people_certificates" action="/mediphar" method="post" onkeydown="return event.key != 'Enter';">
-    Medication ID: <select name='medication_id'>
-        {{#each medication2}}
-          <option value='{{medication_id}}'>{{medication_id}} {{medication_name}}</option>
-        {{/each}}
+  {{#each foo}}
+    {{this}}
+  {{/each}}
+  <h1>MediPhar</h1>
+  <h3>Add new Medication & Pharmacy (Unique Combinations Only):</h3>
+  Clarification: The entered "Diagnosis ID" can exist on the table below, and
+  the entered "Pharmacy ID" can exist on the "Current Mediphar" table below, but
+  not both.
+  <h4>{{errormessage}}</h4>
+  <form
+    id="add_people_certificates"
+    action="/mediphar"
+    method="post"
+    onkeydown="return event.key != 'Enter';"
+  >
+    Medication ID:
+    <select name="medication_id">
+      {{#each medication2}}
+        <option value="{{medication_id}}">{{medication_id}}
+          {{medication_name}}</option>
+      {{/each}}
     </select>
-    <br>
-	    Pharmacy ID: <select name='pharmacy_id'>
-        {{#each pharmacy2}}
-          <option value='{{pharmacy_id}}'>{{pharmacy_id}} {{pharmacy_name}}</option>
-        {{/each}}
-    </select><br>
-    <input type="submit" value="Submit">
- </form>
-<br/>
+    <br />
+    Pharmacy ID:
+    <select name="pharmacy_id">
+      {{#each pharmacy2}}
+        <option value="{{pharmacy_id}}">{{pharmacy_id}}
+          {{pharmacy_name}}</option>
+      {{/each}}
+    </select><br />
+    <input type="submit" value="Submit" />
+  </form>
+  <br />
 
-
-<h3>Current MediPhar:</h3>
-<table>
-    <thead> 
-		<!-- <th>MediPharm ID </th> -->
-        <th>Medication ID</th> 
-		<th>Medication Name</th> 
-        <th>Pharmacy ID</th> 
-		<th>Pharmacy Name</th> 
-    </thead> 
+  <h3>Current MediPhar:</h3>
+  <table>
+    <thead>
+      <!-- <th>MediPharm ID </th> -->
+      <th>Medication ID</th>
+      <th>Medication Name</th>
+      <th>Pharmacy ID</th>
+      <th>Pharmacy Name</th>
+    </thead>
     <tbody>
- {{#each mediphar}} 
-        <tr> 
-            <td>{{medication_id}}</td> 
-			<td>{{medication_name}}</td> 
-            <td>{{pharmacy_id}}</td> 
-			<td>{{pharmacy_name}}</td> 
-            <td><button onclick="deletemediphar({{medication_id}},{{pharmacy_id}})">Delete</button></td>
-			
+      {{#each mediphar}}
+        <tr>
+          <td>{{medication_id}}</td>
+          <td>{{medication_name}}</td>
+          <td>{{pharmacy_id}}</td>
+          <td>{{pharmacy_name}}</td>
+          <td><button
+              onclick="deletemediphar({{medication_id}},{{pharmacy_id}})"
+            >Delete</button></td>
 
         </tr>
-        {{else}}
-        <b> No people with any certifications found! Grant some using the form. </b>
-        {{/each}} 
-    </tbody> 
-</table> 
+      {{else}}
+        <b>
+          No people with any certifications found! Grant some using the form.
+        </b>
+      {{/each}}
+    </tbody>
+  </table>
 
 </html>
