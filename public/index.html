@@ -4,28 +4,57 @@
 		<title>JeffLee Hospital Website</title>
 		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap" rel="stylesheet">
 		<script src="https://kit.fontawesome.com/2441406a2d.js" crossorigin="anonymous"></script>
+		<link rel="icon" type="image/x-icon" href="/hospital.ico">
 		<link rel="stylesheet" href="./style.css" media="screen">
 	</head>
 <body>
   <header class="header-title"><i class="fa-solid fa-house-medical"></i>  JeffLee Hospital Website</header>
-  <h4> Menu of operations</h4>
-  <ul>
-    <li> <a href='/patient'>Patient</a></li>
-  <li> <a href='/doctor'>Doctor</a></li>
-  <li> <a href='/pharmacy'>Pharmacy</a></li>
-	<li> <a href='/medication'>Medication</a></li>
-  <li> <a href='/diagnosis'>Diagnosis</a></li>
-  <li> <a href='/mediphar'>Medication_Pharmacy</a></li>
+  <div class="topnav">
+<ul>
+  <li class="nonhome"><a href="/">Home</a></li>
+  <li class="nonhome"><a href="/patient">Patient</a></li>
+  <li class="nonhome"><a href="/doctor">Doctor</a></li>
+  <li class="nonhome"><a href="/medication">Medication</a></li>
+  <li class="nonhome"><a href="/pharmacy">Pharmacy</a></li>
+  <li class="nonhome"><a href="mediphar">MediPhar</a></li>
+  <li class="nonhome"><a href="/diagnosis">Diagnosis</a></li>
+
+ 
   
-  	<!-- <li> <a href='/doctor'>doctor SELECT</a></li> -->
-  <!--  <li> <a href="/pharmacy">pharmacy SELECT</li> -->
-  <!--  <li> <a href='/pharmacy-insert2'>pharmacy INSERT 2 (test)</a></li> -->
-<!--	<li> <a href='/medication'>medication SELECT</a></li> -->
-<!--	<li> <a href='/people'>medication INSERT</a></li> -->
-   <!-- <li> <a href='/diagnosis'>Diagnosis</a></li>-->
+  	<!-- <li class="home"> <a href='/doctor'>doctor SELECT</a></li> -->
+  <!--  <li class="home"> <a href="/pharmacy">pharmacy SELECT</li> -->
+  <!--  <li class="home"> <a href='/pharmacy-insert2'>pharmacy INSERT 2 (test)</a></li> -->
+<!--	<li class="home"> <a href='/medication'>medication SELECT</a></li> -->
+<!--	<li class="home"> <a href='/people'>medication INSERT</a></li> -->
+   <!-- <li class="home"> <a href='/diagnosis'>Diagnosis</a></li>-->
   </ul>
 
   <br/>
-  <p><a href='https://github.com/knightsamar/CS340-Sample-Web-App/'>Based on this Sample Repo</a></p>
+  <div class = "indexlink">
+ <p>
+  
+  <h2>Welcome to the JeffLee Hospital Website!</h2>
+  <h4>General Specifications</h4>
+  <ul class = "homeli">
+  <li>Select / Insert / Search / Update / Delete implemented for all entities except Mediphar (Intersection Table using composite primary key).</li>
+  <li>Mediphar has Select / Insert / Delete functionality, but is missing Update and Search functionality as these seem harder to implement with composite primary key (and also it's not required to have Update and Search on every entity).</li>
+  </ul>
+  
+ <h4> Potential Problems</h4>
+<b>These are issues I consider low-priority, but would be helpful to fix if possible - input appreciated from fellow NodeJS users.</b>
+  <ul class = "homeli">
+  
+  <li>Input validation is mostly supported. Currently you're allowed to enter numbers into string inputs, as some input fields such as "Email" might contain numbers. Thinking about how to improve the input validation for the future.</li>
+  <li>Invalid inputs will result in a warning showing, although this warning won't go away until a correct input is entered.
+  <li>Make sure you actually <b>click on the Button prompts</b> on the site to navigate. Pressing "Enter" key is currently disabled due to this leading to wrong URL's.</li>
+  <li>After doing a search, the "Insert" UI is not hidden; this is because the search function merely filters out the correct results page on the default page for the entity, rather than redirecting the user to a new handlebars page specifically for search results. (I know how to fix this one but using a separate handlebars file for search results would be a very time consuming code refactor).</li>
+  <li>Decimals aren't shown in the "charge" attribute of Patient entity if the number is divisible by 1 ("1" will be shown instead of "1.0". However, "1.2" will show decimal correctly. Trailing zeros on decimals also aren't  shown; ideally I want decimals always shown up to 2 digits for money.</li>
+  </ul>
+
+  <a class = "homelink" href='https://github.com/knightsamar/CS340-Sample-Web-App/'>Based on this Sample Repo from the Canvas Modules</a>
+  
+</p>
+	</div>
+
 </body>
 </html>

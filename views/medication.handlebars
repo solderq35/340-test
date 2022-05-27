@@ -2,28 +2,40 @@
 {{#each foo}}
 {{this}}
 {{/each}}
-<h3>Add new Medication:</h3>
-<form id="addperson" action="/medication" method="post">
-    Medication Name: <input type="text" name="medication_name"><br>
-    Medication Address: <input type="text" name="manufacturer"><br>
+<h1>Medication</h1>
+<h3>Add New Medication (Please fill in all Input Fields):</h3>
+<h4>{{errormessage}}</h4>
+<form id="addperson" action="/medication" method="post" onkeydown="return event.key != 'Enter';">
+    Medication Name: <input type="text" name="medication_name" placeholder="Enter Medicine Name"><br>
+   Manufacturer: <input type="text" name="manufacturer" placeholder="Enter Manufacturer Name"><br>
     
     <input type="submit" value="Submit">
  </form>
 <br/>
 
+<form id='search_people' action='' method='' onkeydown="return event.key != 'Enter';">
+    <label> Search for Medication by Medication Name:</label>
+	<h4>{{errormessage}}</h4>
+    <input id='search_string' type='text' name='search_string' value='' placeholder="Enter Medicine Name">
+    <input type="button" value="Search" onclick="searchMedication()"> <button><a href="/medication">Cancel Search</button></a>
+
+</form>
+
 <h3>Current Medication:</h3>
 <table>
     <thead> 
         <th>ID</th> 
-        <th>Name</th> 
-        <th>Address</th> 
+        <th>Medication Name</th> 
+        <th>Manufacturer</th> 
     </thead> 
     <tbody>
         {{#each medication}} 
         <tr> 
-            <td>{{medication_id}}</td> 
+            <td>{{id}}</td> 
             <td>{{medication_name}}</td> 
             <td>{{manufacturer}}</td> 
+			<td><button onclick="deletemedication({{id}})">Delete</button></td>
+			<td><button><a href="/medication/{{id}}">Update</button></a></td>
         </tr> 
         {{/each}} 
     </tbody> 

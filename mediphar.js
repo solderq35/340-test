@@ -1,11 +1,20 @@
 module.exports = function(){
     var express = require('express');
     var router = express.Router();
+        var errormessage = '';
+
+function geterrormessage(res, context, complete){
+
+    
+            context.errormessage = errormessage;
+            complete();
+
+    }
 
  //   router.get('/', servePlanets);
     /* get people to populate in dropdown */
     function getPeople(res, mysql, context, complete){
-        mysql.pool.query("SELECT medication_id AS medication_id, medication_id FROM medication", function(error, results, fields){
+        mysql.pool.query("SELECT medication_id AS medication_id, medication_id, medication_name FROM medication", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -15,8 +24,10 @@ module.exports = function(){
         });
     }
 
+
+
     function getPeople2(res, mysql, context, complete){
-        mysql.pool.query("SELECT * from medication_pharmacy", function(error, results, fields){
+        mysql.pool.query("SELECT medication_id, pharmacy_id from medication_pharmacy", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -28,7 +39,7 @@ module.exports = function(){
 
     /* get certificates to populate in dropdown */
     function getCertificates(res, mysql, context, complete){
-		mysql.pool.query("SELECT pharmacy_id AS pharmacy_id, pharmacy_id FROM pharmacy", function(error, results, fields){
+		mysql.pool.query("SELECT pharmacy_id AS pharmacy_id, pharmacy_id, pharmacy_name FROM pharmacy", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end()
@@ -101,15 +112,16 @@ router.get('/', function(req, res){
 		
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deletedoctor.js","filterpeople.js","searchpeople.js"];
+        context.jsscripts = ["deletefunction.js","filterpeople.js","searchpeople.js"];
         var mysql = req.app.get('mysql');
 		//servePlanets(res,mysql,context,complete);
         getPeople(res, mysql, context, complete);
         getCertificates(res, mysql, context, complete);
 		getPeople2(res, mysql, context, complete);
+		geterrormessage(res, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 3){
+            if(callbackCount >= 4){
                 res.render('mediphar', context);
             }
 
@@ -190,9 +202,11 @@ router.get('/', function(req, res){
                // res.end();
 
 			//	return false;
-				res.redirect('/duplicate.html');
+			errormessage = "Duplicate entry. Please ensure that at least one of your inputs is different compared to the medication_id and pharmacy_id shown on the table below.";
+				res.redirect('/mediphar');
 		
             }else{
+				errormessage = "";
                 res.redirect('/mediphar');
             }
         });

@@ -1,13 +1,32 @@
 <!doctype html>
 <html>
 <head>
-	<title>Demo Page</title>
+	<title>JeffLee Hospital Website</title>
+			<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap" rel="stylesheet">
+		<script src="https://kit.fontawesome.com/2441406a2d.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<link rel="icon" type="image/x-icon" href="/hospital.ico">
     {{#each jsscripts}}
     <script src="/static/{{this}}"></script>
     {{/each}}
+
+	<link rel="stylesheet" href="/style.css">
 </head>
 <body>
+  <header class="header-title"><i class="fa-solid fa-house-medical"></i>  JeffLee Hospital Website</header>
+  <div class="topnav">
+<ul>
+  <li class="nonhome"><a href="/">Home</a></li>
+  <li class="nonhome"><a href="/patient">Patient</a></li>
+  <li class="nonhome"><a href="/doctor">Doctor</a></li>
+  <li class="nonhome"><a href="/medication">Medication</a></li>
+  <li class="nonhome"><a href="/pharmacy">Pharmacy</a></li>
+  <li class="nonhome"><a href="mediphar">MediPhar</a></li>
+  <li class="nonhome"><a href="/diagnosis">Diagnosis</a></li>
+</ul>
+</div>
+<div class = "mainbody">
 	{{{body}}}
+</div>
 </body>
 </html>

@@ -2,18 +2,20 @@
 {{#each foo}}
 {{this}}
 {{/each}}
-<h3>Add new Medication & Pharmacy:</h3>
-<h4>	Note: Duplicate inserts will not be processed! </h4>
-    <form id="add_people_certificates" action="/mediphar" method="post">
+<h1>MediPhar</h1>
+<h3>Add new Medication & Pharmacy (Unique Combinations Only):</h3>
+Clarification: The entered "Diagnosis ID" can exist on the table below, and the entered "Pharmacy ID" can exist on the "Current Mediphar" table below, but not both.
+<h4>{{errormessage}}</h4>
+    <form id="add_people_certificates" action="/mediphar" method="post" onkeydown="return event.key != 'Enter';">
     Medication ID: <select name='medication_id'>
         {{#each medication2}}
-          <option value='{{medication_id}}'>{{medication_id}}</option>
+          <option value='{{medication_id}}'>{{medication_id}} {{medication_name}}</option>
         {{/each}}
     </select>
     <br>
 	    Pharmacy ID: <select name='pharmacy_id'>
         {{#each pharmacy2}}
-          <option value='{{pharmacy_id}}'>{{pharmacy_id}}</option>
+          <option value='{{pharmacy_id}}'>{{pharmacy_id}} {{pharmacy_name}}</option>
         {{/each}}
     </select><br>
     <input type="submit" value="Submit">
@@ -21,12 +23,12 @@
 <br/>
 
 
-<h3>Current Medication & Pharmacy:</h3>
+<h3>Current MediPhar:</h3>
 <table>
     <thead> 
 		<!-- <th>MediPharm ID </th> -->
         <th>Medication ID</th> 
-        <th>Pharmacy iD</th> 
+        <th>Pharmacy ID</th> 
     </thead> 
     <tbody>
  {{#each mediphar}} 
@@ -34,6 +36,7 @@
             <td>{{medication_id}}</td> 
             <td>{{pharmacy_id}}</td> 
             <td><button onclick="deletemediphar({{medication_id}},{{pharmacy_id}})">Delete</button></td>
+			
 
         </tr>
         {{else}}

@@ -1,0 +1,14 @@
+<html>
+
+<h1>Update Pharmacy Entry {{pharmacy.id}} ({{pharmacy.pharmacy_name}}) </h1>
+<h4>{{errormessage3}}</h4>
+<form id="update-pharmacy" action="/pharmacy" method="post" onkeydown="return event.key != 'Enter';">
+    Pharmacy Name: <input type="text" name="pharmacy_name" value="{{pharmacy.pharmacy_name}}"><br>
+    Pharmacy Address: <input type="text" name="pharmacy_address" value="{{pharmacy.pharmacy_address}}"><br>
+	Pharmacy Contact: <input type="text" name="pharmacy_contact" value="{{pharmacy.pharmacy_contact}}"><br>
+    </select><br>
+</form>
+
+<button onclick="updatePharmacy({{pharmacy.id}})">Update</button>
+<a href="/pharmacy"><button>Cancel Update</button></a>
+</html>

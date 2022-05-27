@@ -1,8 +1,7 @@
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET SQL_SAFE_UPDATES = 0;
-
-
 SET @@auto_increment_increment=10;
+
 -- drop diagnosis here to prevent error
 DROP TABLE IF EXISTS `diagnosis`;
 
@@ -52,7 +51,7 @@ CREATE TABLE `medication_pharmacy` (
 	CONSTRAINT FOREIGN KEY(`pharmacy_id`) REFERENCES `pharmacy` (`pharmacy_id`)  ON DELETE CASCADE
 	) ENGINE=InnoDB;
 
-INSERT INTO `medication_pharmacy`(medication_id,pharmacy_id) VALUES ('1','3'),('1','2'),('4','2'),('3','2');
+INSERT INTO `medication_pharmacy`(medication_id,pharmacy_id) VALUES ('4','24'),('4','14'),('34','14'),('24','14');
 
 DROP TABLE IF EXISTS `doctor`;
 
@@ -69,12 +68,12 @@ INSERT INTO `doctor`(doctor_first_name,doctor_last_name,doctor_contact)
 
 CREATE TABLE diagnosis (
 	diagnosis_id int AUTO_INCREMENT UNIQUE NOT NULL PRIMARY KEY,
+	diagnosis_name varchar(64),
 	medication_id int,
 	patient_id int,
 	doctor_id int,
 	pharmacy_id int,
-	description text,
-	charge int,
+	charge decimal(10,2),
 	diagnosis_date date,
 	CONSTRAINT FOREIGN KEY (`medication_id`) REFERENCES `medication` (`medication_id`) ON DELETE SET NULL ON UPDATE CASCADE,
 	CONSTRAINT FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`) ON DELETE SET NULL ON UPDATE CASCADE,
@@ -82,9 +81,14 @@ CREATE TABLE diagnosis (
 	CONSTRAINT FOREIGN KEY (`pharmacy_id`) REFERENCES `pharmacy` (`pharmacy_id`) ON DELETE SET NULL ON UPDATE CASCADE
 
 ) ENGINE=InnoDB;
+	
 
-INSERT INTO `diagnosis`(medication_id,patient_id,doctor_id,pharmacy_id,description,charge,diagnosis_date) 
-	VALUES ('1','1','4','1','AIDS','5000','2020-04-18'),('1','2','3','2','Malaria','200','2020-05-19'),('3','3','2','4','Common Cold','800','2021-05-21'),('2','3','1','4','Smallpox','300','2022-03-30');
+INSERT INTO `diagnosis`(diagnosis_name,medication_id,patient_id,doctor_id,pharmacy_id,charge,diagnosis_date) 
+	VALUES 
+	('AIDS','1','1','4','1','5000.00','2020-04-18'),
+	('Malaria','1','2','3','2','200.04','2020-05-19'),
+	('Common Cold','3','3','2','4','800.00','2021-05-21'),
+	('Smallpox','2','3','1','4','300.00','2022-03-30');
 
 
 -- phpMyAdmin SQL Dump
@@ -314,5 +318,5 @@ ALTER TABLE `bsg_cert_people`
 --
 ALTER TABLE `bsg_people`
   ADD CONSTRAINT `bsg_people_ibfk_1` FOREIGN KEY (`homeworld`) REFERENCES `bsg_planets` (`planet_id`) ON DELETE SET NULL ON UPDATE CASCADE;
-SET @@auto_increment_increment=1;
+
 COMMIT;

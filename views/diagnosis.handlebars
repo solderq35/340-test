@@ -2,69 +2,76 @@
 {{#each foo}}
 {{this}}
 {{/each}}
-<h3>Add new Diagnosis:</h3>
-    <form id="add_people_certificates" action="/diagnosis" method="post">
+
+		<h1>Diagnosis</h1>
+<h3>Add new Diagnosis (Please fill in all Input Fields):</h3>
+
+<h4>{{errormessage}}</h4>
+    <form id="add_people_certificates" action="/diagnosis" method="post" onkeydown="return event.key != 'Enter';">
+	Diagnosis Name: <input type="text" name="diagnosis_name"  placeholder="Enter Diagnosis Name">  <br>
     Medication ID: <select name='medication_id'>
-        {{#each medication2}}
-          <option value='{{medication_id}}'>{{medication_id}}</option>
+        {{#each medication}}
+          <option value='{{medication_id}}',>{{medication_id}} ({{medication_name}})</option>
         {{/each}}
     </select>
 	 <br>
 	    Patient ID: <select name='patient_id'>
-        {{#each patient2}}
-          <option value='{{patient_id}}'>{{patient_id}}</option>
+        {{#each patient}}
+          <option value='{{patient_id}}'>{{patient_id}} ({{patient_fullname}})</option>
         {{/each}}
     </select><br>
 		 <br>
 	    Doctor ID: <select name='doctor_id'>
-        {{#each doctor1}}
-          <option value='{{doctor_id}}'>{{doctor_id}}</option>
+        {{#each doctor}}
+          <option value='{{doctor_id}}'>{{doctor_id}} ({{doctor_fullname}})</option>
         {{/each}}
     </select><br>
     <br>
 	    Pharmacy ID: <select name='pharmacy_id'>
-        {{#each pharmacy2}}
-          <option value='{{pharmacy_id}}'>{{pharmacy_id}}</option>
+        {{#each pharmacy}}
+          <option value='{{pharmacy_id}}'>{{pharmacy_id}} ({{pharmacy_name}})</option>
         {{/each}}
     </select><br>
-
-	Description: <input type="text" name="description"><br>
 	
-	<h4>	Note: Please use integer values for the Charge input! </h4>
-	Charge: <input type="int" name="charge"><br>
-	Date: <input type="date" name="diagnosis_date"><br>
-	<script language = Javascript>
-		var moment = require('moment');
-	var diagnosis_date = moment(diagnosis_date).format('YYYY/MM/DD HH:MM:SS').toISOString();
-	</script>
+	Charge <input type="decimal" name="charge"  placeholder="Enter Charge (USD)"> <br>
+	Date: <input type="date" name="diagnosis_date">   <br>
+
     <input type="submit" value="Submit">
  </form>
 <br/>
 
+<form id='search_people' action='' method='' onkeydown="return event.key != 'Enter';">
+    <label> Search for Diagnosis by Diagnosis Name:</label>
+	<h4>{{errormessage2}}</h4>
+    <input id='search_string' type='text' name='search_string' value=''  placeholder="Enter Diagnosis Name">
+    <input type="button" value="Search" onclick="searchDiagnosis()"> <button><a href="/diagnosis">Cancel Search</button></a>
+
+</form>
 
 <h3>Current Diagnosis:</h3>
 <table>
     <thead> 
 		<th>Diagnosis ID </th>
+        <th>Diagnosis Name</th> 
         <th>Medication ID</th> 
-        <th>Patient ID</th> 
+		<th>Patient ID</th> 
 		<th>Doctor ID</th> 
-		<th>Pharmacy ID</th> 
-		<th>Description</th> 
-		<th>Charge</th> 
+		<th>Charge ($)</th> 
 		<th>Diagnosis Date</th> 
     </thead> 
     <tbody>
         {{#each diagnosis}} 
         <tr> 
-			<td>{{diagnosis_id}}</td> 
+			<td>{{id}}</td> 
+			<td>{{diagnosis_name}}</td>
             <td>{{medication_id}}</td> 
 			<td>{{patient_id}}</td> 
 			<td>{{doctor_id}}</td> 
             <td>{{pharmacy_id}}</td> 
-			<td>{{description}}</td> 
 			<td>{{charge}}</td> 
 			<td>{{diagnosis_date}}</td> 
+			            <td><button onclick="deletediagnosis({{id}})">Delete</button></td>
+			<td><button><a href="/diagnosis/{{id}}">Update</button></a></td>
         </tr> 
         {{/each}} 
     </tbody> 
