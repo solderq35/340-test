@@ -37,6 +37,7 @@ ul.homeli {
 
 li.nonhome {
   float: left;
+  color: white;
 }
 
 li a {
@@ -93,4 +94,9 @@ a.homelink {
 
 input[type="text"] {
   width: 350px;
+}
+
+a:visited
+{
+	color:inherit;
 }
