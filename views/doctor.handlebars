@@ -1,46 +1,78 @@
 <html>
-{{#each foo}}
-{{this}}
-{{/each}}
-		<h1>Doctor</h1>
-<h3>Add New Doctor  (Please fill in all Input Fields):</h3>
-<h4>{{errormessage2}}</h4>
-<form id="addperson" action="/doctor" method="post" onkeydown="return event.key != 'Enter';">
-    Doctor First Name: <input type="text" name="doctor_first_name" placeholder="Enter Doctor First Name"><br>
-    Doctor Last Name: <input type="text" name="doctor_last_name" placeholder="Enter Doctor Last Name"><br>
-    Doctor Contact: <input type="text" name="doctor_contact" placeholder="Enter Contact (Phone #)"><br>
-    
-    <input type="submit" value="Submit">
- </form>
-<br/>
+  {{#each foo}}
+    {{this}}
+  {{/each}}
+  <h1>Doctor</h1>
+  <h3>Add New Doctor (Please fill in all Input Fields):</h3>
+  <h4>{{errormessage2}}</h4>
+  <form
+    id="addperson"
+    action="/doctor"
+    method="post"
+    onkeydown="return event.key != 'Enter';"
+  >
+    Doctor First Name:
+    <input
+      type="text"
+      name="doctor_first_name"
+      placeholder="Enter Doctor First Name"
+    /><br />
+    Doctor Last Name:
+    <input
+      type="text"
+      name="doctor_last_name"
+      placeholder="Enter Doctor Last Name"
+    /><br />
+    Doctor Contact:
+    <input
+      type="text"
+      name="doctor_contact"
+      placeholder="Enter Contact (Phone #)"
+    /><br />
 
-<form id='search_people' action='' method='' onkeydown="return event.key != 'Enter';">
+    <input type="submit" value="Submit" />
+  </form>
+  <br />
+
+  <form
+    id="search_people"
+    action=""
+    method=""
+    onkeydown="return event.key != 'Enter';"
+  >
     <label> Search for Doctor by First Name:</label>
-	<h4>{{errormessage}}</h4>
-    <input id='search_string' type='text' name='search_string' value='' placeholder="Enter Doctor First Name">
-    <input type="button" value="Search" onclick="searchDoctor()"> <button><a href="/doctor">Cancel Search</button></a>
+    <h4>{{errormessage}}</h4>
+    <input
+      id="search_string"
+      type="text"
+      name="search_string"
+      value=""
+      placeholder="Enter Doctor First Name"
+    />
+    <input type="button" value="Search" onclick="searchDoctor()" />
+    <button><a href="/doctor">Cancel Search</a></button>
 
-</form>
+  </form>
 
-<h3>Current Doctor:</h3>
-<table>
-    <thead> 
-        <th>ID</th> 
-        <th>First Name</th> 
-        <th>Last Name</th>
-        <th>Contact</th>  
-    </thead> 
+  <h3>Current Doctor:</h3>
+  <table>
+    <thead>
+      <th>ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Contact</th>
+    </thead>
     <tbody>
-        {{#each doctor}} 
-        <tr> 
-            	<td>{{id}}</td> 
-            <td>{{doctor_first_name}}</td> 
-            <td>{{doctor_last_name}}</td> 
-            <td>{{doctor_contact}}</td> 
-            <td><button onclick="deletedoctor({{id}})">Delete</button></td>
-			<td><button><a href="/doctor/{{id}}">Update</button></a></td>
-        </tr> 
-        {{/each}} 
-    </tbody> 
-</table> 
+      {{#each doctor}}
+        <tr>
+          <td>{{id}}</td>
+          <td>{{doctor_first_name}}</td>
+          <td>{{doctor_last_name}}</td>
+          <td>{{doctor_contact}}</td>
+          <td><button onclick="deletedoctor({{id}})">Delete</button></td>
+          <td><button><a href="/doctor/{{id}}">Update</a></button></td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
 </html>

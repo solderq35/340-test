@@ -1,37 +1,64 @@
 <html>
 
-<h1>Update Diagnosis Entry {{diagnosis.id}} ({{diagnosis.diagnosis_name}})</h1>
-<h4>{{errormessage3}}</h4>
-<form id="update-diagnosis" action="/diagnosis" method="post" onkeydown="return event.key != 'Enter';">
-   	Diagnosis Name: <input type="text" name="diagnosis_name" value="{{diagnosis.diagnosis_name}}">  <br>
-    Medication ID: <select name='medication_id'>
-         {{#each medication}}
-            <option value="{{medication_id}}">{{medication_id}} ({{medication_name}})</option>
-        {{/each}}
+  <h1>Update Diagnosis Entry
+    {{diagnosis.id}}
+    ({{diagnosis.diagnosis_name}})</h1>
+  <h4>{{errormessage3}}</h4>
+  <form
+    id="update-diagnosis"
+    action="/diagnosis"
+    method="post"
+    onkeydown="return event.key != 'Enter';"
+  >
+    Diagnosis Name:
+    <input
+      type="text"
+      name="diagnosis_name"
+      value="{{diagnosis.diagnosis_name}}"
+    />
+    <br />
+    Medication ID:
+    <select name="medication_id">
+      {{#each medication}}
+        <option value="{{medication_id}}">{{medication_id}}
+          ({{medication_name}})</option>
+      {{/each}}
     </select>
-	 <br>
-	    Patient ID: <select name='patient_id'>
-        {{#each patient}}
-          <option value='{{patient_id}}'>{{patient_id}} ({{patient_fullname}})</option>
-        {{/each}}
-    </select><br>
-		 <br>
-	    Doctor ID: <select name='doctor_id'>
-        {{#each doctor}}
-          <option value='{{doctor_id}}'>{{doctor_id}} ({{doctor_fullname}})</option>
-        {{/each}}
-    </select><br>
-    <br>
-	    Pharmacy ID: <select name='pharmacy_id'>
-        {{#each pharmacy}}
-          <option value='{{pharmacy_id}}'>{{pharmacy_id}} ({{pharmacy_name}})</option>
-        {{/each}}
-    </select><br>
-	Charge: <input type="decimal" name="charge" value="{{diagnosis.charge}}"><br>
-	Date: <input type="date" name="diagnosis_date" value="{{diagnosis.diagnosis_date}}"><br>
-    </select><br>
-</form>
+    <br />
+    Patient ID:
+    <select name="patient_id">
+      {{#each patient}}
+        <option value="{{patient_id}}">{{patient_id}}
+          ({{patient_fullname}})</option>
+      {{/each}}
+    </select><br />
+    <br />
+    Doctor ID:
+    <select name="doctor_id">
+      {{#each doctor}}
+        <option value="{{doctor_id}}">{{doctor_id}}
+          ({{doctor_fullname}})</option>
+      {{/each}}
+    </select><br />
+    <br />
+    Pharmacy ID:
+    <select name="pharmacy_id">
+      {{#each pharmacy}}
+        <option value="{{pharmacy_id}}">{{pharmacy_id}}
+          ({{pharmacy_name}})</option>
+      {{/each}}
+    </select><br />
+    Charge:
+    <input type="decimal" name="charge" value="{{diagnosis.charge}}" /><br />
+    Date:
+    <input
+      type="date"
+      name="diagnosis_date"
+      value="{{diagnosis.diagnosis_date}}"
+    /><br />
+    <br />
+  </form>
 
-<button onclick="updateDiagnosis({{diagnosis.id}})">Update</button>
-<a href="/diagnosis"><button>Cancel Update</button></a>
+  <button onclick="updateDiagnosis({{diagnosis.id}})">Update</button>
+  <button><a href="/diagnosis">Cancel Update</a></button>
 </html>

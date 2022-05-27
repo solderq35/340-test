@@ -1,6 +1,5 @@
-
-
 # JeffLee Prototype
+
 More info (first link has mostly everything you need, second link has info on permanent URL, third link is just direct Github link to example repo):
 
 https://canvas.oregonstate.edu/courses/1870048/pages/learn-using-javascript-and-node-dot-js?module_item_id=21479576
@@ -12,6 +11,7 @@ https://github.com/knightsamar/cs340_sample_nodejs_app
 General Tip: Ctrl C to stop any node process in terminal
 
 ## SETUP
+
 Must run `source ./ddq.sql` AND `cs340_bsg_for_sample_webapp.sql`on MySQL first on ENGR servers, if you haven't already (we plan to phase out reliance on `cs340_bsg_for_sample_webapp.sql` in the near future, but for now we haven't removed some legacy functions.
 
 Log into OSU VPN (needed to host webpage if using node).
@@ -23,10 +23,12 @@ Git clone or download the repository to your new ENGR server folder.
 Edit the dbcon.js to contain your own credentials
 
 ### NPM Modules
+
 Run in terminal/Putty:
 `npm install`
 
 ### Non Permanent URL Output
+
 `node main.js {PORT}`
 
 (1024 < PORT < 65535)
@@ -38,6 +40,7 @@ Where {x} is the flip number you're currently on (1-3), and PORT is port you sel
 Ex: `http://flip2.engr.oregonstate.edu:9530/`
 
 ### Permanent URL Output
+
 Run following in terminal:
 
 `npm i mysql express forever --save`
