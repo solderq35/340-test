@@ -3,6 +3,7 @@ module.exports = function(){
     var router = express.Router();
 	var errormessage = '';
 	var errormessage2 = '';
+	var errormessage3 = '';
 	function geterrormessage(res, context, complete){
     
             context.errormessage = errormessage;
@@ -11,6 +12,11 @@ module.exports = function(){
 		function geterrormessage2(res, context, complete){
     
             context.errormessage2 = errormessage2;
+            complete();
+    }
+	function geterrormessage3(res, context, complete){
+    
+            context.errormessage3 = errormessage3;
             complete();
     }
     function getPlanets(res, mysql, context, complete){
@@ -148,9 +154,10 @@ module.exports = function(){
 				errormessage2 = "";
         getPerson(res, mysql, context, req.params.id, complete);
         getPlanets(res, mysql, context, complete);
+		geterrormessage3(res, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 2){
+            if(callbackCount >= 3){
                 res.render('update-pharmacy', context);
             }
 
@@ -187,6 +194,13 @@ module.exports = function(){
         console.log(req.params.id)
         var sql = "UPDATE pharmacy SET pharmacy_name=?, pharmacy_address=?, pharmacy_contact=? WHERE pharmacy_id = ?";
         var inserts = [req.body.pharmacy_name, req.body.pharmacy_address, req.body.pharmacy_contact, req.params.id];
+		if (!inserts[0] === true || !inserts[1] === true || !inserts[2] === true)
+			{
+				errormessage3 = "Invalid Input! Please fill in all input fields.";
+				res.redirect(req.get('/medication'));
+				console.log(errormessage3);
+			}
+			else {
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(error)
@@ -197,6 +211,7 @@ module.exports = function(){
                 res.end();
             }
         });
+			}
     });
 
     /* Route to delete a person, simply returns a 202 upon success. Ajax will handle this. */
