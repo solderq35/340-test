@@ -42,8 +42,8 @@
 <form id='search_people' action='' method='' onkeydown="return event.key != 'Enter';">
     <label> Search for Diagnosis by Diagnosis Name:</label>
 	<h4>{{errormessage2}}</h4>
-    <input id='search_string' type='text' name='search_string' value=''>
-    <input type="button" value="Search" onclick="searchDiagnosis()"> <a href="/diagnosis">Back from Search Results</a>
+    <input id='search_string' type='text' name='search_string' value=''  placeholder="Enter Diagnosis Name">
+    <input type="button" value="Search" onclick="searchDiagnosis()"> <button><a href="/diagnosis">Cancel Search</button></a>
 
 </form>
 
@@ -79,7 +79,7 @@
 			<td>{{charge}}</td> 
 			<td>{{diagnosis_date}}</td> 
 			            <td><button onclick="deletediagnosis({{id}})">Delete</button></td>
-			<td><a href="/diagnosis/{{id}}">Update</a></td>
+			<td><button><a href="/diagnosis/{{id}}">Update</button></a></td>
         </tr> 
         {{/each}} 
     </tbody> 

@@ -2,12 +2,12 @@
 {{#each foo}}
 {{this}}
 {{/each}}
-
+<h1>Medication</h1>
 <h3>Add new Medication:</h3>
 <h4>{{errormessage}}</h4>
 <form id="addperson" action="/medication" method="post" onkeydown="return event.key != 'Enter';">
-    Medication Name: <input type="text" name="medication_name"><br>
-   Manufacturer: <input type="text" name="manufacturer"><br>
+    Medication Name: <input type="text" name="medication_name" placeholder="Enter Medicine Name"><br>
+   Manufacturer: <input type="text" name="manufacturer" placeholder="Enter Manufacturer Name"><br>
     
     <input type="submit" value="Submit">
  </form>
@@ -16,8 +16,8 @@
 <form id='search_people' action='' method='' onkeydown="return event.key != 'Enter';">
     <label> Search for Medication by Medication Name:</label>
 	<h4>{{errormessage}}</h4>
-    <input id='search_string' type='text' name='search_string' value=''>
-    <input type="button" value="Search" onclick="searchMedication()"> <a href="/medication">Back from Search Results</a>
+    <input id='search_string' type='text' name='search_string' value='' placeholder="Enter Medicine Name">
+    <input type="button" value="Search" onclick="searchMedication()"> <button><a href="/medication">Cancel Search</button></a>
 
 </form>
 
@@ -35,7 +35,7 @@
             <td>{{medication_name}}</td> 
             <td>{{manufacturer}}</td> 
 			<td><button onclick="deletemedication({{id}})">Delete</button></td>
-			<td><a href="/medication/{{id}}">Update</a></td>
+			<td><button><a href="/medication/{{id}}">Update</button></a></td>
         </tr> 
         {{/each}} 
     </tbody> 

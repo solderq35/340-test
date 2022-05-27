@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS `diagnosis`;
 
 DROP TABLE IF EXISTS `patient`;
 CREATE TABLE patient (
-    patient_id int AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    patient_id int AUTO_INCREMENT UNIQUE NOT NULL PRIMARY KEY,
     patient_first_name varchar(255) NOT NULL,
 	patient_last_name varchar(255) NOT NULL,
 	patient_birth date NOT NULL,
@@ -25,7 +25,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `medication`;
 CREATE TABLE medication (
-    medication_id int AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    medication_id int AUTO_INCREMENT UNIQUE NOT NULL PRIMARY KEY,
     medication_name varchar(255) NOT NULL,
 	manufacturer varchar(255) NOT NULL
 	
@@ -58,8 +58,8 @@ CREATE TABLE `medication_pharmacy` (
 	medication_id int NOT NULL,
 	pharmacy_id int NOT NULL,
 	PRIMARY KEY (medication_id, pharmacy_id),
-	CONSTRAINT FOREIGN KEY(`medication_id`) REFERENCES `medication` (`medication_id`)  ,
-	CONSTRAINT FOREIGN KEY(`pharmacy_id`) REFERENCES `pharmacy` (`pharmacy_id`)   
+	CONSTRAINT FOREIGN KEY(`medication_id`) REFERENCES `medication` (`medication_id`) ON DELETE CASCADE,
+	CONSTRAINT FOREIGN KEY(`pharmacy_id`) REFERENCES `pharmacy` (`pharmacy_id`)  ON DELETE CASCADE
 	) ENGINE=InnoDB;
 
 LOCK TABLES `medication_pharmacy` WRITE;
@@ -68,7 +68,7 @@ UNLOCK TABLES;
 	
 DROP TABLE IF EXISTS `doctor`;
 CREATE TABLE doctor (
-    doctor_id int AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    doctor_id int AUTO_INCREMENT UNIQUE NOT NULL PRIMARY KEY,
     doctor_first_name varchar(255) NOT NULL,
 	doctor_last_name varchar(255) NOT NULL,
 	doctor_contact varchar(255) NOT NULL
@@ -85,7 +85,7 @@ INSERT INTO `doctor`(doctor_first_name,doctor_last_name,doctor_contact)
 UNLOCK TABLES;	
 	
 CREATE TABLE diagnosis (
-	diagnosis_id int AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	diagnosis_id int AUTO_INCREMENT UNIQUE NOT NULL PRIMARY KEY,
 	diagnosis_name varchar(64),
 	medication_id int,
 	patient_id int,
@@ -93,10 +93,10 @@ CREATE TABLE diagnosis (
 	pharmacy_id int,
 	charge decimal(10,2),
 	diagnosis_date date,
-	CONSTRAINT FOREIGN KEY (`medication_id`) REFERENCES `medication` (`medication_id`) ,
-	CONSTRAINT FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`) ,
-	CONSTRAINT FOREIGN KEY (`doctor_id`) REFERENCES `doctor` (`doctor_id`) ,
-	CONSTRAINT FOREIGN KEY (`pharmacy_id`) REFERENCES `pharmacy` (`pharmacy_id`) 
+	CONSTRAINT FOREIGN KEY (`medication_id`) REFERENCES `medication` (`medication_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+	CONSTRAINT FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+	CONSTRAINT FOREIGN KEY (`doctor_id`) REFERENCES `doctor` (`doctor_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+	CONSTRAINT FOREIGN KEY (`pharmacy_id`) REFERENCES `pharmacy` (`pharmacy_id`) ON DELETE SET NULL ON UPDATE CASCADE
 
 ) ENGINE=InnoDB;
 	

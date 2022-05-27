@@ -2,13 +2,13 @@
 {{#each foo}}
 {{this}}
 {{/each}}
-
+<h1>Pharmacy</h1>
 <h3>Add new Pharmacy:</h3>
 <h4>{{errormessage}}</h4>
 <form id="addperson" action="/pharmacy" method="post" onkeydown="return event.key != 'Enter';">
-    Pharmacy Name: <input type="text" name="pharmacy_name"><br>
-    Pharmacy Address: <input type="text" name="pharmacy_address"><br>
-    Pharmacy Contact: <input type="text" name="pharmacy_contact"><br>
+    Pharmacy Name: <input type="text" name="pharmacy_name" placeholder="Enter Pharmacy Name"><br>
+    Pharmacy Address: <input type="text" name="pharmacy_address" placeholder="Enter Pharmacy Address"><br>
+    Pharmacy Contact: <input type="text" name="pharmacy_contact" placeholder="Enter Contact (Phone #)"><br>
     
     <input type="submit" value="Submit">
  </form>
@@ -17,8 +17,8 @@
 <form id='search_people' action='' method='' onkeydown="return event.key != 'Enter';">
     <label> Search for Pharmacy by Name:</label>
 	<h4>{{errormessage2}}</h4>
-    <input id='search_string' type='text' name='search_string' value=''>
-    <input type="button" value="Search" onclick="searchPharmacy()"> <a href="/pharmacy">Back from Search Results</a>
+    <input id='search_string' type='text' name='search_string' value='' placeholder="Enter Pharmacy Name">
+    <input type="button" value="Search" onclick="searchPharmacy()"> <button><a href="/pharmacy">Cancel Search</button></a>
 
 </form>
 
@@ -38,7 +38,7 @@
             <td>{{pharmacy_address}}</td> 
             <td>{{pharmacy_contact}}</td> 
 			<td><button onclick="deletepharmacy({{id}})">Delete</button></td>
-			<td><a href="/pharmacy/{{id}}">Update</a></td>
+			<td><button><a href="/pharmacy/{{id}}">Update</button></a></td>
         </tr> 
         {{/each}} 
     </tbody> 

@@ -1,6 +1,6 @@
 <html>
 
-<h1>Update {{diagnosis.diagnosis_name}} (diagnosis: {{diagnosis.id}})</h1>
+<h1>Update Diagnosis Entry {{diagnosis.id}} ({{diagnosis.diagnosis_name}})</h1>
 <h4>{{errormessage3}}</h4>
 <form id="update-diagnosis" action="/diagnosis" method="post" onkeydown="return event.key != 'Enter';">
    	Diagnosis Name: <input type="text" name="diagnosis_name" value="{{diagnosis.diagnosis_name}}">  <br>
@@ -33,4 +33,5 @@
 </form>
 
 <button onclick="updateDiagnosis({{diagnosis.id}})">Update</button>
+<a href="/diagnosis"><button>Cancel Update</button></a>
 </html>

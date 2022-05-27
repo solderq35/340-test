@@ -26,6 +26,7 @@ should we enforce a specific format for address, email, phone number
 add back button for update page
 
 date input not saved for update
+^ fixed nvm
 
 ("fix"): prevent enter key (good idea?)
 

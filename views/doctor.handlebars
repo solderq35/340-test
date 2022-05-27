@@ -2,13 +2,13 @@
 {{#each foo}}
 {{this}}
 {{/each}}
-		
+		<h1>Doctor</h1>
 <h3>Add new doctor:</h3>
 <h4>{{errormessage2}}</h4>
 <form id="addperson" action="/doctor" method="post" onkeydown="return event.key != 'Enter';">
-    Doctor First Name: <input type="text" name="doctor_first_name"><br>
-    Doctor Last Name: <input type="text" name="doctor_last_name"><br>
-    Doctor Contact: <input type="text" name="doctor_contact"><br>
+    Doctor First Name: <input type="text" name="doctor_first_name" placeholder="Enter Doctor First Name"><br>
+    Doctor Last Name: <input type="text" name="doctor_last_name" placeholder="Enter Doctor Last Name"><br>
+    Doctor Contact: <input type="text" name="doctor_contact" placeholder="Enter Contact (Phone #)"><br>
     
     <input type="submit" value="Submit">
  </form>
@@ -17,8 +17,8 @@
 <form id='search_people' action='' method='' onkeydown="return event.key != 'Enter';">
     <label> Search for Doctor by First Name:</label>
 	<h4>{{errormessage}}</h4>
-    <input id='search_string' type='text' name='search_string' value=''>
-    <input type="button" value="Search" onclick="searchDoctor()"> <a href="/doctor">Back from Search Results</a>
+    <input id='search_string' type='text' name='search_string' value='' placeholder="Enter Doctor First Name">
+    <input type="button" value="Search" onclick="searchDoctor()"> <button><a href="/doctor">Cancel Search</button></a>
 
 </form>
 
@@ -38,7 +38,7 @@
             <td>{{doctor_last_name}}</td> 
             <td>{{doctor_contact}}</td> 
             <td><button onclick="deletedoctor({{id}})">Delete</button></td>
-			<td><a href="/doctor/{{id}}">Update</a></td>
+			<td><button><a href="/doctor/{{id}}">Update</button></a></td>
         </tr> 
         {{/each}} 
     </tbody> 

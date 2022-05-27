@@ -9,17 +9,15 @@
 	</head>
 <body>
   <header class="header-title"><i class="fa-solid fa-house-medical"></i>  JeffLee Hospital Website</header>
-  <div class = "mainbody">
-  <h1 class = "home"> Home: Menu of operations</h1>
-    </div>
-  <ul>
-  <li class="home"> <a href='/'>Home</a></li>
-    <li class="home"> <a href='/patient'>Patient</a></li>
-  <li class="home"> <a href='/doctor'>Doctor</a></li>
-  	<li class="home"> <a href='/medication'>Medication</a></li>
-  <li class="home"> <a href='/pharmacy'>Pharmacy</a></li>
-    <li class="home"> <a href='/mediphar'>MediPhar</a></li>
-  <li class="home"> <a href='/diagnosis'>Diagnosis</a></li>
+  <div class="topnav">
+<ul>
+  <li class="nonhome"><a href="/">Home</a></li>
+  <li class="nonhome"><a href="/patient">Patient</a></li>
+  <li class="nonhome"><a href="/doctor">Doctor</a></li>
+  <li class="nonhome"><a href="/medication">Medication</a></li>
+  <li class="nonhome"><a href="/pharmacy">Pharmacy</a></li>
+  <li class="nonhome"><a href="mediphar">Mediphar</a></li>
+  <li class="nonhome"><a href="/diagnosis">Diagnosis</a></li>
 
  
   
@@ -33,7 +31,21 @@
 
   <br/>
   <div class = "indexlink">
-  <p><a href='https://github.com/knightsamar/CS340-Sample-Web-App/'>Based on this Sample Repo</a></p>
+ <p>
+  
+  <h2>Welcome to the JeffLee Hospital Website!</h2>
+ <h4> Features and Potential Problems</h4>
+  <ul class = "homeli">
+  <li>Select / Insert / Search / Update / Delete implemented for all entities except Mediphar (composite table)</li>
+  <li>Mediphar has Select / Insert / Delete functionality, but is missing Update and Search functionality as these seem harder to implement with a composite table (and also it's not required to have Update and Search on every entity)</li>
+  <li>Input validation is mostly supported. Currently you're allowed to enter numbers into string inputs, as some input fields such as "Email" might contain numbers. Thinking about how to improve the input validation for the future.</li>
+  <li>Invalid inputs will result in a warning showing, although this warning won't go away until a correct input is entered.
+  <li>Make sure you actually <b>click on the Button prompts</b> on the site to navigate. Pressing "Enter" key is currently disabled due to this leading to wrong URL's</li>
+  </ul>
+  <br>
+  <a class = "homelink" href='https://github.com/knightsamar/CS340-Sample-Web-App/'>Based on this Sample Repo from the Canvas Modules</a>
+  
+</p>
 	</div>
 
 </body>

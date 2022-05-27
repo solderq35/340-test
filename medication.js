@@ -147,9 +147,10 @@ function geterrormessage3(res, context, complete){
 				res.redirect('/medication');
 			}
 			else{
-        getPerson(res, mysql, context, req.params.id, complete);
+        
         getPlanets(res, mysql, context, complete);
 		geterrormessage3(res, context, complete);
+		getPerson(res, mysql, context, req.params.id, complete);
         function complete(){
             callbackCount++;
             if(callbackCount >= 3){

@@ -77,7 +77,7 @@ function geterrormessage(res, context, complete){
     }
 
     function getPerson(res, mysql, context, id, complete){
-        var sql = "select patient_id as id, patient_first_name, patient_last_name, patient_birth, patient_address, patient_email, patient_contact FROM patient WHERE patient_id = ?";
+        var sql = "select patient_id as id, patient_first_name, patient_last_name, left(cast(patient_birth as date), 10) as patient_birth, patient_address, patient_email, patient_contact FROM patient WHERE patient_id = ?";
         var inserts = [id];
         mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
@@ -145,9 +145,10 @@ function geterrormessage(res, context, complete){
 				res.redirect('/patient');
 			}
 			else{
-        getPerson(res, mysql, context, req.params.id, complete);
+        getPeople(res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
 		geterrormessage3(res, context, complete);
+		getPerson(res, mysql, context, req.params.id, complete);
 		
         function complete(){
             callbackCount++;
@@ -155,7 +156,7 @@ function geterrormessage(res, context, complete){
 			console.log("here");
 
 			
-            if(callbackCount >= 3){
+            if(callbackCount >= 4){
                 res.render('update-patient', context);
             }
 			}

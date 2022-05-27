@@ -8,12 +8,12 @@
 
 <h4>{{errormessage2}}</h4>
 <form id="addperson" action="/patient" method="post" onkeydown="return event.key != 'Enter';">
-    Patient First Name: <input type="text" name="patient_first_name"><br>
-    Patient Last Name: <input type="text" name="patient_last_name"><br>
-	Patient Birth: <input type="date" name="patient_birth"><br>
-	Patient Address: <input type="text" name="patient_address"><br>
-	Patient Email: <input type="text" name="patient_email"><br>
-	Patient Contact: <input type="text" name="patient_contact"><br>
+    Patient First Name: <input type="text" name="patient_first_name" placeholder="Enter Patient First Name"><br>
+    Patient Last Name: <input type="text" name="patient_last_name" placeholder="Enter Patient Last Name"><br>
+	Patient Birth: <input type="date" name="patient_birth" placeholder="Enter Patient Birthdate"><br>
+	Patient Address: <input type="text" name="patient_address" placeholder="Enter Patient Address"><br>
+	Patient Email: <input type="text" name="patient_email" placeholder="Enter Patient Email"><br>
+	Patient Contact: <input type="text" name="patient_contact" placeholder="Enter Contact (Phone #)"><br>
     <input type="submit" value="Submit">
  </form>
 <br/>
@@ -21,8 +21,8 @@
 <form id='search_people' action='' method='' onkeydown="return event.key != 'Enter';">
     <label> Search for Patient by First Name:</label>
 	<h4>{{errormessage}}</h4>
-    <input id='search_string' type='text' name='search_string' value=''>
-    <input type="button" value="Search" onclick="searchPatient()">  <a href="/patient">Back from Search Results</a>
+    <input id='search_string' type='text' name='search_string' value='' placeholder="Enter Patient First Name">
+    <input type="button" value="Search" onclick="searchPatient()">  <button><a href="/patient">Cancel Search</button></a>
 </form>
 
 <h3>Current Patients:</h3>
@@ -47,7 +47,7 @@
 			<td>{{patient_email}}</td> 
 			<td>{{patient_contact}}</td> 
           <td><button onclick="deletepatient({{id}})">Delete</button></td>
-           <td><a href="/patient/{{id}}">Update</a></td>
+           <td><button><a href="/patient/{{id}}">Update</button></a></td>
         </tr> 
         {{/each}} 
     </tbody> 

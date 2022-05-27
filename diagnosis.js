@@ -5,6 +5,7 @@ module.exports = function(){
     var router = express.Router();
         var errormessage = '';
 		 var errormessage2 = '';
+		 	var errormessage3 = '';
 
 var valid = 0;
 
@@ -23,6 +24,14 @@ function geterrormessage2(res, context, complete){
             complete();
 
     }
+	function geterrormessage3(res, context, complete){
+
+    
+            context.errormessage3 = errormessage3;
+            complete();
+
+    }
+
 
 //$('header').append(template(person));
  //   router.get('/', servePlanets);
@@ -168,11 +177,12 @@ router.get('/', function(req, res){
 		getEntity5(res, mysql, context, complete);
 		geterrormessage(res, context, complete);
 		geterrormessage2(res, context, complete);
+		geterrormessage3(res, context, complete);
 		
 		// getCertificates(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 7){
+            if(callbackCount >= 8){
                 res.render('diagnosis', context);
             }
 
@@ -238,10 +248,11 @@ router.get('/', function(req, res){
 		getEntity4(res, mysql, context, complete);
 		getEntity5(res, mysql, context, complete);
 		getPerson(res, mysql, context, req.params.id, complete);
+		geterrormessage3(res, context, complete);
 		errormessage2 = "";
         function complete(){
             callbackCount++;
-            if(callbackCount >= 7){
+            if(callbackCount >= 8){
                 res.render('update-diagnosis', context);
             }
 
@@ -300,8 +311,13 @@ router.get('/', function(req, res){
         console.log(req.params.id)
         var sql = "UPDATE diagnosis SET diagnosis_name=?, medication_id=?, patient_id=?, doctor_id=?, pharmacy_id=?, charge=?, diagnosis_date=? WHERE diagnosis_id = ?";
         var inserts = [req.body.diagnosis_name, req.body.medication_id, req.body.patient_id, req.body.doctor_id, req.body.pharmacy_id, req.body.charge, req.body.diagnosis_date, req.params.id];
-		console.log(inserts[5]);
-		console.log("please I beg you");
+		if (!inserts[0] === true || !inserts[1] === true || !inserts[2] === true || !inserts[3] === true || !inserts[4] === true || !inserts[5] === true || !inserts[6] === true)
+			{
+				errormessage3 = "Invalid Input! Please fill in all input fields.";
+				res.redirect(req.get('/medication'));
+				console.log(errormessage3);
+			}	
+			else{
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(error)
@@ -312,6 +328,7 @@ router.get('/', function(req, res){
                 res.end();
             }
         });
+			}
 				console.log(sql);
 		console.log("dadada");
     });

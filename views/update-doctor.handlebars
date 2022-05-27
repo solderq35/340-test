@@ -1,6 +1,6 @@
 <html>
 
-<h1>Update {{doctor.doctor_first_name}} {{doctor.doctor_last_name}} (Doctor: {{doctor.id}})</h1>
+<h1>Update Doctor {{doctor.id}} ({{doctor.doctor_first_name}} {{doctor.doctor_last_name}})</h1>
 <h4>{{errormessage3}}</h4>
 <form id="update-doctor" action="/doctor" method="post" onkeydown="return event.key != 'Enter';">
     First name: <input type="text" name="doctor_first_name" value="{{doctor.doctor_first_name}}"><br>
@@ -10,4 +10,5 @@
 </form>
 
 <button onclick="updateDoctor({{doctor.id}})">Update</button>
+<a href="/doctor"><button>Cancel Update</button></a>
 </html>
