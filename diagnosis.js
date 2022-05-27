@@ -44,7 +44,7 @@ function geterrormessage2(res, context, complete){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.patient2 = results;
+            context.patient = results;
             complete();
         });
     }
@@ -54,7 +54,7 @@ function geterrormessage2(res, context, complete){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.doctor1 = results;
+            context.doctor = results;
             complete();
         });
     }
@@ -65,13 +65,13 @@ function geterrormessage2(res, context, complete){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.pharmacy2 = results;
+            context.pharmacy = results;
             complete();
         });
     }
 	
 			    function getEntity5(res, mysql, context, complete){
-        mysql.pool.query("SELECT diagnosis_id as id, diagnosis_name, medication_id, medication_name, patient_id, concat(patient_first_name,' ', patient_last_name) as patient_fullname, doctor_id, concat(doctor_first_name,' ', doctor_last_name) as doctor_fullname,pharmacy_id, pharmacy_name, cast((charge/1.00) as decimal(16,2)) as 'charge2', left(cast(diagnosis_date as date), 10) as diagnosis_date from diagnosis join medication using (medication_id) join patient using (patient_id) join doctor using (doctor_id) join pharmacy using (pharmacy_id) order by diagnosis_date", function(error, results, fields){
+        mysql.pool.query("SELECT diagnosis_id as id, diagnosis_name, medication_id, medication_name, patient_id, concat(patient_first_name,' ', patient_last_name) as patient_fullname, doctor_id, concat(doctor_first_name,' ', doctor_last_name) as doctor_fullname,pharmacy_id, pharmacy_name, cast((charge/1.00) as decimal(16,2)) as 'charge', left(cast(diagnosis_date as date), 10) as diagnosis_date from diagnosis join medication using (medication_id) join patient using (patient_id) join doctor using (doctor_id) join pharmacy using (pharmacy_id) order by diagnosis_id", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -123,7 +123,7 @@ function geterrormessage2(res, context, complete){
     /* Find people whose fname starts with a given string in the req */
     function getEntityWithNameLike(req, res, mysql, context, complete) {
       //sanitize the input as well as include the % character
-       var query = "SELECT diagnosis_id as id, diagnosis_name, medication_id, medication_name, patient_id, concat(patient_first_name,' ', patient_last_name) as patient_fullname, doctor_id, concat(doctor_first_name,' ', doctor_last_name) as doctor_fullname,pharmacy_id, pharmacy_name, cast((charge/1.00) as decimal(16,2)) as 'charge2', left(cast(diagnosis_date as date), 10) as diagnosis_date from diagnosis join medication using (medication_id) join patient using (patient_id) join doctor using (doctor_id) join pharmacy using (pharmacy_id) WHERE diagnosis.diagnosis_name LIKE " + mysql.pool.escape(req.params.s + '%');
+       var query = "SELECT diagnosis_id as id, diagnosis_name, medication_id, medication_name, patient_id, concat(patient_first_name,' ', patient_last_name) as patient_fullname, doctor_id, concat(doctor_first_name,' ', doctor_last_name) as doctor_fullname,pharmacy_id, pharmacy_name, cast((charge/1.00) as decimal(16,2)) as 'charge', left(cast(diagnosis_date as date), 10) as diagnosis_date from diagnosis join medication using (medication_id) join patient using (patient_id) join doctor using (doctor_id) join pharmacy using (pharmacy_id) WHERE diagnosis.diagnosis_name LIKE " + mysql.pool.escape(req.params.s + '%');
       console.log(query)
 
       mysql.pool.query(query, function(error, results, fields){
@@ -137,14 +137,14 @@ function geterrormessage2(res, context, complete){
     }
 
     function getPerson(res, mysql, context, id, complete){
-        var sql = "SELECT character_id as id, fname, lname, homeworld, age FROM bsg_people WHERE character_id = ?";
+        var sql = "SELECT diagnosis_id as id, diagnosis_name, medication_id, medication_name, patient_id, concat(patient_first_name,' ', patient_last_name) as patient_fullname, doctor_id, concat(doctor_first_name,' ', doctor_last_name) as doctor_fullname,pharmacy_id, pharmacy_name, cast((charge/1.00) as decimal(16,2)) as 'charge', left(cast(diagnosis_date as date), 10) as diagnosis_date from diagnosis join medication using (medication_id) join patient using (patient_id) join doctor using (doctor_id) join pharmacy using (pharmacy_id) WHERE diagnosis_id = ?";
         var inserts = [id];
         mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.person = results[0];
+            context.diagnosis = results[0];
             complete();
         });
     }
@@ -203,7 +203,7 @@ router.get('/', function(req, res){
     router.get('/search/:s', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deleteperson.js","filterpeople.js","searchfunction.js"];
+        context.jsscripts = ["deletefunction.js","filterpeople.js","searchfunction.js"];
         var mysql = req.app.get('mysql');
 		errormessage2 = "";
         getEntityWithNameLike(req, res, mysql, context, complete);
@@ -222,7 +222,7 @@ router.get('/', function(req, res){
 		 
         callbackCount = 0;
         var context = {};
-        context.jsscripts = ["selectedplanet.js", "updateperson.js"];
+        context.jsscripts = ["deletefunction.js","searchfunction.js", "updatefunction.js"];
         var mysql = req.app.get('mysql');
 				if (req.params.id === "search")
 			{
@@ -230,13 +230,19 @@ router.get('/', function(req, res){
 				res.redirect('/diagnosis');
 			}
 			else {
-        getPerson(res, mysql, context, req.params.id, complete);
+        
         getPlanets(res, mysql, context, complete);
+		getEntity(res, mysql, context, complete);
+		getEntity2(res, mysql, context, complete);
+		getEntity3(res, mysql, context, complete);
+		getEntity4(res, mysql, context, complete);
+		getEntity5(res, mysql, context, complete);
+		getPerson(res, mysql, context, req.params.id, complete);
 		errormessage2 = "";
         function complete(){
             callbackCount++;
-            if(callbackCount >= 2){
-                res.render('update-person', context);
+            if(callbackCount >= 7){
+                res.render('update-diagnosis', context);
             }
 
         }
@@ -292,8 +298,10 @@ router.get('/', function(req, res){
         var mysql = req.app.get('mysql');
         console.log(req.body)
         console.log(req.params.id)
-        var sql = "UPDATE bsg_people SET fname=?, lname=?, homeworld=?, age=? WHERE character_id=?";
-        var inserts = [req.body.medication_id, req.body.pharmacy_id];
+        var sql = "UPDATE diagnosis SET diagnosis_name=?, medication_id=?, patient_id=?, doctor_id=?, pharmacy_id=?, charge=?, diagnosis_date=? WHERE diagnosis_id = ?";
+        var inserts = [req.body.diagnosis_name, req.body.medication_id, req.body.patient_id, req.body.doctor_id, req.body.pharmacy_id, req.body.charge, req.body.diagnosis_date, req.params.id];
+		console.log(inserts[5]);
+		console.log("please I beg you");
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(error)
@@ -304,6 +312,8 @@ router.get('/', function(req, res){
                 res.end();
             }
         });
+				console.log(sql);
+		console.log("dadada");
     });
 
     /* Route to delete a person, simply returns a 202 upon success. Ajax will handle this. */

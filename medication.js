@@ -206,6 +206,8 @@ function geterrormessage3(res, context, complete){
                 res.end();
             }
         });
+		console.log(sql);
+		console.log("lalala");
 	}
     });
 

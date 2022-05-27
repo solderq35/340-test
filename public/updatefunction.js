@@ -54,3 +54,18 @@ function updatePharmacy(id){
 	window.location.reload();
 };
 
+function updateDiagnosis(id){
+    $.ajax({
+        url: '/diagnosis/' + id,
+        type: 'PUT',
+        data: $('#update-diagnosis').serialize(),
+        success: function(result){
+            window.location.replace("./");
+        }
+		
+		
+    })
+	window.location.reload();
+};
+
+

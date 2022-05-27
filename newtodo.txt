@@ -63,3 +63,5 @@ include new queries in schema list of pdf/ ddq/ queries sql?
 
 ---------------------------
 back button for update page
+
+input prompt "enter X here"
