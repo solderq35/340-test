@@ -2,8 +2,9 @@
 {{#each foo}}
 {{this}}
 {{/each}}
-<h1>Mediphar</h1>
+<h1>MediPhar</h1>
 <h3>Add new Medication & Pharmacy (Unique Combinations Only):</h3>
+Clarification: The entered "Diagnosis ID" can exist on the table below, and the entered "Pharmacy ID" can exist on the "Current Mediphar" table below, but not both.
 <h4>{{errormessage}}</h4>
     <form id="add_people_certificates" action="/mediphar" method="post" onkeydown="return event.key != 'Enter';">
     Medication ID: <select name='medication_id'>
@@ -22,7 +23,7 @@
 <br/>
 
 
-<h3>Current Medication & Pharmacy:</h3>
+<h3>Current MediPhar:</h3>
 <table>
     <thead> 
 		<!-- <th>MediPharm ID </th> -->
