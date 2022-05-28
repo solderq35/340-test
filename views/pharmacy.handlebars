@@ -27,7 +27,7 @@
     <input
       type="text"
       name="pharmacy_contact"
-      placeholder="Enter Contact (Phone #)"
+      placeholder="Enter Pharmacy Contact (Phone #)"
     /><br />
 
     <input type="submit" value="Submit" />
@@ -50,7 +50,7 @@
       placeholder="Enter Pharmacy Name"
     />
     <input type="button" value="Search" onclick="searchPharmacy()" />
-    <button><a href="/pharmacy">Cancel Search</a></button>
+    <button><a class = "blacklink" href="/pharmacy">Cancel Search</a></button>
 
   </form>
 
@@ -70,7 +70,7 @@
           <td>{{pharmacy_address}}</td>
           <td>{{pharmacy_contact}}</td>
           <td><button onclick="deletepharmacy({{id}})">Delete</button></td>
-          <td><button><a href="/pharmacy/{{id}}">Update</a></button></td>
+          <td><button><a class = "blacklink" href="/pharmacy/{{id}}">Update</a></button></td>
         </tr>
       {{/each}}
     </tbody>

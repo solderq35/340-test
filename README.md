@@ -47,6 +47,8 @@ Run following in terminal:
 
 `alias forever='./node_modules/forever/bin/forever'`
 
+Note: you want to add `alias forever='./node_modules/forever/bin/forever'` to your `.bashrc` file in your ENGR directory, so you don't have to type this out every time.
+
 `forever start main.js {PORT}`
 
 `ex: forever start main.js 9530`

@@ -4,9 +4,7 @@
   {{/each}}
   <h1>MediPhar</h1>
   <h3>Add new Medication & Pharmacy (Unique Combinations Only):</h3>
-  Clarification: The entered "Diagnosis ID" can exist on the table below, and
-  the entered "Pharmacy ID" can exist on the "Current Mediphar" table below, but
-  not both.
+  Clarification: For new MediPhar entries, you cannot have both Medication ID and Pharmacy ID be the same as an existing combination on the "Current Mediphar" table below. One duplicate key is okay, two is not.
   <h4>{{errormessage}}</h4>
   <form
     id="add_people_certificates"

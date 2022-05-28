@@ -27,7 +27,7 @@
     <input
       type="text"
       name="doctor_contact"
-      placeholder="Enter Contact (Phone #)"
+      placeholder="Enter Doctor Contact (Phone #)"
     /><br />
 
     <input type="submit" value="Submit" />
@@ -50,7 +50,7 @@
       placeholder="Enter Doctor First Name"
     />
     <input type="button" value="Search" onclick="searchDoctor()" />
-    <button><a href="/doctor">Cancel Search</a></button>
+    <button><a class = "blacklink" href="/doctor">Cancel Search</a></button>
 
   </form>
 
@@ -70,7 +70,7 @@
           <td>{{doctor_last_name}}</td>
           <td>{{doctor_contact}}</td>
           <td><button onclick="deletedoctor({{id}})">Delete</button></td>
-          <td><button><a href="/doctor/{{id}}">Update</a></button></td>
+          <td><button><a class = "blacklink" href="/doctor/{{id}}">Update</a></button></td>
         </tr>
       {{/each}}
     </tbody>
