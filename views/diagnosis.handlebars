@@ -79,7 +79,7 @@
       placeholder="Enter Diagnosis Name"
     />
     <input type="button" value="Search" onclick="searchDiagnosis()" />
-    <button><a href="/diagnosis">Cancel Search</a></button>
+    <button><a class = "blacklink" href="/diagnosis">Cancel Search</a></button>
 
   </form>
 
@@ -115,7 +115,7 @@
           <td>{{charge}}</td>
           <td>{{diagnosis_date}}</td>
           <td><button onclick="deletediagnosis({{id}})">Delete</button></td>
-          <td><button><a href="/diagnosis/{{id}}">Update</a></button></td>
+          <td><button><a class = "blacklink" href="/diagnosis/{{id}}">Update</a></button></td>
         </tr>
       {{/each}}
     </tbody>

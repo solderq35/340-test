@@ -69,7 +69,7 @@
       placeholder="Enter Patient First Name"
     />
     <input type="button" value="Search" onclick="searchPatient()" />
-    <button><a href="/patient">Cancel Search</a></button>
+    <button><a class = "blacklink" href="/patient">Cancel Search</a></button>
   </form>
 
   <h3>Current Patients:</h3>
@@ -94,7 +94,7 @@
           <td>{{patient_email}}</td>
           <td>{{patient_contact}}</td>
           <td><button onclick="deletepatient({{id}})">Delete</button></td>
-          <td><button><a href="/patient/{{id}}">Update</a></button></td>
+          <td><button><a class = "blacklink" href="/patient/{{id}}">Update</a></button></td>
         </tr>
       {{/each}}
     </tbody>
