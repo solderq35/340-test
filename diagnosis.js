@@ -269,18 +269,18 @@ module.exports = (function () {
       errormessage2 = "Invalid Input, please enter a search term.";
       res.redirect("/diagnosis");
     } else {
-      getPlanets(res, mysql, context, complete);
+      //getPlanets(res, mysql, context, complete);
       getPeople(res, mysql, context, complete);
       getPeople2(res, mysql, context, complete);
       getPeople3(res, mysql, context, complete);
       getPeople4(res, mysql, context, complete);
-      getPeople5(res, mysql, context, complete);
+    //  getPeople5(res, mysql, context, complete);
       getPerson(res, mysql, context, req.params.id, complete);
       geterrormessage3(res, context, complete);
       errormessage2 = "";
       function complete() {
         callbackCount++;
-        if (callbackCount >= 8) {
+        if (callbackCount >= 6) {
           res.render("update-diagnosis", context);
         }
       }
