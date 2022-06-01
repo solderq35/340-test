@@ -50,7 +50,7 @@
       placeholder="Enter Pharmacy Name"
     />
     <input type="button" value="Search" onclick="searchPharmacy()" />
-    <button><a class = "blacklink" href="/pharmacy">Cancel Search</a></button>
+    <button type = "button"><a class = "blacklink" href="/pharmacy">Cancel Search</a></button>
 
   </form>
 
@@ -69,8 +69,8 @@
           <td>{{pharmacy_name}}</td>
           <td>{{pharmacy_address}}</td>
           <td>{{pharmacy_contact}}</td>
-          <td><button onclick="deletepharmacy({{id}})">Delete</button></td>
-          <td><button><a class = "blacklink" href="/pharmacy/{{id}}">Update</a></button></td>
+           <td><button onclick="deletepharmacy({{id}})">Delete</button></td>
+          <td><button onclick= "location.href='/pharmacy/{{id}}'">Update</button></td>
         </tr>
       {{/each}}
     </tbody>

@@ -325,7 +325,7 @@ module.exports = (function () {
       inserts[5] < 0
     ) {
       errormessage =
-        "Invalid Input. Make sure you entered in a Diagnosis Name, that you have entered a positive numerical value for Charge, and that you entered a valid Date.";
+        "Invalid Input! Please fill in all input fields, and make sure you have entered the correct input format as well for each input field.";
       res.redirect("/diagnosis");
       //console.log(chargecheck);
       console.log("string ddetected");
@@ -369,7 +369,7 @@ module.exports = (function () {
       inserts[5] < 0
     ) {
       errormessage3 =
-        "Invalid Input. Make sure you entered in a Diagnosis Name, that you have entered a positive numerical value for Charge, and that you entered a valid Date.";
+        "Invalid Input! Please fill in all input fields, and make sure you have entered the correct input format as well for each input field.";
       res.redirect(req.get("/diagnosis"));
       console.log(errormessage3);
     } else {

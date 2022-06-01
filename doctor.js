@@ -208,11 +208,13 @@ module.exports = (function () {
       req.body.doctor_last_name,
       req.body.doctor_contact,
     ];
-	let patt = /^[0-9\-]+$/;
-console.log("patts");
-console.log(inserts[2], patt.test(inserts[2]));
-    if (!inserts[0] === true || !inserts[1] === true || inserts[2] === true ||  patt.test(inserts[2]) == false) {
-      errormessage2 = "Invalid Input! Please fill in all input fields.";
+	let num_hyphen_check = /^[0-9\-]+$/;
+	let letter_hyphen_check = /^[a-zA-Z\-]+$/;
+//console.log("num_hyphen_checks");
+console.log("hiletters");
+console.log(inserts[0], letter_hyphen_check.test(inserts[0]));
+    if (!inserts[0] === true || !inserts[1] === true || inserts[2] === true ||  num_hyphen_check.test(inserts[2]) == false  || letter_hyphen_check.test(inserts[0]) == false || letter_hyphen_check.test(inserts[1]) == false) {
+      errormessage2 = "Invalid Input! Please fill in all input fields, and make sure you have entered the correct input format as well for each input field.";
       res.redirect("/doctor");
     } else {
       sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
@@ -236,8 +238,10 @@ console.log(inserts[2], patt.test(inserts[2]));
       req.body.doctor_contact,
       req.params.id,
     ];
-    if (!inserts[0] === true || !inserts[1] === true || !inserts[2] === true) {
-      errormessage3 = "Invalid Input! Please fill in all input fields.";
+	let num_hyphen_check = /^[0-9\-]+$/;
+	let letter_hyphen_check = /^[a-zA-Z\-]+$/;
+    if (!inserts[0] === true || !inserts[1] === true || !inserts[2] === true || num_hyphen_check.test(inserts[2]) == false  || letter_hyphen_check.test(inserts[0]) == false || letter_hyphen_check.test(inserts[1]) == false) {
+      errormessage3 = "Invalid Input! Please fill in all input fields, and make sure you have entered the correct input format as well for each input field.";
       res.redirect(req.get("/doctor"));
       console.log(errormessage3);
     } else {
