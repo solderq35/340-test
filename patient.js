@@ -159,7 +159,7 @@ module.exports = (function () {
       errormessage = "Invalid Input, please enter a search term.";
       res.redirect("/patient");
     } else {
-      getPeople(res, mysql, context, complete);
+     // getPeople(res, mysql, context, complete);
       getPlanets(res, mysql, context, complete);
       geterrormessage3(res, context, complete);
       getPerson(res, mysql, context, req.params.id, complete);
@@ -169,7 +169,7 @@ module.exports = (function () {
         console.log(req.params.id);
         console.log("here");
 
-        if (callbackCount >= 4) {
+        if (callbackCount >= 3) {
           res.render("update-patient", context);
         }
       }
