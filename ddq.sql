@@ -100,6 +100,8 @@ CREATE TABLE diagnosis (
 
 ) ENGINE=InnoDB;
 	
+ALTER TABLE diagnosis modify charge DECIMAL (16,2);
+	
 LOCK TABLES `diagnosis` WRITE;
 INSERT INTO `diagnosis`(diagnosis_name,medication_id,patient_id,doctor_id,pharmacy_id,charge,diagnosis_date) 
 	VALUES 

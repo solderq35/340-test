@@ -4,8 +4,13 @@ module.exports = (function () {
   var errormessage = "";
   var errormessage2 = "";
   var errormessage3 = "";
-
+//var source = $("#some-template").html(); 
+//var template = Handlebars.compile(source); 
   var valid = 0;
+
+//Handlebars.registerHelper('fixedcharge', function(charge) {
+//  return charge.toFixed(2);;
+//});
 
   function geterrormessage(res, context, complete) {
     context.errormessage = errormessage;
@@ -87,6 +92,7 @@ module.exports = (function () {
           res.write(JSON.stringify(error));
           res.end();
         }
+
         console.log(fields);
         console.log("hi");
         context.diagnosis = results;

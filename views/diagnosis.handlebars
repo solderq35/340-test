@@ -22,7 +22,8 @@
     <br />
     Medication ID:
     <select name="medication_id">
-      {{#each medication}}
+	<option disabled selected value> -- select an option -- </option>
+      {{#each medication}}	   
         <option value="{{medication_id}}" ,>{{medication_id}}
           ({{medication_name}})</option>
       {{/each}}
@@ -30,6 +31,7 @@
     <br />
     Patient ID:
     <select name="patient_id">
+	<option disabled selected value> -- select an option -- </option>
       {{#each patient}}
         <option value="{{patient_id}}">{{patient_id}}
           ({{patient_fullname}})</option>
@@ -38,6 +40,7 @@
     <br />
     Doctor ID:
     <select name="doctor_id">
+	<option disabled selected value> -- select an option -- </option>
       {{#each doctor}}
         <option value="{{doctor_id}}">{{doctor_id}}
           ({{doctor_fullname}})</option>
@@ -46,6 +49,7 @@
     <br />
     Pharmacy ID:
     <select name="pharmacy_id">
+	<option disabled selected value> -- select an option -- </option>
       {{#each pharmacy}}
         <option value="{{pharmacy_id}}">{{pharmacy_id}}
           ({{pharmacy_name}})</option>
@@ -112,7 +116,7 @@
           <td>{{doctor_fullname}}</td>
           <td>{{pharmacy_id}}</td>
           <td>{{pharmacy_name}}</td>
-          <td>{{charge}}</td>
+          <td>{{decifix charge}}</td>
           <td>{{diagnosis_date}}</td>
           <td><button onclick="deletediagnosis({{id}})">Delete</button></td>
           <td><button><a class = "blacklink" href="/diagnosis/{{id}}">Update</a></button></td>

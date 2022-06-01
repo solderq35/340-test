@@ -4,6 +4,7 @@ module.exports = (function () {
   var errormessage = "";
   var errormessage2 = "";
   var errormessage3 = "";
+  
   function geterrormessage(res, context, complete) {
     context.errormessage = errormessage;
     complete();
@@ -207,7 +208,10 @@ module.exports = (function () {
       req.body.doctor_last_name,
       req.body.doctor_contact,
     ];
-    if (!inserts[0] === true || !inserts[1] === true || inserts[2] === true) {
+	let patt = /^[0-9\-]+$/;
+console.log("patts");
+console.log(inserts[2], patt.test(inserts[2]));
+    if (!inserts[0] === true || !inserts[1] === true || inserts[2] === true ||  patt.test(inserts[2]) == false) {
       errormessage2 = "Invalid Input! Please fill in all input fields.";
       res.redirect("/doctor");
     } else {
