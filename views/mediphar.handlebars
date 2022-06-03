@@ -14,19 +14,23 @@
   >
     Medication ID:
     <select name="medication_id">
+	<option disabled selected value> -- select an option -- </option>
       {{#each medication2}}
         <option value="{{medication_id}}">{{medication_id}}
-          {{medication_name}}</option>
+          ({{medication_name}})</option>
       {{/each}}
     </select>
+	<br>
     <br />
     Pharmacy ID:
     <select name="pharmacy_id">
+	<option disabled selected value> -- select an option -- </option>
       {{#each pharmacy2}}
         <option value="{{pharmacy_id}}">{{pharmacy_id}}
-          {{pharmacy_name}}</option>
+          ({{pharmacy_name}})</option>
       {{/each}}
     </select><br />
+	<br>
     <input type="submit" value="Submit" />
   </form>
   <br />

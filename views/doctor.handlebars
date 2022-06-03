@@ -4,7 +4,7 @@
   {{/each}}
   <h1>Doctor</h1>
   <h3>Add New Doctor (Please fill in all Input Fields):</h3>
-  <h4>{{errormessage2}}</h4>
+  <h4>{{insert_error}}</h4>
   <form
     id="addperson"
     action="/doctor"
@@ -16,20 +16,30 @@
       type="text"
       name="doctor_first_name"
       placeholder="Enter Doctor First Name"
-    /><br />
+    />
+	<br>
+	 (Letters and Hyphens Only)
+	<br />
+
+	 <br>
     Doctor Last Name:
     <input
       type="text"
       name="doctor_last_name"
       placeholder="Enter Doctor Last Name"
     /><br />
+ (Letters and Hyphens Only)
+ <br>
+ <br>
     Doctor Contact:
     <input
       type="text"
       name="doctor_contact"
-      placeholder="Enter Doctor Contact (Phone #)"
+      placeholder="Enter Doctor Contact (Phone Number)"
     /><br />
-
+	 (Numbers and Hyphens Only)
+	 <br>
+	 <br>
     <input type="submit" value="Submit" />
   </form>
   <br />
@@ -41,7 +51,7 @@
     onkeydown="return event.key != 'Enter';"
   >
     <label> Search for Doctor by First Name:</label>
-    <h4>{{errormessage}}</h4>
+    <h4>{{search_error}}</h4>
     <input
       id="search_string"
       type="text"
@@ -50,7 +60,7 @@
       placeholder="Enter Doctor First Name"
     />
     <input type="button" value="Search" onclick="searchDoctor()" />
-    <button><a class = "blacklink" href="/doctor">Cancel Search</a></button>
+    <button type = "button"><a class = "blacklink" href="/doctor">Cancel Search</a></button>
 
   </form>
 
@@ -70,7 +80,7 @@
           <td>{{doctor_last_name}}</td>
           <td>{{doctor_contact}}</td>
           <td><button onclick="deletedoctor({{id}})">Delete</button></td>
-          <td><button><a class = "blacklink" href="/doctor/{{id}}">Update</a></button></td>
+		  <td><button onclick= "location.href='/doctor/{{id}}'">Update</button></td>
         </tr>
       {{/each}}
     </tbody>

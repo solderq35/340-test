@@ -4,7 +4,7 @@
     {{patient.id}}
     ({{patient.patient_first_name}}
     {{patient.patient_last_name}})</h1>
-  <h4>{{errormessage3}}</h4>
+  <h4>{{update_error}}</h4>
   <form
     id="update-patient"
     action="/patient"
@@ -17,39 +17,50 @@
       name="patient_first_name"
       value="{{patient.patient_first_name}}"
     /><br />
+	(Letters and Hyphens Only)
+	<br>
+	<br>
     Last name:
     <input
       type="text"
       name="patient_last_name"
       value="{{patient.patient_last_name}}"
     /><br />
+		(Letters and Hyphens Only)
+	<br>
+	<br>
     Birth:
     <input
       type="date"
       name="patient_birth"
       value="{{patient.patient_birth}}"
     /><br />
+	<br>
     Address:
     <input
       type="text"
       name="patient_address"
       value="{{patient.patient_address}}"
     /><br />
+	<br>
     Email:
     <input
       type="text"
       name="patient_email"
       value="{{patient.patient_email}}"
     /><br />
+	<br>
     Contact:
     <input
       type="text"
       name="patient_contact"
       value="{{patient.patient_contact}}"
     /><br />
-    <br />
+	(Numbers and Hyphens Only)
+	<br>
+
   </form>
 
   <button onclick="updatePatient({{patient.id}})">Update</button>
-  <button><a class = "blacklink" href="/patient">Cancel Update</a></button>
+  <td><button onclick= "location.href='/patient'">Cancel Update</button></td>
 </html>

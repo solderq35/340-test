@@ -4,7 +4,7 @@
   {{/each}}
   <h1>Pharmacy</h1>
   <h3>Add new Pharmacy (Please fill in all Input Fields):</h3>
-  <h4>{{errormessage}}</h4>
+  <h4>{{insert_error}}</h4>
   <form
     id="addperson"
     action="/pharmacy"
@@ -17,18 +17,25 @@
       name="pharmacy_name"
       placeholder="Enter Pharmacy Name"
     /><br />
+	(Letters and Hyphens Only)
+	<br>
+	<br>
     Pharmacy Address:
     <input
       type="text"
       name="pharmacy_address"
       placeholder="Enter Pharmacy Address"
     /><br />
+	<br>
     Pharmacy Contact:
     <input
       type="text"
       name="pharmacy_contact"
       placeholder="Enter Pharmacy Contact (Phone #)"
     /><br />
+	(Numbers and Hyphens Only)
+	<br>
+	<br>
 
     <input type="submit" value="Submit" />
   </form>
@@ -41,7 +48,7 @@
     onkeydown="return event.key != 'Enter';"
   >
     <label> Search for Pharmacy by Name:</label>
-    <h4>{{errormessage2}}</h4>
+    <h4>{{search_error}}</h4>
     <input
       id="search_string"
       type="text"
@@ -50,7 +57,7 @@
       placeholder="Enter Pharmacy Name"
     />
     <input type="button" value="Search" onclick="searchPharmacy()" />
-    <button><a class = "blacklink" href="/pharmacy">Cancel Search</a></button>
+    <button type = "button"><a class = "blacklink" href="/pharmacy">Cancel Search</a></button>
 
   </form>
 
@@ -69,8 +76,8 @@
           <td>{{pharmacy_name}}</td>
           <td>{{pharmacy_address}}</td>
           <td>{{pharmacy_contact}}</td>
-          <td><button onclick="deletepharmacy({{id}})">Delete</button></td>
-          <td><button><a class = "blacklink" href="/pharmacy/{{id}}">Update</a></button></td>
+           <td><button onclick="deletepharmacy({{id}})">Delete</button></td>
+          <td><button onclick= "location.href='/pharmacy/{{id}}'">Update</button></td>
         </tr>
       {{/each}}
     </tbody>

@@ -1,33 +1,25 @@
 module.exports = (function () {
   var express = require("express");
   var router = express.Router();
-  var errormessage = "";
-  var errormessage3 = "";
-  function geterrormessage(res, context, complete) {
-    context.errormessage = errormessage;
+  var insert_error = "";
+  var update_error = "";
+  var search_error = "";
+  function get_insert_error(res, context, complete) {
+    context.insert_error = insert_error;
     complete();
   }
 
-  function geterrormessage3(res, context, complete) {
-    context.errormessage3 = errormessage3;
+  function get_update_error(res, context, complete) {
+    context.update_error = update_error;
     complete();
   }
 
-  function getPlanets(res, mysql, context, complete) {
-    mysql.pool.query(
-      "SELECT planet_id as id, name FROM bsg_planets",
-      function (error, results, fields) {
-        if (error) {
-          res.write(JSON.stringify(error));
-          res.end();
-        }
-        context.planets = results;
-        complete();
-      }
-    );
+  function get_search_error(res, context, complete) {
+    context.search_error = search_error;
+    complete();
   }
 
-  function getPeople(res, mysql, context, complete) {
+  function getMedication(res, mysql, context, complete) {
     mysql.pool.query(
       "SELECT medication_id as id, medication_name, manufacturer FROM medication",
       function (error, results, fields) {
@@ -41,29 +33,12 @@ module.exports = (function () {
     );
   }
 
-  function getPeoplebyHomeworld(req, res, mysql, context, complete) {
-    var query =
-      "SELECT bsg_people.character_id as id, fname, lname, bsg_planets.name AS homeworld, age FROM bsg_people INNER JOIN bsg_planets ON homeworld = bsg_planets.planet_id WHERE bsg_people.homeworld = ?";
-    console.log(req.params);
-    var inserts = [req.params.homeworld];
-    mysql.pool.query(query, inserts, function (error, results, fields) {
-      if (error) {
-        res.write(JSON.stringify(error));
-        res.end();
-      }
-      context.people = results;
-      complete();
-    });
-  }
-
   /* Find people whose fname starts with a given string in the req */
-  function getPeopleWithNameLike(req, res, mysql, context, complete) {
+  function getMedicationByName(req, res, mysql, context, complete) {
     //sanitize the input as well as include the % character
     var query =
       "SELECT medication_id as id, medication_name, manufacturer FROM medication WHERE medication.medication_name LIKE " +
       mysql.pool.escape(req.params.s + "%");
-    console.log(query);
-
     mysql.pool.query(query, function (error, results, fields) {
       if (error) {
         res.write(JSON.stringify(error));
@@ -74,7 +49,7 @@ module.exports = (function () {
     });
   }
 
-  function getPerson(res, mysql, context, id, complete) {
+  function getMedicationEntry(res, mysql, context, id, complete) {
     var sql =
       "select medication_id as id, medication_name, manufacturer FROM medication WHERE medication_id = ?";
     var inserts = [id];
@@ -100,32 +75,13 @@ module.exports = (function () {
     ];
     var mysql = req.app.get("mysql");
 
-    getPeople(res, mysql, context, complete);
-    getPlanets(res, mysql, context, complete);
-    geterrormessage(res, context, complete);
+    getMedication(res, mysql, context, complete);
+    get_insert_error(res, context, complete);
+	get_update_error(res, context, complete);
+	get_search_error(res, context, complete);
     function complete() {
       callbackCount++;
-      if (callbackCount >= 3) {
-        res.render("medication", context);
-      }
-    }
-  });
-
-  /*Display all people from a given homeworld. Requires web based javascript to delete users with AJAX*/
-  router.get("/filter/:homeworld", function (req, res) {
-    var callbackCount = 0;
-    var context = {};
-    context.jsscripts = [
-      "deleteperson.js",
-      "filterpeople.js",
-      "searchpeople.js",
-    ];
-    var mysql = req.app.get("mysql");
-    getPeoplebyHomeworld(req, res, mysql, context, complete);
-    getPlanets(res, mysql, context, complete);
-    function complete() {
-      callbackCount++;
-      if (callbackCount >= 2) {
+      if (callbackCount >= 4) {
         res.render("medication", context);
       }
     }
@@ -142,12 +98,11 @@ module.exports = (function () {
       "updatefunction.js",
     ];
     var mysql = req.app.get("mysql");
-    errormessage = "";
-    getPeopleWithNameLike(req, res, mysql, context, complete);
-    getPlanets(res, mysql, context, complete);
+    search_error = "";
+    getMedicationByName(req, res, mysql, context, complete);
     function complete() {
       callbackCount++;
-      if (callbackCount >= 2) {
+      if (callbackCount >= 1) {
         res.render("medication", context);
       }
     }
@@ -165,12 +120,12 @@ module.exports = (function () {
     ];
     var mysql = req.app.get("mysql");
     if (req.params.id === "search") {
-      errormessage = "Invalid Input, please enter a search term.";
+      search_error = "Invalid Input, please enter a search term.";
       res.redirect("/medication");
     } else {
-      getPlanets(res, mysql, context, complete);
-      geterrormessage3(res, context, complete);
-      getPerson(res, mysql, context, req.params.id, complete);
+	  get_update_error(res, context, complete);
+      get_search_error(res, context, complete);
+      getMedicationEntry(res, mysql, context, req.params.id, complete);
       function complete() {
         callbackCount++;
         if (callbackCount >= 3) {
@@ -183,17 +138,17 @@ module.exports = (function () {
   /* Adds a person, redirects to the people page after adding */
 
   router.post("/", function (req, res) {
-    console.log(req.body.medication);
-    console.log(req.body);
     var mysql = req.app.get("mysql");
     var sql =
       "INSERT INTO medication (medication_name,manufacturer) VALUES (?,?)";
     var inserts = [req.body.medication_name, req.body.manufacturer];
-    if (!inserts[0] === true || !inserts[1] === true) {
-      errormessage = "Invalid Input! Please fill in all input fields.";
+	let num_hyphen_check = /^[0-9\-]+$/;
+	let letter_hyphen_check = /^[a-zA-Z\-]+$/;
+    if (!inserts[0] === true || !inserts[1] === true || letter_hyphen_check.test(inserts[0]) == false || letter_hyphen_check.test(inserts[1]) == false) {
+      insert_error = "Invalid Input! Please fill in all input fields, and make sure you have entered the correct input format as well for each input field.";
       res.redirect("/medication");
     } else {
-      errormessage = "";
+      insert_error = "";
       sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
         res.redirect("/medication");
       });
@@ -203,8 +158,6 @@ module.exports = (function () {
 
   router.put("/:id", function (req, res) {
     var mysql = req.app.get("mysql");
-    console.log(req.body);
-    console.log(req.params.id);
     var sql =
       "UPDATE medication SET medication_name=?, manufacturer=? WHERE medication_id = ?";
     var inserts = [
@@ -212,10 +165,11 @@ module.exports = (function () {
       req.body.manufacturer,
       req.params.id,
     ];
-    if (!inserts[0] === true || !inserts[1] === true) {
-      errormessage3 = "Invalid Input! Please fill in all input fields.";
+	let num_hyphen_check = /^[0-9\-]+$/;
+	let letter_hyphen_check = /^[a-zA-Z\-]+$/;
+    if (!inserts[0] === true || !inserts[1] === true || letter_hyphen_check.test(inserts[0]) == false || letter_hyphen_check.test(inserts[1]) == false) {
+      update_error = "Invalid Input! Please fill in all input fields, and make sure you have entered the correct input format as well for each input field.";
       res.redirect(req.get("/medication"));
-      console.log(errormessage3);
     } else {
       sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
         if (error) {
@@ -227,8 +181,6 @@ module.exports = (function () {
           res.end();
         }
       });
-      console.log(sql);
-      console.log("lalala");
     }
   });
 
