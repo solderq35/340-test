@@ -3,7 +3,7 @@
   <h1>Update Diagnosis Entry
     {{diagnosis.id}}
     ({{diagnosis.diagnosis_name}})</h1>
-  <h4>{{errormessage3}}</h4>
+  <h4>{{update_error}}</h4>
   <form
     id="update-diagnosis"
     action="/diagnosis"
@@ -20,7 +20,6 @@
 	<br>
     Medication ID:
     <select name="medication_id">
-	<option disabled selected value> -- select an option -- </option>
       {{#each medication}}
         <option value="{{medication_id}}">{{medication_id}}
           ({{medication_name}})</option>
@@ -30,7 +29,6 @@
 	<br>
     Patient ID:
     <select name="patient_id">
-	<option disabled selected value> -- select an option -- </option>
       {{#each patient}}
         <option value="{{patient_id}}">{{patient_id}}
           ({{patient_fullname}})</option>
@@ -39,7 +37,6 @@
     <br />
     Doctor ID:
     <select name="doctor_id">
-	<option disabled selected value> -- select an option -- </option>
       {{#each doctor}}
         <option value="{{doctor_id}}">{{doctor_id}}
           ({{doctor_fullname}})</option>
@@ -49,7 +46,6 @@
 
     Pharmacy ID:
     <select name="pharmacy_id">
-	<option disabled selected value> -- select an option -- </option>
       {{#each pharmacy}}
         <option value="{{pharmacy_id}}">{{pharmacy_id}}
           ({{pharmacy_name}})</option>
@@ -58,7 +54,7 @@
 	<br>
     Charge:
     <input type="decimal" name="charge" value="{{decifix diagnosis.charge}}" /><br />
-	(Numbers Only)
+	(Positive Numbers Only)
 	<br>
 <br> 
  Date:

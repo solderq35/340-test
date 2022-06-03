@@ -1,7 +1,7 @@
 <html>
 
   <h1>Update Medication {{medication.id}} ({{medication.medication_name}})</h1>
-  <h4>{{errormessage3}}</h4>
+  <h4>{{update_error}}</h4>
   <form
     id="update-medication"
     action="/medication"
@@ -14,13 +14,17 @@
       name="medication_name"
       value="{{medication.medication_name}}"
     /><br />
+	(Letters and Hyphens Only)
+	<br>
+	<br>
     Manufacturer:
     <input
       type="text"
       name="manufacturer"
       value="{{medication.manufacturer}}"
     /><br />
-    <br />
+    (Letters and Hyphens Only)
+	<br>
   </form>
 
   <button onclick="updateMedication({{medication.id}})">Update</button>

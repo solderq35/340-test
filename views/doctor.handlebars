@@ -4,7 +4,7 @@
   {{/each}}
   <h1>Doctor</h1>
   <h3>Add New Doctor (Please fill in all Input Fields):</h3>
-  <h4>{{errormessage2}}</h4>
+  <h4>{{insert_error}}</h4>
   <form
     id="addperson"
     action="/doctor"
@@ -51,7 +51,7 @@
     onkeydown="return event.key != 'Enter';"
   >
     <label> Search for Doctor by First Name:</label>
-    <h4>{{errormessage}}</h4>
+    <h4>{{search_error}}</h4>
     <input
       id="search_string"
       type="text"

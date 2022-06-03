@@ -6,7 +6,7 @@
   <h1>Diagnosis</h1>
   <h3>Add new Diagnosis (Please fill in all Input Fields):</h3>
 
-  <h4>{{errormessage}}</h4>
+  <h4>{{insert_error}}</h4>
   <form
     id="add_people_certificates"
     action="/diagnosis"
@@ -61,7 +61,7 @@
     Charge:
     <input type="decimal" name="charge" placeholder="Enter Charge (USD)" />
     <br />
-	 (Numbers Only)
+	 (Positive Numbers Only)
 	 <br>
 	 <br>
     Diagnosis Date:
@@ -79,7 +79,7 @@
     onkeydown="return event.key != 'Enter';"
   >
     <label> Search for Diagnosis by Diagnosis Name:</label>
-    <h4>{{errormessage2}}</h4>
+    <h4>{{search_error}}</h4>
     <input
       id="search_string"
       type="text"

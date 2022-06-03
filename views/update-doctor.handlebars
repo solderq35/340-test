@@ -5,7 +5,7 @@
     ({{doctor.doctor_first_name}}
     {{doctor.doctor_last_name}})</h1>
 
-  <h4>{{errormessage3}}</h4>
+  <h4>{{update_error}}</h4>
   <form
     id="update-doctor"
     action="/doctor"
@@ -18,19 +18,27 @@
       name="doctor_first_name"
       value="{{doctor.doctor_first_name}}"
     /><br />
+	(Letters and Hyphens Only)
+	<br>
+	<br>
     Last name:
     <input
       type="text"
       name="doctor_last_name"
       value="{{doctor.doctor_last_name}}"
     /><br />
+	(Letters and Hyphens Only)
+	<br>
+	<br>
     Contact:
     <input
       type="text"
       name="doctor_contact"
       value="{{doctor.doctor_contact}}"
     /><br />
-    <br />
+		(Numbers and Hyphens Only)
+	<br>
+
   </form>
 
   <button onclick="updateDoctor({{doctor.id}})">Update</button>
