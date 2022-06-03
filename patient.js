@@ -149,8 +149,8 @@ module.exports = (function () {
       req.body.patient_email,
       req.body.patient_contact,
     ];
-	let num_hyphen_check = /^[0-9\-]+$/;
-	let letter_hyphen_check = /^[a-zA-Z\-]+$/;
+    let num_hyphen_check = /^[0-9\-]+$/;
+    let letter_hyphen_check = /^[a-zA-Z\-]+$/;
     if (
       !inserts[0] === true ||
       !inserts[1] === true ||
@@ -158,11 +158,12 @@ module.exports = (function () {
       !inserts[3] === true ||
       !inserts[4] === true ||
       !inserts[5] === true ||
-	  letter_hyphen_check.test(inserts[0]) == false ||
-	  letter_hyphen_check.test(inserts[1]) == false ||
-	  num_hyphen_check.test(inserts[5]) == false
+      letter_hyphen_check.test(inserts[0]) == false ||
+      letter_hyphen_check.test(inserts[1]) == false ||
+      num_hyphen_check.test(inserts[5]) == false
     ) {
-      insert_error = "Invalid Input! Please fill in all input fields, and make sure you have entered the correct input format as well for each input field.";
+      insert_error =
+        "Invalid Input! Please fill in all input fields, and make sure you have entered the correct input format as well for each input field.";
       res.redirect("/patient");
     } else {
       insert_error = "";
@@ -187,8 +188,8 @@ module.exports = (function () {
       req.body.patient_contact,
       req.params.id,
     ];
-	let num_hyphen_check = /^[0-9\-]+$/;
-	let letter_hyphen_check = /^[a-zA-Z\-]+$/;
+    let num_hyphen_check = /^[0-9\-]+$/;
+    let letter_hyphen_check = /^[a-zA-Z\-]+$/;
     if (
       !inserts[0] === true ||
       !inserts[1] === true ||
@@ -196,11 +197,12 @@ module.exports = (function () {
       !inserts[3] === true ||
       !inserts[4] === true ||
       !inserts[5] === true ||
-	  letter_hyphen_check.test(inserts[0]) == false ||
-	  letter_hyphen_check.test(inserts[1]) == false ||
-	  num_hyphen_check.test(inserts[5]) == false
+      letter_hyphen_check.test(inserts[0]) == false ||
+      letter_hyphen_check.test(inserts[1]) == false ||
+      num_hyphen_check.test(inserts[5]) == false
     ) {
-      update_error = "Invalid Input! Please fill in all input fields, and make sure you have entered the correct input format as well for each input field.";
+      update_error =
+        "Invalid Input! Please fill in all input fields, and make sure you have entered the correct input format as well for each input field.";
       res.redirect(req.get("/patient"));
     } else {
       sql = mysql.pool.query(sql, inserts, function (error, results, fields) {

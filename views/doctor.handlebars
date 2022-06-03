@@ -17,29 +17,29 @@
       name="doctor_first_name"
       placeholder="Enter Doctor First Name"
     />
-	<br>
-	 (Letters and Hyphens Only)
-	<br />
+    <br />
+    (Letters and Hyphens Only)
+    <br />
 
-	 <br>
+    <br />
     Doctor Last Name:
     <input
       type="text"
       name="doctor_last_name"
       placeholder="Enter Doctor Last Name"
     /><br />
- (Letters and Hyphens Only)
- <br>
- <br>
+    (Letters and Hyphens Only)
+    <br />
+    <br />
     Doctor Contact:
     <input
       type="text"
       name="doctor_contact"
       placeholder="Enter Doctor Contact (Phone Number)"
     /><br />
-	 (Numbers and Hyphens Only)
-	 <br>
-	 <br>
+    (Numbers and Hyphens Only)
+    <br />
+    <br />
     <input type="submit" value="Submit" />
   </form>
   <br />
@@ -60,7 +60,7 @@
       placeholder="Enter Doctor First Name"
     />
     <input type="button" value="Search" onclick="searchDoctor()" />
-    <button type = "button"><a class = "blacklink" href="/doctor">Cancel Search</a></button>
+    <button type="button"><a class="blacklink" href="/doctor">Cancel Search</a></button>
 
   </form>
 
@@ -80,7 +80,9 @@
           <td>{{doctor_last_name}}</td>
           <td>{{doctor_contact}}</td>
           <td><button onclick="deletedoctor({{id}})">Delete</button></td>
-		  <td><button onclick= "location.href='/doctor/{{id}}'">Update</button></td>
+          <td><button
+              onclick="location.href='/doctor/{{id}}'"
+            >Update</button></td>
         </tr>
       {{/each}}
     </tbody>

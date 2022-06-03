@@ -17,18 +17,18 @@
       name="medication_name"
       placeholder="Enter Medication Name"
     /><br />
-	(Letters and Hyphens Only)
-	<br>
-	<br>
+    (Letters and Hyphens Only)
+    <br />
+    <br />
     Manufacturer:
     <input
       type="text"
       name="manufacturer"
       placeholder="Enter Manufacturer Name"
     /><br />
-	(Letters and Hyphens Only)
-	<br>
-	<br>
+    (Letters and Hyphens Only)
+    <br />
+    <br />
     <input type="submit" value="Submit" />
   </form>
   <br />
@@ -49,7 +49,7 @@
       placeholder="Enter Medication Name"
     />
     <input type="button" value="Search" onclick="searchMedication()" />
-	<button type = "button"><a class = "blacklink" href="/medication">Cancel Search</a></button>
+    <button type="button"><a class="blacklink" href="/medication">Cancel Search</a></button>
 
   </form>
 
@@ -67,7 +67,9 @@
           <td>{{medication_name}}</td>
           <td>{{manufacturer}}</td>
           <td><button onclick="deletemedication({{id}})">Delete</button></td>
-          <td><button onclick= "location.href='/medication/{{id}}'">Update</button></td>
+          <td><button
+              onclick="location.href='/medication/{{id}}'"
+            >Update</button></td>
         </tr>
       {{/each}}
     </tbody>

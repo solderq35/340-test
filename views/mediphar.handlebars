@@ -4,7 +4,9 @@
   {{/each}}
   <h1>MediPhar</h1>
   <h3>Add new Medication & Pharmacy (Unique Combinations Only):</h3>
-  Clarification: For new MediPhar entries, you cannot have both Medication ID and Pharmacy ID be the same as an existing combination on the "Current Mediphar" table below. One duplicate key is okay, two is not.
+  Clarification: For new MediPhar entries, you cannot have both Medication ID
+  and Pharmacy ID be the same as an existing combination on the "Current
+  Mediphar" table below. One duplicate key is okay, two is not.
   <h4>{{errormessage}}</h4>
   <form
     id="add_people_certificates"
@@ -14,23 +16,23 @@
   >
     Medication ID:
     <select name="medication_id">
-	<option disabled selected value> -- select an option -- </option>
+      <option disabled selected value> -- select an option -- </option>
       {{#each medication2}}
         <option value="{{medication_id}}">{{medication_id}}
           ({{medication_name}})</option>
       {{/each}}
     </select>
-	<br>
+    <br />
     <br />
     Pharmacy ID:
     <select name="pharmacy_id">
-	<option disabled selected value> -- select an option -- </option>
+      <option disabled selected value> -- select an option -- </option>
       {{#each pharmacy2}}
         <option value="{{pharmacy_id}}">{{pharmacy_id}}
           ({{pharmacy_name}})</option>
       {{/each}}
     </select><br />
-	<br>
+    <br />
     <input type="submit" value="Submit" />
   </form>
   <br />
