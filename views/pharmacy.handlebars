@@ -17,25 +17,25 @@
       name="pharmacy_name"
       placeholder="Enter Pharmacy Name"
     /><br />
-	(Letters and Hyphens Only)
-	<br>
-	<br>
+    (Letters and Hyphens Only)
+    <br />
+    <br />
     Pharmacy Address:
     <input
       type="text"
       name="pharmacy_address"
       placeholder="Enter Pharmacy Address"
     /><br />
-	<br>
+    <br />
     Pharmacy Contact:
     <input
       type="text"
       name="pharmacy_contact"
       placeholder="Enter Pharmacy Contact (Phone #)"
     /><br />
-	(Numbers and Hyphens Only)
-	<br>
-	<br>
+    (Numbers and Hyphens Only)
+    <br />
+    <br />
 
     <input type="submit" value="Submit" />
   </form>
@@ -57,7 +57,7 @@
       placeholder="Enter Pharmacy Name"
     />
     <input type="button" value="Search" onclick="searchPharmacy()" />
-    <button type = "button"><a class = "blacklink" href="/pharmacy">Cancel Search</a></button>
+    <button type="button"><a class="blacklink" href="/pharmacy">Cancel Search</a></button>
 
   </form>
 
@@ -76,8 +76,10 @@
           <td>{{pharmacy_name}}</td>
           <td>{{pharmacy_address}}</td>
           <td>{{pharmacy_contact}}</td>
-           <td><button onclick="deletepharmacy({{id}})">Delete</button></td>
-          <td><button onclick= "location.href='/pharmacy/{{id}}'">Update</button></td>
+          <td><button onclick="deletepharmacy({{id}})">Delete</button></td>
+          <td><button
+              onclick="location.href='/pharmacy/{{id}}'"
+            >Update</button></td>
         </tr>
       {{/each}}
     </tbody>

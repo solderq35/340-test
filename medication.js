@@ -77,8 +77,8 @@ module.exports = (function () {
 
     getMedication(res, mysql, context, complete);
     get_insert_error(res, context, complete);
-	get_update_error(res, context, complete);
-	get_search_error(res, context, complete);
+    get_update_error(res, context, complete);
+    get_search_error(res, context, complete);
     function complete() {
       callbackCount++;
       if (callbackCount >= 4) {
@@ -123,7 +123,7 @@ module.exports = (function () {
       search_error = "Invalid Input, please enter a search term.";
       res.redirect("/medication");
     } else {
-	  get_update_error(res, context, complete);
+      get_update_error(res, context, complete);
       get_search_error(res, context, complete);
       getMedicationEntry(res, mysql, context, req.params.id, complete);
       function complete() {
@@ -142,10 +142,16 @@ module.exports = (function () {
     var sql =
       "INSERT INTO medication (medication_name,manufacturer) VALUES (?,?)";
     var inserts = [req.body.medication_name, req.body.manufacturer];
-	let num_hyphen_check = /^[0-9\-]+$/;
-	let letter_hyphen_check = /^[a-zA-Z\-]+$/;
-    if (!inserts[0] === true || !inserts[1] === true || letter_hyphen_check.test(inserts[0]) == false || letter_hyphen_check.test(inserts[1]) == false) {
-      insert_error = "Invalid Input! Please fill in all input fields, and make sure you have entered the correct input format as well for each input field.";
+    let num_hyphen_check = /^[0-9\-]+$/;
+    let letter_hyphen_check = /^[a-zA-Z\-]+$/;
+    if (
+      !inserts[0] === true ||
+      !inserts[1] === true ||
+      letter_hyphen_check.test(inserts[0]) == false ||
+      letter_hyphen_check.test(inserts[1]) == false
+    ) {
+      insert_error =
+        "Invalid Input! Please fill in all input fields, and make sure you have entered the correct input format as well for each input field.";
       res.redirect("/medication");
     } else {
       insert_error = "";
@@ -165,10 +171,16 @@ module.exports = (function () {
       req.body.manufacturer,
       req.params.id,
     ];
-	let num_hyphen_check = /^[0-9\-]+$/;
-	let letter_hyphen_check = /^[a-zA-Z\-]+$/;
-    if (!inserts[0] === true || !inserts[1] === true || letter_hyphen_check.test(inserts[0]) == false || letter_hyphen_check.test(inserts[1]) == false) {
-      update_error = "Invalid Input! Please fill in all input fields, and make sure you have entered the correct input format as well for each input field.";
+    let num_hyphen_check = /^[0-9\-]+$/;
+    let letter_hyphen_check = /^[a-zA-Z\-]+$/;
+    if (
+      !inserts[0] === true ||
+      !inserts[1] === true ||
+      letter_hyphen_check.test(inserts[0]) == false ||
+      letter_hyphen_check.test(inserts[1]) == false
+    ) {
+      update_error =
+        "Invalid Input! Please fill in all input fields, and make sure you have entered the correct input format as well for each input field.";
       res.redirect(req.get("/medication"));
     } else {
       sql = mysql.pool.query(sql, inserts, function (error, results, fields) {

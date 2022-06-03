@@ -17,7 +17,7 @@
       value="{{diagnosis.diagnosis_name}}"
     />
     <br />
-	<br>
+    <br />
     Medication ID:
     <select name="medication_id">
       {{#each medication}}
@@ -26,7 +26,7 @@
       {{/each}}
     </select>
     <br />
-	<br>
+    <br />
     Patient ID:
     <select name="patient_id">
       {{#each patient}}
@@ -51,21 +51,25 @@
           ({{pharmacy_name}})</option>
       {{/each}}
     </select><br />
-	<br>
+    <br />
     Charge:
-    <input type="decimal" name="charge" value="{{decifix diagnosis.charge}}" /><br />
-	(Positive Numbers Only)
-	<br>
-<br> 
- Date:
+    <input
+      type="decimal"
+      name="charge"
+      value="{{decifix diagnosis.charge}}"
+    /><br />
+    (Positive Numbers Only)
+    <br />
+    <br />
+    Date:
     <input
       type="date"
       name="diagnosis_date"
       value="{{diagnosis.diagnosis_date}}"
     /><br />
-    
+
   </form>
 
   <button onclick="updateDiagnosis({{diagnosis.id}})">Update</button>
-  <td><button onclick= "location.href='/diagnosis'">Cancel Update</button></td>
+  <td><button onclick="location.href='/diagnosis'">Cancel Update</button></td>
 </html>

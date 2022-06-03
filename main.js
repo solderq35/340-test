@@ -9,12 +9,14 @@ var exphbs = require('express-handlebars');
 var bodyParser = require('body-parser');
 
 var app = express();
-var handlebars = require('express-handlebars').create({
-        defaultLayout:'main',
-		    helpers: {
-    decifix: function (numbah) { return numbah.toFixed(2); },
-  }
-        });
+var handlebars = require("express-handlebars").create({
+  defaultLayout: "main",
+  helpers: {
+    decifix: function (numbah) {
+      return numbah.toFixed(2);
+    },
+  },
+});
 
 
 app.engine('handlebars', handlebars.engine);

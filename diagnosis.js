@@ -90,7 +90,6 @@ module.exports = (function () {
     );
   }
 
-
   /* Find people whose fname starts with a given string in the req */
   function getDiagnosisByName(req, res, mysql, context, complete) {
     //sanitize the input as well as include the % character
@@ -229,15 +228,15 @@ module.exports = (function () {
     var nancheck = isNaN(Number(inserts[5]));
 
     if (
-	  !inserts[0] === true ||
-	  !inserts[1] === true ||
-	  !inserts[2] === true ||
-	  !inserts[3] === true ||
-	  !inserts[4] === true ||
-	  !inserts[5] === true ||
+      !inserts[0] === true ||
+      !inserts[1] === true ||
+      !inserts[2] === true ||
+      !inserts[3] === true ||
+      !inserts[4] === true ||
+      !inserts[5] === true ||
       !inserts[6] === true ||
       chargecheck <= 0 ||
-      nancheck === true ||  
+      nancheck === true ||
       inserts[5] < 0
     ) {
       insert_error =
@@ -271,12 +270,12 @@ module.exports = (function () {
     var chargecheck = Number(inserts[5]);
     var nancheck = isNaN(Number(inserts[5]));
     if (
-	  !inserts[0] === true ||
-	  !inserts[1] === true ||
-	  !inserts[2] === true ||
-	  !inserts[3] === true ||
-	  !inserts[4] === true ||
-	  !inserts[5] === true ||
+      !inserts[0] === true ||
+      !inserts[1] === true ||
+      !inserts[2] === true ||
+      !inserts[3] === true ||
+      !inserts[4] === true ||
+      !inserts[5] === true ||
       !inserts[6] === true ||
       chargecheck <= 0 ||
       nancheck === true ||
