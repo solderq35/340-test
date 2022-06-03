@@ -1,39 +1,26 @@
 module.exports = (function () {
   var express = require("express");
   var router = express.Router();
-  var errormessage = "";
-  var errormessage2 = "";
-  var errormessage3 = "";
-  function geterrormessage(res, context, complete) {
-    context.errormessage = errormessage;
+  var search_error = "";
+  var insert_error = "";
+  var update_error = "";
+  
+  function get_search_error(res, context, complete) {
+    context.search_error = search_error;
     complete();
   }
 
-  function geterrormessage2(res, context, complete) {
-    context.errormessage2 = errormessage2;
+  function get_insert_error(res, context, complete) {
+    context.insert_error = insert_error;
     complete();
   }
 
-  function geterrormessage3(res, context, complete) {
-    context.errormessage3 = errormessage3;
+  function get_update_error(res, context, complete) {
+    context.update_error = update_error;
     complete();
   }
 
-  function getPlanets(res, mysql, context, complete) {
-    mysql.pool.query(
-      "SELECT planet_id as id, name FROM bsg_planets",
-      function (error, results, fields) {
-        if (error) {
-          res.write(JSON.stringify(error));
-          res.end();
-        }
-        context.planets = results;
-        complete();
-      }
-    );
-  }
-
-  function getPeople(res, mysql, context, complete) {
+  function getDoctor(res, mysql, context, complete) {
     mysql.pool.query(
       "SELECT doctor_id as id, doctor_first_name, doctor_last_name, doctor_contact from doctor",
       function (error, results, fields) {
@@ -47,23 +34,8 @@ module.exports = (function () {
     );
   }
 
-  function getPeoplebyHomeworld(req, res, mysql, context, complete) {
-    var query =
-      "SELECT bsg_people.character_id as id, fname, lname, bsg_planets.name AS homeworld, age FROM bsg_people INNER JOIN bsg_planets ON homeworld = bsg_planets.planet_id WHERE bsg_people.homeworld = ?";
-    console.log(req.params);
-    var inserts = [req.params.homeworld];
-    mysql.pool.query(query, inserts, function (error, results, fields) {
-      if (error) {
-        res.write(JSON.stringify(error));
-        res.end();
-      }
-      context.people = results;
-      complete();
-    });
-  }
-
   /* Find people whose fname starts with a given string in the req */
-  function getPeopleWithNameLike(req, res, mysql, context, complete) {
+  function getDoctorByName(req, res, mysql, context, complete) {
     //sanitize the input as well as include the % character
     var query =
       "SELECT doctor_id as id, doctor_first_name, doctor_last_name, doctor_contact from doctor WHERE doctor.doctor_first_name LIKE " +
@@ -80,7 +52,7 @@ module.exports = (function () {
     });
   }
 
-  function getPerson(res, mysql, context, id, complete) {
+  function getDoctorEntry(res, mysql, context, id, complete) {
     var sql =
       "SELECT doctor_id as id, doctor_first_name, doctor_last_name, doctor_contact FROM doctor WHERE doctor_id = ?";
     var inserts = [id];
@@ -106,42 +78,21 @@ module.exports = (function () {
       "updatefunction.js",
     ];
     var mysql = req.app.get("mysql");
-    getPeople(res, mysql, context, complete);
-    getPlanets(res, mysql, context, complete);
-    geterrormessage(res, context, complete);
-    geterrormessage2(res, context, complete);
-    geterrormessage3(res, context, complete);
-    console.log("hahgotem2");
+    getDoctor(res, mysql, context, complete);
+    get_search_error(res, context, complete);
+    get_insert_error(res, context, complete);
+    get_update_error(res, context, complete);
 
     function complete() {
       callbackCount++;
-      if (callbackCount >= 5) {
-        res.render("doctor", context);
-      }
-    }
-  });
-
-  /*Display all people from a given homeworld. Requires web based javascript to delete users with AJAX*/
-  router.get("/filter/:homeworld", function (req, res) {
-    var callbackCount = 0;
-    var context = {};
-    context.jsscripts = [
-      "deletefunction.js",
-      "filterpeople.js",
-      "searchfunction.js",
-    ];
-    var mysql = req.app.get("mysql");
-    getPeoplebyHomeworld(req, res, mysql, context, complete);
-    getPlanets(res, mysql, context, complete);
-    function complete() {
-      callbackCount++;
-      if (callbackCount >= 2) {
+      if (callbackCount >= 4) {
         res.render("doctor", context);
       }
     }
   });
 
   /*Display all people whose name starts with a given string. Requires web based javascript to delete users with AJAX */
+
   router.get("/search/:s", function (req, res) {
     var callbackCount = 0;
     var context = {};
@@ -151,13 +102,11 @@ module.exports = (function () {
       "searchfunction.js",
     ];
     var mysql = req.app.get("mysql");
-    errormessage = "";
-    getPeopleWithNameLike(req, res, mysql, context, complete);
-    getPlanets(res, mysql, context, complete);
-    console.log(errormessage);
+    search_error = "";
+    getDoctorByName(req, res, mysql, context, complete);
     function complete() {
       callbackCount++;
-      if (callbackCount >= 2) {
+      if (callbackCount >= 1) {
         res.render("doctor", context);
       }
     }
@@ -175,19 +124,17 @@ module.exports = (function () {
     ];
     var mysql = req.app.get("mysql");
     if (req.params.id === "search") {
-      errormessage = "Invalid Input, please enter a search term.";
+      search_error = "Invalid Input, please enter a search term.";
       res.redirect("/doctor");
     } else {
-      getPerson(res, mysql, context, req.params.id, complete);
-      getPlanets(res, mysql, context, complete);
-      geterrormessage3(res, context, complete);
+      getDoctorEntry(res, mysql, context, req.params.id, complete);
+      //getPlanets(res, mysql, context, complete);
+      get_update_error(res, context, complete);
 
       function complete() {
         callbackCount++;
-        console.log(req.params.id);
-        console.log("here");
 
-        if (callbackCount >= 3) {
+        if (callbackCount >= 2) {
           res.render("update-doctor", context);
         }
       }
@@ -197,8 +144,6 @@ module.exports = (function () {
   /* Adds a person, redirects to the people page after adding */
 
   router.post("/", function (req, res) {
-    console.log(req.body.doctor);
-    console.log(req.body);
     var mysql = req.app.get("mysql");
     var sql =
       "INSERT INTO doctor (doctor_first_name,doctor_last_name,doctor_contact) VALUES (?,?,?)";
@@ -207,12 +152,14 @@ module.exports = (function () {
       req.body.doctor_last_name,
       req.body.doctor_contact,
     ];
-    if (!inserts[0] === true || !inserts[1] === true || inserts[2] === true) {
-      errormessage2 = "Invalid Input! Please fill in all input fields.";
+	let num_hyphen_check = /^[0-9\-]+$/;
+	let letter_hyphen_check = /^[a-zA-Z\-]+$/;
+    if (!inserts[0] === true || !inserts[1] === true || inserts[2] === true ||  num_hyphen_check.test(inserts[2]) == false  || letter_hyphen_check.test(inserts[0]) == false || letter_hyphen_check.test(inserts[1]) == false) {
+      insert_error = "Invalid Input! Please fill in all input fields, and make sure you have entered the correct input format as well for each input field.";
       res.redirect("/doctor");
     } else {
       sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
-        errormessage2 = "";
+        insert_error = "";
         res.redirect("/doctor");
       });
     }
@@ -222,8 +169,6 @@ module.exports = (function () {
 
   router.put("/:id", function (req, res) {
     var mysql = req.app.get("mysql");
-    console.log(req.body);
-    console.log(req.params.id);
     var sql =
       "UPDATE doctor SET doctor_first_name=?, doctor_last_name=?, doctor_contact=? WHERE doctor_id = ?";
     var inserts = [
@@ -232,17 +177,13 @@ module.exports = (function () {
       req.body.doctor_contact,
       req.params.id,
     ];
-    if (!inserts[0] === true || !inserts[1] === true || !inserts[2] === true) {
-      errormessage3 = "Invalid Input! Please fill in all input fields.";
+	let num_hyphen_check = /^[0-9\-]+$/;
+	let letter_hyphen_check = /^[a-zA-Z\-]+$/;
+    if (!inserts[0] === true || !inserts[1] === true || !inserts[2] === true || num_hyphen_check.test(inserts[2]) == false  || letter_hyphen_check.test(inserts[0]) == false || letter_hyphen_check.test(inserts[1]) == false) {
+      update_error = "Invalid Input! Please fill in all input fields, and make sure you have entered the correct input format as well for each input field.";
       res.redirect(req.get("/doctor"));
-      console.log(errormessage3);
     } else {
       sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
-        //	console.log("testdoggo");
-        console.log(req.body.doctor_first_name);
-        //geterrormessage(res, context, complete);
-        console.log(!inserts[0]);
-
         if (error) {
           console.log(error);
           res.write(JSON.stringify(error));

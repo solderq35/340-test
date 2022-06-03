@@ -3,7 +3,7 @@
   <h1>Update Diagnosis Entry
     {{diagnosis.id}}
     ({{diagnosis.diagnosis_name}})</h1>
-  <h4>{{errormessage3}}</h4>
+  <h4>{{update_error}}</h4>
   <form
     id="update-diagnosis"
     action="/diagnosis"
@@ -17,6 +17,7 @@
       value="{{diagnosis.diagnosis_name}}"
     />
     <br />
+	<br>
     Medication ID:
     <select name="medication_id">
       {{#each medication}}
@@ -25,6 +26,7 @@
       {{/each}}
     </select>
     <br />
+	<br>
     Patient ID:
     <select name="patient_id">
       {{#each patient}}
@@ -41,6 +43,7 @@
       {{/each}}
     </select><br />
     <br />
+
     Pharmacy ID:
     <select name="pharmacy_id">
       {{#each pharmacy}}
@@ -48,17 +51,21 @@
           ({{pharmacy_name}})</option>
       {{/each}}
     </select><br />
+	<br>
     Charge:
-    <input type="decimal" name="charge" value="{{diagnosis.charge}}" /><br />
-    Date:
+    <input type="decimal" name="charge" value="{{decifix diagnosis.charge}}" /><br />
+	(Positive Numbers Only)
+	<br>
+<br> 
+ Date:
     <input
       type="date"
       name="diagnosis_date"
       value="{{diagnosis.diagnosis_date}}"
     /><br />
-    <br />
+    
   </form>
 
   <button onclick="updateDiagnosis({{diagnosis.id}})">Update</button>
-  <button><a class = "blacklink" href="/diagnosis">Cancel Update</a></button>
+  <td><button onclick= "location.href='/diagnosis'">Cancel Update</button></td>
 </html>

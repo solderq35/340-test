@@ -1,7 +1,7 @@
 <html>
 
   <h1>Update Pharmacy Entry {{pharmacy.id}} ({{pharmacy.pharmacy_name}}) </h1>
-  <h4>{{errormessage3}}</h4>
+  <h4>{{update_error}}</h4>
   <form
     id="update-pharmacy"
     action="/pharmacy"
@@ -14,21 +14,27 @@
       name="pharmacy_name"
       value="{{pharmacy.pharmacy_name}}"
     /><br />
+	(Letters and Hyphens Only)
+	<br>
+	<br>
     Pharmacy Address:
     <input
       type="text"
       name="pharmacy_address"
       value="{{pharmacy.pharmacy_address}}"
     /><br />
+
+	<br>
     Pharmacy Contact:
     <input
       type="text"
       name="pharmacy_contact"
       value="{{pharmacy.pharmacy_contact}}"
     /><br />
-    <br />
+   (Numbers and Hyphens Only)
+	<br>
   </form>
 
   <button onclick="updatePharmacy({{pharmacy.id}})">Update</button>
-  <button><a class = "blacklink" href="/pharmacy">Cancel Update</a></button>
+  <td><button onclick= "location.href='/pharmacy'">Cancel Update</button></td>
 </html>

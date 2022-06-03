@@ -6,7 +6,7 @@
   <h1>Patient</h1>
   <h3>Add New Patient (Please fill in all Input Fields):</h3>
 
-  <h4>{{errormessage2}}</h4>
+  <h4>{{insert_error}}</h4>
   <form
     id="addperson"
     action="/patient"
@@ -19,36 +19,48 @@
       name="patient_first_name"
       placeholder="Enter Patient First Name"
     /><br />
+	(Letters and Hyphens Only)
+	<br>
+	<br>
     Patient Last Name:
     <input
       type="text"
       name="patient_last_name"
       placeholder="Enter Patient Last Name"
     /><br />
+		(Letters and Hyphens Only)
+	<br>
+	<br>
     Patient Birth:
     <input
       type="date"
       name="patient_birth"
       placeholder="Enter Patient Birthdate"
     /><br />
+	<br>
     Patient Address:
     <input
       type="text"
       name="patient_address"
       placeholder="Enter Patient Address"
     /><br />
+	<br>
     Patient Email:
     <input
       type="text"
       name="patient_email"
       placeholder="Enter Patient Email"
     /><br />
+	<br>
     Patient Contact:
     <input
       type="text"
       name="patient_contact"
       placeholder="Enter Patient Contact (Phone #)"
     /><br />
+	(Numbers and Hyphens Only)
+	<br>
+	<br>
     <input type="submit" value="Submit" />
   </form>
   <br />
@@ -60,7 +72,7 @@
     onkeydown="return event.key != 'Enter';"
   >
     <label> Search for Patient by First Name:</label>
-    <h4>{{errormessage}}</h4>
+    <h4>{{search_error}}</h4>
     <input
       id="search_string"
       type="text"
@@ -69,7 +81,7 @@
       placeholder="Enter Patient First Name"
     />
     <input type="button" value="Search" onclick="searchPatient()" />
-    <button><a class = "blacklink" href="/patient">Cancel Search</a></button>
+    <button type = "button"><a class = "blacklink" href="/patient">Cancel Search</a></button>
   </form>
 
   <h3>Current Patients:</h3>
@@ -94,7 +106,7 @@
           <td>{{patient_email}}</td>
           <td>{{patient_contact}}</td>
           <td><button onclick="deletepatient({{id}})">Delete</button></td>
-          <td><button><a class = "blacklink" href="/patient/{{id}}">Update</a></button></td>
+          <td><button onclick= "location.href='/patient/{{id}}'">Update</button></td>
         </tr>
       {{/each}}
     </tbody>
