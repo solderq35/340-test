@@ -1,3 +1,6 @@
+/*For all entity functions:
+Retrieve the data and construct the URL, redirect to it.*/
+
 function updateDoctor(id) {
   $.ajax({
     url: "/doctor/" + id,

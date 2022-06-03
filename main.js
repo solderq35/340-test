@@ -9,8 +9,12 @@ var exphbs = require('express-handlebars');
 var bodyParser = require('body-parser');
 
 var app = express();
+
 var handlebars = require("express-handlebars").create({
   defaultLayout: "main",
+  
+  /* Use a handlebars helper to truncate decimals to two decimal places to show money value ("charge"
+  in Diagnosis Entity */
   helpers: {
     decifix: function (numbah) {
       return numbah.toFixed(2);
@@ -34,16 +38,6 @@ app.use('/patient', require('./patient.js'));
 app.use('/diagnosis', require('./diagnosis.js'));
 app.use('/mediphar', require('./mediphar.js'));
 app.use('/', express.static('public'));
-
-//app.use('/medication', require('./medication.js'));
-//app.use('/patient', require('./patient.js'));
-//app.use('/pharmacy', require('./pharmacy.js'));
-//app.use('/diagnosis', require('./diagnosis.js'));
-//app.use('/mediphar', require('./mediphar.js'));
-//app.use('/mediphar3', require('./mediphar3.js'));
-//app.use('/pharmacy-insert2', require('./pharmacy-insert2.js'));
-//app.use('/doctor', require('./doctor.js'));
-
 
 app.use(function(req,res){
   res.status(404);

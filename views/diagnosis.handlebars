@@ -5,8 +5,11 @@
 
   <h1>Diagnosis</h1>
   <h3>Add new Diagnosis (Please fill in all Input Fields):</h3>
-
+  
+  <!--- Error message for invalid insertion inputs -->
   <h4>{{insert_error}}</h4>
+  
+  <!--- Form to insert new Diagnosis entry -->
   <form
     id="add_people_certificates"
     action="/diagnosis"
@@ -21,6 +24,8 @@
     />
     <br />
     <br />
+	
+	<!--- Select Menu (dropdown) for Medication ID -->
     Medication ID:
     <select name="medication_id">
       <option disabled selected value> -- select an option -- </option>
@@ -31,6 +36,8 @@
     </select>
     <br />
     <br />
+	
+	<!--- Select Menu (dropdown) for Patient ID -->
     Patient ID:
     <select name="patient_id">
       <option disabled selected value> -- select an option -- </option>
@@ -40,6 +47,8 @@
       {{/each}}
     </select><br />
     <br />
+	
+	<!--- Select Menu (dropdown) for Doctor ID -->
     Doctor ID:
     <select name="doctor_id">
       <option disabled selected value> -- select an option -- </option>
@@ -49,6 +58,8 @@
       {{/each}}
     </select><br />
     <br />
+	
+	<!--- Select Menu (dropdown) for Pharmacy ID -->
     Pharmacy ID:
     <select name="pharmacy_id">
       <option disabled selected value> -- select an option -- </option>
@@ -79,7 +90,11 @@
     onkeydown="return event.key != 'Enter';"
   >
     <label> Search for Diagnosis by Diagnosis Name:</label>
+	
+	<!--- Error message for invalid search inputs -->
     <h4>{{search_error}}</h4>
+	
+	<!--- Search Input Form -->
     <input
       id="search_string"
       type="text"
@@ -92,6 +107,7 @@
 
   </form>
 
+  <!--- Display Current Diagnosis Entity Table -->
   <h3>Current Diagnosis:</h3>
   <table>
     <thead>
@@ -123,6 +139,8 @@
           <td>{{pharmacy_name}}</td>
           <td>{{decifix charge}}</td>
           <td>{{diagnosis_date}}</td>
+		  
+		  <!--- Delete and Update Buttons -->
           <td><button onclick="deletediagnosis({{id}})">Delete</button></td>
           <td><button
               onclick="location.href='/diagnosis/{{id}}'"
