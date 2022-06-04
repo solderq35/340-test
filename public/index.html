@@ -55,44 +55,6 @@
           </li>
         </ul>
 
-        <h4>Potential Problems</h4>
-        <b
-          >These are issues I consider low-priority, but would be helpful to fix
-          if possible - input appreciated from fellow NodeJS users.</b
-        >
-        <ul class="homeli">
-          <li>
-            Input validation is mostly supported. Currently you're allowed to
-            enter numbers into string inputs, as some input fields such as
-            "Email" might contain numbers. Thinking about how to improve the
-            input validation for the future.
-          </li>
-          <li>
-            Invalid inputs will result in a warning showing, although this
-            warning won't go away until a correct input is entered.
-          </li>
-          <li>
-            Make sure you actually <b>click on the Button prompts</b> on the
-            site to navigate. Pressing "Enter" key is currently disabled due to
-            this leading to wrong URL's.
-          </li>
-          <li>
-            After doing a search, the "Insert" UI is not hidden; this is because
-            the search function merely filters out the correct results page on
-            the default page for the entity, rather than redirecting the user to
-            a new handlebars page specifically for search results. (I know how
-            to fix this one but using a separate handlebars file for search
-            results would be a very time consuming code refactor).
-          </li>
-          <li>
-            Decimals aren't shown in the "charge" attribute of Patient entity if
-            the number is divisible by 1 ("1" will be shown instead of "1.0".
-            However, "1.2" will show decimal correctly. Trailing zeros on
-            decimals also aren't shown; ideally I want decimals always shown up
-            to 2 digits for money.
-          </li>
-        </ul>
-
         <a
           class="homelink"
           href="https://github.com/knightsamar/CS340-Sample-Web-App/"
