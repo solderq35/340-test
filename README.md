@@ -12,7 +12,7 @@ General Tip: Ctrl C to stop any node process in terminal
 
 ## SETUP
 
-Must run `source ./ddq.sql` first on ENGR servers, if you haven't already 
+Must run `source ./ddq.sql` first on ENGR servers, if you haven't already
 
 Log into OSU VPN (needed to host webpage if using node).
 

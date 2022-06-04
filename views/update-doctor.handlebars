@@ -5,10 +5,10 @@
     ({{doctor.doctor_first_name}}
     {{doctor.doctor_last_name}})</h1>
 
-<!--- Error message for invalid update inputs -->
-<h4>{{update_error}}</h4>
+  <!---Error message for invalid update inputs -->
+  <h4>{{update_error}}</h4>
 
-  <!--- Update Doctor Entity Form -->
+  <!---Update Doctor Entity Form -->
   <form
     id="update-doctor"
     action="/doctor"
@@ -44,7 +44,7 @@
 
   </form>
 
-  <!--- Finalize Update Buttons -->
+  <!---Finalize Update Buttons -->
   <button onclick="updateDoctor({{doctor.id}})">Update</button>
   <td><button onclick="location.href='/doctor'">Cancel Update</button></td>
 </html>

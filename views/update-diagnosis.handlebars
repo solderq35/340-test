@@ -3,11 +3,11 @@
   <h1>Update Diagnosis Entry
     {{diagnosis.id}}
     ({{diagnosis.diagnosis_name}})</h1>
-	
-<!--- Error message for invalid update inputs -->
-<h4>{{update_error}}</h4>
 
-  <!--- Update Diagnosis Entity Form -->
+  <!---Error message for invalid update inputs -->
+  <h4>{{update_error}}</h4>
+
+  <!---Update Diagnosis Entity Form -->
   <form
     id="update-diagnosis"
     action="/diagnosis"
@@ -22,8 +22,8 @@
     />
     <br />
     <br />
-	
-	<!--- Select Menu (dropdown) for Medication ID -->
+
+    <!---Select Menu (dropdown) for Medication ID -->
     Medication ID:
     <select name="medication_id">
       {{#each medication}}
@@ -33,8 +33,8 @@
     </select>
     <br />
     <br />
-	
-	<!--- Select Menu (dropdown) for Patient ID -->
+
+    <!---Select Menu (dropdown) for Patient ID -->
     Patient ID:
     <select name="patient_id">
       {{#each patient}}
@@ -43,8 +43,8 @@
       {{/each}}
     </select><br />
     <br />
-	
-	<!--- Select Menu (dropdown) for Doctor ID -->
+
+    <!---Select Menu (dropdown) for Doctor ID -->
     Doctor ID:
     <select name="doctor_id">
       {{#each doctor}}
@@ -54,7 +54,7 @@
     </select><br />
     <br />
 
-    <!--- Select Menu (dropdown) for Pharmacy ID -->
+    <!---Select Menu (dropdown) for Pharmacy ID -->
     Pharmacy ID:
     <select name="pharmacy_id">
       {{#each pharmacy}}
@@ -81,7 +81,7 @@
 
   </form>
 
-  <!--- Finalize Update Buttons -->
+  <!---Finalize Update Buttons -->
   <button onclick="updateDiagnosis({{diagnosis.id}})">Update</button>
   <td><button onclick="location.href='/diagnosis'">Cancel Update</button></td>
 </html>
