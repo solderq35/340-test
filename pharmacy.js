@@ -184,7 +184,7 @@ module.exports = (function () {
       req.body.pharmacy_contact,
     ];
 	
-	// Variables used to validate an input only contains either numbers and hyphes or letters and hyphens
+	// Variables used to validate an input only contains either numbers and hyphens or letters and hyphens
     let num_hyphen_check = /^[0-9\s\-]+$/;
     let letter_hyphen_check = /^[A-Za-z\s\-]+$/;///^[0-9A-Za-z\s\-]+$/
     
@@ -227,9 +227,9 @@ module.exports = (function () {
       req.params.id,
     ];
     
-	// Variables used to validate an input only contains either numbers and hyphes or letters and hyphens
+	// Variables used to validate an input only contains either numbers and hyphens or letters and hyphens
 	let num_hyphen_check = /^[0-9\s\-]+$/;
-    let letter_hyphen_check = /^[A-Za-z\s\-]+$/;
+    let letter_hyphen_check = /^[A-Za-z\s\&\-\.]+$/;
     
 	// Input validation for updating Pharmacy
 	if (

@@ -184,9 +184,9 @@ module.exports = (function () {
       req.body.doctor_contact,
     ];
 	
-	// Variables used to validate an input only contains either numbers and hyphes or letters and hyphens
+	// Variables used to validate an input only contains either numbers and hyphens or letters and hyphens
     let num_hyphen_check = /^[0-9\s\-]+$/;
-    let letter_hyphen_check = /^[A-Za-z\s\-]+$/;
+    let letter_hyphen_check = /^[A-Za-z\s\&\-\.]+$/;
 	
 	// Input validation for inserting into Doctor
     if (
@@ -228,9 +228,9 @@ module.exports = (function () {
       req.params.id,
     ];
 	
-	// Variables used to validate an input only contains either numbers and hyphes or letters and hyphens
+	// Variables used to validate an input only contains either numbers and hyphens or letters and hyphens
     let num_hyphen_check = /^[0-9\s\-]+$/;
-    let letter_hyphen_check = /^[A-Za-z\s\-]+$/;
+    let letter_hyphen_check = /^[A-Za-z\s\&\-\.]+$/;
 	
 	// Input validation for updating Doctor
     if (
