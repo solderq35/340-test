@@ -5,10 +5,10 @@
   <h1>Doctor</h1>
   <h3>Add New Doctor (Please fill in all Input Fields):</h3>
 
-  <!---Error message for invalid insertion inputs -->
+  <!---or message for invalid insertion inputs -->
   <h4>{{insert_error}}</h4>
 
-  <!---Form to insert new Doctor entry -->
+  <!---m to insert new Doctor entry -->
   <form
     id="addperson"
     action="/doctor"
@@ -56,10 +56,10 @@
   >
     <label> Search for Doctor by First Name:</label>
 
-    <!---Error message for invalid search inputs -->
+    <!---or message for invalid search inputs -->
     <h4>{{search_error}}</h4>
 
-    <!---Search Input Form -->
+    <!---rch Input Form -->
     <input
       id="search_string"
       type="text"
@@ -72,7 +72,7 @@
 
   </form>
 
-  <!---Display Current Doctor Entity Table -->
+  <!---play Current Doctor Entity Table -->
   <h3>Current Doctor:</h3>
   <table>
     <thead>
@@ -89,7 +89,7 @@
           <td>{{doctor_last_name}}</td>
           <td>{{doctor_contact}}</td>
 
-          <!---Delete and Update Buttons -->
+          <!---ete and Update Buttons -->
           <td><button onclick="deletedoctor({{id}})">Delete</button></td>
           <td><button
               onclick="location.href='/doctor/{{id}}'"

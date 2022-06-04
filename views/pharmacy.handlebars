@@ -5,10 +5,10 @@
   <h1>Pharmacy</h1>
   <h3>Add new Pharmacy (Please fill in all Input Fields):</h3>
 
-  <!---Error message for invalid insertion inputs -->
+  <!---or message for invalid insertion inputs -->
   <h4>{{insert_error}}</h4>
 
-  <!---Form to insert new Pharmacy entry -->
+  <!---m to insert new Pharmacy entry -->
   <form
     id="addperson"
     action="/pharmacy"
@@ -53,10 +53,10 @@
   >
     <label> Search for Pharmacy by Name:</label>
 
-    <!---Error message for invalid search inputs -->
+    <!---or message for invalid search inputs -->
     <h4>{{search_error}}</h4>
 
-    <!---Search Input Form -->
+    <!---rch Input Form -->
     <input
       id="search_string"
       type="text"
@@ -69,7 +69,7 @@
 
   </form>
 
-  <!---Display Current Patient Entity Table -->
+  <!---play Current Patient Entity Table -->
   <h3>Current Pharmacy:</h3>
   <table>
     <thead>
@@ -86,7 +86,7 @@
           <td>{{pharmacy_address}}</td>
           <td>{{pharmacy_contact}}</td>
 
-          <!---Delete and Update Buttons -->
+          <!---ete and Update Buttons -->
           <td><button onclick="deletepharmacy({{id}})">Delete</button></td>
           <td><button
               onclick="location.href='/pharmacy/{{id}}'"

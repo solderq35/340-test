@@ -5,10 +5,10 @@
     ({{patient.patient_first_name}}
     {{patient.patient_last_name}})</h1>
 
-  <!---Error message for invalid update inputs -->
+  <!---or message for invalid update inputs -->
   <h4>{{update_error}}</h4>
 
-  <!---Update Patient Entity Form -->
+  <!---ate Patient Entity Form -->
   <form
     id="update-patient"
     action="/patient"
@@ -65,7 +65,7 @@
 
   </form>
 
-  <!---Finalize Update Buttons -->
+  <!---alize Update Buttons -->
   <button onclick="updatePatient({{patient.id}})">Update</button>
   <td><button onclick="location.href='/patient'">Cancel Update</button></td>
 </html>

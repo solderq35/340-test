@@ -59,9 +59,6 @@ typings/
 # dotenv environment variables file
 .env
 
-#dbcon
-*.html
-
 
 "[handlebars]": {
     "editor.formatOnSave": false,
