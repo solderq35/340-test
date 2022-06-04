@@ -5,7 +5,10 @@
     ({{doctor.doctor_first_name}}
     {{doctor.doctor_last_name}})</h1>
 
-  <h4>{{update_error}}</h4>
+<!--- Error message for invalid update inputs -->
+<h4>{{update_error}}</h4>
+
+  <!--- Update Doctor Entity Form -->
   <form
     id="update-doctor"
     action="/doctor"
@@ -18,7 +21,7 @@
       name="doctor_first_name"
       value="{{doctor.doctor_first_name}}"
     /><br />
-    (Letters and Hyphens Only)
+    (Letters, Ampersand, Hyphens Only)
     <br />
     <br />
     Last name:
@@ -27,7 +30,7 @@
       name="doctor_last_name"
       value="{{doctor.doctor_last_name}}"
     /><br />
-    (Letters and Hyphens Only)
+    (Letters, Ampersand, Hyphens Only)
     <br />
     <br />
     Contact:
@@ -41,6 +44,7 @@
 
   </form>
 
+  <!--- Finalize Update Buttons -->
   <button onclick="updateDoctor({{doctor.id}})">Update</button>
   <td><button onclick="location.href='/doctor'">Cancel Update</button></td>
 </html>

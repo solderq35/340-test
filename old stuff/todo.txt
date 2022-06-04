@@ -1,0 +1,13 @@
+add citations for the example node github from knight to the readme or report
+
+add sql ddq and dmq to his repo
+
+hard to tell what id points to what for diagnosis-more select tables? two attributes on one dropdown?
+
+composite or primary key on intersection table
+
+repeats
+
+date becoming datetime (remove hours/min/sec)
+
+add forever alias to readme

@@ -12,7 +12,7 @@ General Tip: Ctrl C to stop any node process in terminal
 
 ## SETUP
 
-Must run `source ./ddq.sql` AND `cs340_bsg_for_sample_webapp.sql`on MySQL first on ENGR servers, if you haven't already (we plan to phase out reliance on `cs340_bsg_for_sample_webapp.sql` in the near future, but for now we haven't removed some legacy functions.
+Must run `source ./ddq.sql` first on ENGR servers, if you haven't already 
 
 Log into OSU VPN (needed to host webpage if using node).
 

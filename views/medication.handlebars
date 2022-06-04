@@ -4,7 +4,11 @@
   {{/each}}
   <h1>Medication</h1>
   <h3>Add New Medication (Please fill in all Input Fields):</h3>
+  
+  <!--- Error message for invalid insertion inputs -->
   <h4>{{insert_error}}</h4>
+  
+  <!--- Form to insert new Medication entry -->
   <form
     id="addperson"
     action="/medication"
@@ -17,7 +21,7 @@
       name="medication_name"
       placeholder="Enter Medication Name"
     /><br />
-    (Letters and Hyphens Only)
+    (Letters, Ampersand, Hyphens Only)
     <br />
     <br />
     Manufacturer:
@@ -26,7 +30,7 @@
       name="manufacturer"
       placeholder="Enter Manufacturer Name"
     /><br />
-    (Letters and Hyphens Only)
+    (Letters, Ampersand, Hyphens Only)
     <br />
     <br />
     <input type="submit" value="Submit" />
@@ -40,7 +44,11 @@
     onkeydown="return event.key != 'Enter';"
   >
     <label> Search for Medication by Medication Name:</label>
+	
+	<!--- Error message for invalid search inputs -->
     <h4>{{search_error}}</h4>
+	
+	<!--- Search Input Form -->
     <input
       id="search_string"
       type="text"
@@ -53,6 +61,7 @@
 
   </form>
 
+  <!--- Display Current Medication Entity Table -->
   <h3>Current Medication:</h3>
   <table>
     <thead>
@@ -66,6 +75,8 @@
           <td>{{id}}</td>
           <td>{{medication_name}}</td>
           <td>{{manufacturer}}</td>
+		  
+		  <!--- Delete and Update Buttons -->
           <td><button onclick="deletemedication({{id}})">Delete</button></td>
           <td><button
               onclick="location.href='/medication/{{id}}'"

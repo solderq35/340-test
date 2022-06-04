@@ -1,7 +1,11 @@
 <html>
 
   <h1>Update Pharmacy Entry {{pharmacy.id}} ({{pharmacy.pharmacy_name}}) </h1>
-  <h4>{{update_error}}</h4>
+  
+<!--- Error message for invalid update inputs -->
+<h4>{{update_error}}</h4>
+
+  <!--- Update Pharmacy Entity Form -->
   <form
     id="update-pharmacy"
     action="/pharmacy"
@@ -14,7 +18,7 @@
       name="pharmacy_name"
       value="{{pharmacy.pharmacy_name}}"
     /><br />
-    (Letters and Hyphens Only)
+    (Letters, Ampersand, Hyphens Only)
     <br />
     <br />
     Pharmacy Address:
@@ -35,6 +39,7 @@
     <br />
   </form>
 
+  <!--- Finalize Update Buttons -->
   <button onclick="updatePharmacy({{pharmacy.id}})">Update</button>
   <td><button onclick="location.href='/pharmacy'">Cancel Update</button></td>
 </html>

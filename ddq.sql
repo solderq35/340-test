@@ -1,3 +1,5 @@
+-- Data Definition Queries File
+
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 
 -- drop diagnosis here to prevent error
@@ -86,12 +88,12 @@ UNLOCK TABLES;
 	
 CREATE TABLE diagnosis (
 	diagnosis_id int AUTO_INCREMENT UNIQUE NOT NULL PRIMARY KEY,
+	diagnosis_name varchar(64),
 	medication_id int,
 	patient_id int,
 	doctor_id int,
 	pharmacy_id int,
-	description text,
-	charge int,
+	charge decimal(10,2),
 	diagnosis_date date,
 	CONSTRAINT FOREIGN KEY (`medication_id`) REFERENCES `medication` (`medication_id`) ON DELETE SET NULL ON UPDATE CASCADE,
 	CONSTRAINT FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`) ON DELETE SET NULL ON UPDATE CASCADE,
@@ -100,11 +102,13 @@ CREATE TABLE diagnosis (
 
 ) ENGINE=InnoDB;
 	
+ALTER TABLE diagnosis modify charge DECIMAL (16,2);
+	
 LOCK TABLES `diagnosis` WRITE;
-INSERT INTO `diagnosis`(medication_id,patient_id,doctor_id,pharmacy_id,description,charge,diagnosis_date) 
+INSERT INTO `diagnosis`(diagnosis_name,medication_id,patient_id,doctor_id,pharmacy_id,charge,diagnosis_date) 
 	VALUES 
-	('1','1','4','1','AIDS','5000','2020-04-18'),
-	('1','2','3','2','Malaria','200','2020-05-19'),
-	('3','3','2','4','Common Cold','800','2021-05-21'),
-	('2','3','1','4','Smallpox','300','2022-03-30');
+	('AIDS','1','1','4','1','5000.00','2020-04-18'),
+	('Malaria','1','2','3','2','200.04','2020-05-19'),
+	('Common Cold','3','3','2','4','800.00','2021-05-21'),
+	('Smallpox','2','3','1','4','300.00','2022-03-30');
 UNLOCK TABLES;	

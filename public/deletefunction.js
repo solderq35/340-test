@@ -1,3 +1,6 @@
+/*For all entity functions:
+Retrieve the data and construct the URL, redirect to it.*/
+
 function deletedoctor(doctor_id) {
   $.ajax({
     url: "/doctor/" + doctor_id,
