@@ -4,16 +4,16 @@
   {{/each}}
   <h1>MediPhar</h1>
 
-  <!---rification on Correct MediPhar Insert Inputs -->
+  <!---Clarification on Correct MediPhar Insert Inputs -->
   <h3>Add new Medication & Pharmacy (Unique Combinations Only):</h3>
   Clarification: For new MediPhar entries, you cannot have both Medication ID
   and Pharmacy ID be the same as an existing combination on the "Current
   Mediphar" table below. One duplicate key is okay, two is not.
 
-  <!---or message for invalid insertion inputs -->
+  <!---Error message for invalid insertion inputs -->
   <h4>{{insert_error}}</h4>
 
-  <!---m to insert new Doctor entry -->
+  <!---Form to insert new Doctor entry -->
   <form
     id="add_people_certificates"
     action="/mediphar"
@@ -21,7 +21,7 @@
     onkeydown="return event.key != 'Enter';"
   >
 
-    <!---ect Menu (dropdown) for Medication ID -->
+    <!---Select Menu (dropdown) for Medication ID -->
     Medication ID:
     <select name="medication_id">
       <option disabled selected value> -- select an option -- </option>
@@ -33,7 +33,7 @@
     <br />
     <br />
 
-    <!---ect Menu (dropdown) for Pharmacy ID -->
+    <!---Select Menu (dropdown) for Pharmacy ID -->
     Pharmacy ID:
     <select name="pharmacy_id">
       <option disabled selected value> -- select an option -- </option>
@@ -47,7 +47,7 @@
   </form>
   <br />
 
-  <!---play Current MediPhar Entity Table -->
+  <!---Display Current MediPhar Entity Table -->
   <h3>Current MediPhar:</h3>
   <table>
     <thead>
@@ -64,7 +64,7 @@
           <td>{{pharmacy_id}}</td>
           <td>{{pharmacy_name}}</td>
 
-          <!---ete Button -->
+          <!---Delete Button -->
           <td><button
               onclick="deletemediphar({{medication_id}},{{pharmacy_id}})"
             >Delete</button></td>
