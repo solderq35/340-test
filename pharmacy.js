@@ -185,8 +185,8 @@ module.exports = (function () {
     ];
 	
 	// Variables used to validate an input only contains either numbers and hyphes or letters and hyphens
-    let num_hyphen_check = /^[0-9\-]+$/;
-    let letter_hyphen_check = /^[a-zA-Z\-]+$/;
+    let num_hyphen_check = /^[0-9\s\-]+$/;
+    let letter_hyphen_check = /^[A-Za-z\s\-]+$/;///^[0-9A-Za-z\s\-]+$/
     
 	// Input validation for inserting into Pharmacy
 	if (
@@ -228,8 +228,8 @@ module.exports = (function () {
     ];
     
 	// Variables used to validate an input only contains either numbers and hyphes or letters and hyphens
-	let num_hyphen_check = /^[0-9\-]+$/;
-    let letter_hyphen_check = /^[a-zA-Z\-]+$/;
+	let num_hyphen_check = /^[0-9\s\-]+$/;
+    let letter_hyphen_check = /^[A-Za-z\s\-]+$/;
     
 	// Input validation for updating Pharmacy
 	if (

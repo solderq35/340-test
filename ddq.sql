@@ -1,3 +1,5 @@
+-- Data Definition Queries File
+
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 
 -- drop diagnosis here to prevent error

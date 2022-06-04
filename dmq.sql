@@ -1,3 +1,5 @@
+-- Data Manipulation Queries File
+
 -- patient entity
 
 -- get all patient personal information to populate the patients dropdown table

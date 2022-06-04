@@ -181,8 +181,8 @@ module.exports = (function () {
 	var inserts = [req.body.medication_name, req.body.manufacturer];
     
 	// Variables used to validate an input only contains either numbers and hyphes or letters and hyphens
-	let num_hyphen_check = /^[0-9\-]+$/;
-    let letter_hyphen_check = /^[a-zA-Z\-]+$/;
+	let num_hyphen_check = /^[0-9\s\-]+$/;
+    let letter_hyphen_check = /^[A-Za-z\s\-]+$/;
     
 	// Input validation for inserting into Medication
 	if (
@@ -222,8 +222,8 @@ module.exports = (function () {
     ];
 	
 	// Variables used to validate an input only contains either numbers and hyphes or letters and hyphens
-    let num_hyphen_check = /^[0-9\-]+$/;
-    let letter_hyphen_check = /^[a-zA-Z\-]+$/;
+    let num_hyphen_check = /^[0-9\s\-]+$/;
+    let letter_hyphen_check = /^[A-Za-z\s\-]+$/;
 	
 	// Input validation for updating Medication
     if (
