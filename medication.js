@@ -182,8 +182,7 @@ module.exports = (function () {
     
 	// Variables used to validate an input only contains either numbers and hyphens or letters and hyphens
 	let num_hyphen_check = /^[0-9\s\-]+$/;
-    let letter_hyphen_check = /^[A-Za-z\s\&\-]+$/;
-    
+	let letter_hyphen_check = /^[A-Za-z\s\&\-\.]+$/; 
 	// Input validation for inserting into Medication
 	if (
       !inserts[0] === true ||
