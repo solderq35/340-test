@@ -1,0 +1,40 @@
+<html>
+  {{#each foo}}
+    {{this}}
+  {{/each}}
+  <!--
+<h3>Add new Medication & Pharmacy:</h3>
+    <form id="add_people_certificates" action="/mediphar" method="post">
+    Medication ID: <select name='medication_id'>
+        {{#each medication2}}
+          <option value='{{medication_id}}'>{{medication_id}}</option>
+        {{/each}}
+    </select>
+    <br>
+	    Pharmacy ID: <select name='pharmacy_id'>
+        {{#each pharmacy2}}
+          <option value='{{pharmacy_id}}'>{{pharmacy_id}}</option>
+        {{/each}}
+    </select><br>
+    <input type="submit" value="Submit">
+ </form>
+<br/>
+-->
+  <a href="/mediphar_insert">Insert to MediPhar</a>
+  <h3>Current Medication & Pharmacy:</h3>
+  <table>
+    <thead>
+      <th>Medication ID</th>
+      <th>Pharmacy iD</th>
+    </thead>
+    <tbody>
+      {{#each mediphar}}
+        <tr>
+          <td>{{medication_id}}</td>
+          <td>{{pharmacy_id}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+</html>
