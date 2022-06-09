@@ -10,6 +10,28 @@ https://github.com/knightsamar/cs340_sample_nodejs_app
 
 General Tip: Ctrl C to stop any node process in terminal
 
+# Heroku Version
+Switch to herokubranch
+
+## SETUP
+[More Info](https://youtu.be/ZZp0VIjTsbM)
+
+Make Heroku account and ClearDB account.
+
+Set up MySQL Workbench
+
+Create dbcon.js file using your ClearDB credentials.
+
+Run `npm install`
+
+Run `npm start` to run locally
+
+Make a local branch herokubranch2 so credentials aren't leaked from dbcon.js
+
+git push -f heroku herokubranch2:master to push to heroku site
+
+# OSU Version
+
 ## SETUP
 
 Must run `source ./ddq.sql` first on ENGR servers, if you haven't already 
