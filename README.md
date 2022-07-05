@@ -8,7 +8,7 @@ Proof of concept CRUD (Create, Read, Update, Delete) site, with database interac
 
 The site is meant to be used by a theoretical hospital. The user is able to insert new entries, update entries, delete entries, search and view existing entries for a variety of hospital-related applications.
 
- Technologies Used:
+ ### Technologies Used:
  * SQL (ClearDB) for database management
  * NodeJS for backend
  * Express Handlebars used for frontend templating of recurring site features
