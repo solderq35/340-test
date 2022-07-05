@@ -1,94 +1,40 @@
-# JeffLee Prototype
+# Hospital Website
 
-More info (first link has mostly everything you need, second link has info on permanent URL, third link is just direct Github link to example repo):
+## Site URL (Try it Yourself!)
+**https://hospital-database-node.herokuapp.com/**
 
-https://canvas.oregonstate.edu/courses/1870048/pages/learn-using-javascript-and-node-dot-js?module_item_id=21479576
+## About
+Proof of concept CRUD (Create, Read, Update, Delete) site, with database interaction.
 
-https://canvas.oregonstate.edu/courses/1870048/assignments/8856861
+The site is meant to be used by a theoretical hospital. The user is able to insert new entries, update entries, delete entries, search and view existing entries for a variety of hospital-related applications.
 
-https://github.com/knightsamar/cs340_sample_nodejs_app
+ Technologies Used:
+ * SQL (ClearDB) for database management
+ * NodeJS for backend
+ * Express Handlebars used for frontend templating of recurring site features
+ * Deployed on Heroku
 
-General Tip: Ctrl C to stop any node process in terminal
+## Screenshots
+![Overview](https://media.discordapp.net/attachments/833505136290299935/993939606959575171/unknown.png?width=1406&height=670)
 
-# Heroku Version
-Switch to herokubranch
+![Search](https://media.discordapp.net/attachments/833505136290299935/993940525327597708/unknown.png?width=1440&height=648
+)
 
-## SETUP
+![Update](https://media.discordapp.net/attachments/833505136290299935/993940900281589910/unknown.png?width=1440&height=557)
+
+## Usage Setup
 [More Info](https://youtu.be/ZZp0VIjTsbM)
 
-Make Heroku account and ClearDB account.
+* Make Heroku account and ClearDB account.
+* Set up MySQL Workbench
+* Create `dbcon.js` file using your ClearDB credentials, with `dbdon.js.example` file as a template.
 
-Set up MySQL Workbench
+**How to Run Locally**
 
-Create dbcon.js file using your ClearDB credentials.
+* Run `npm install`
+* Run `npm start`
 
-Run `npm install`
+**How to Deploy**
 
-Run `npm start` to run locally
-
-Make a local branch herokubranch2 so credentials aren't leaked from dbcon.js
-
-git push -f heroku herokubranch2:master to push to heroku site
-
-# OSU Version
-
-## SETUP
-
-Must run `source ./ddq.sql` first on ENGR servers, if you haven't already 
-
-Log into OSU VPN (needed to host webpage if using node).
-
-Create new folder on ENGR servers.
-
-Git clone or download the repository to your new ENGR server folder.
-
-Edit the dbcon.js to contain your own credentials
-
-### NPM Modules
-
-Run in terminal/Putty:
-`npm install`
-
-### Non Permanent URL Output
-
-`node main.js {PORT}`
-
-(1024 < PORT < 65535)
-
-Go to `http://flip{x}.engr.oregonstate.edu:{PORT}` to view webpage (must be on OSU VPN)
-
-Where {x} is the flip number you're currently on (1-3), and PORT is port you selected in previous step.
-
-Ex: `http://flip2.engr.oregonstate.edu:9530/`
-
-### Permanent URL Output
-
-Run following in terminal:
-
-`npm i mysql express forever --save`
-
-`alias forever='./node_modules/forever/bin/forever'`
-
-Note: you want to add `alias forever='./node_modules/forever/bin/forever'` to your `.bashrc` file in your ENGR directory, so you don't have to type this out every time.
-
-`forever start main.js {PORT}`
-
-`ex: forever start main.js 9530`
-
-(1024 < PORT < 65535)
-
-Pick another number if taken.
-
-Go to `http://flip{x}.engr.oregonstate.edu:{PORT}` to view webpage (must be on OSU VPN)
-
-Where {x} is the flip number you're currently on (1-3), and PORT is port you selected in previous step.
-
-Ex: `http://flip2.engr.oregonstate.edu:9530/`
-
-Delete permanent URL:
-
-`forever list`
-
-see list of PIDs of your "forever" URL
-
-`forever stop {PID}`
+* Make a local branch herokubranch2 so credentials aren't leaked from dbcon.js
+* git push -f heroku herokubranch2:master to push to heroku site
