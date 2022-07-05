@@ -3,3 +3,5 @@ var pool = mysql.createPool({
 //insert MySQL credentials here
 });
 module.exports.pool = pool;
+
+//template
