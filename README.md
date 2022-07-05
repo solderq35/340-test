@@ -32,8 +32,7 @@ Screenshot of Pharmacy Update Page after clicking on "Update" for pharmacy "Wall
 ![Update](https://media.discordapp.net/attachments/833505136290299935/993973421958504469/unknown.png)
 
 Screenshot of Pharmacy page after I updated "Wallgreens&" pharmacy to have the name "Wallgreens" instead:
-
-![Update2](https://media.discordapp.net/attachments/833505136290299935/993973421958504469/unknown.png)
+![Update2](https://media.discordapp.net/attachments/833505136290299935/993973534525239436/unknown.png?width=749&height=670)
 
 ## Usage Setup
 [More Info](https://youtu.be/ZZp0VIjTsbM)
