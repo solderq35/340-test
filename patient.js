@@ -94,6 +94,11 @@ module.exports = (function () {
     get_search_error(res, context, complete);
     get_insert_error(res, context, complete);
 
+	// Make errors disappear on reload
+	search_error = "";
+	insert_error="";
+	update_error="";
+
     // Render page
     function complete() {
       callbackCount++;
@@ -163,6 +168,7 @@ module.exports = (function () {
 
         if (callbackCount >= 2) {
           res.render("update-patient", context);
+		  update_error="";
         }
       }
     }

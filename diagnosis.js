@@ -167,6 +167,11 @@ module.exports = (function () {
     get_search_error(res, context, complete);
     get_update_error(res, context, complete);
 
+	// Make errors disappear on reload
+	search_error = "";
+	insert_error="";
+	update_error="";
+
     // Render page
     function complete() {
       callbackCount++;
@@ -242,6 +247,7 @@ module.exports = (function () {
         callbackCount++;
         if (callbackCount >= 6) {
           res.render("update-diagnosis", context);
+		  update_error="";
         }
       }
     }

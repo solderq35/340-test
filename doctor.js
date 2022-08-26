@@ -96,6 +96,11 @@ module.exports = (function () {
     get_search_error(res, context, complete);
     get_insert_error(res, context, complete);
     get_update_error(res, context, complete);
+	
+	// Make errors disappear on reload
+	search_error = "";
+	insert_error="";
+	update_error="";
 
     // Render page
     function complete() {
@@ -158,12 +163,13 @@ module.exports = (function () {
 	  error messages on the page */
       getDoctorEntry(res, mysql, context, req.params.id, complete);
       get_update_error(res, context, complete);
-
+	  
       // Render updated page
       function complete() {
         callbackCount++;
         if (callbackCount >= 2) {
           res.render("update-doctor", context);
+		  update_error="";
         }
       }
     }
