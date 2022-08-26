@@ -1,7 +1,7 @@
 # Hospital Website
 
 ## Site URL (Try it Yourself!)
-**https://hospital-database-node.herokuapp.com/**
+**https://hospital-website1.herokuapp.com/**
 
 ### Backup host if Heroku free plan expires after November 2022:
 **https://hospital-website.onrender.com/**
