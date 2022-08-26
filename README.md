@@ -3,6 +3,9 @@
 ## Site URL (Try it Yourself!)
 **https://hospital-database-node.herokuapp.com/**
 
+### Backup host if Heroku free plan expires after November 2022:
+**https://hospital-website.onrender.com/**
+
 ## About
 Proof of concept CRUD (Create, Read, Update, Delete) site, with database interaction.
 
@@ -47,6 +50,12 @@ Screenshot of Pharmacy page after I updated "Wallgreens&" pharmacy to have the n
 * Run `npm start`
 
 **How to Deploy**
+* Heroku Instructions
+	* Make a local branch herokubranch2 so ClearDB credentials aren't leaked from dbcon.js
+	* git push -f heroku herokubranch2:master to push to heroku site
+	
+* Render.com instructions
+	* https://render.com/docs/deploy-node-express-app
+	* Delete package-lock.json, install yarn (render.com works better with yarn?)
+	* Make a private cloned repository so ClearDB credentials aren't leaked (probably not best method but it works). Wasn't sure how to get render.com running in command line interface.
 
-* Make a local branch herokubranch2 so credentials aren't leaked from dbcon.js
-* git push -f heroku herokubranch2:master to push to heroku site
