@@ -35,11 +35,13 @@ Screenshot of Pharmacy page after I updated "Wallgreens&" pharmacy to have the n
 ![Update2](https://media.discordapp.net/attachments/833505136290299935/993973534525239436/unknown.png?width=749&height=670)
 
 ## Usage Setup
-[More Info](https://youtu.be/ZZp0VIjTsbM)
+**SQL Database Setup**
 
+* [Helpful Video Guide](https://youtu.be/ZZp0VIjTsbM)
+	* This video isn't 100% matching this project's use case but still a lot there that helps. Refer to the video if instructions below confuse.
 * Make Heroku account and ClearDB account (Even though we deploy on Render.com, we need Heroku for the free ClearDB database add-on).
-* Set up MySQL Workbench.
-* Create `dbcon.js` file using your ClearDB credentials, with `dbdon.js.example` file as a template.
+* Install MySQL Workbench or similar SQL tool, log in to your ClearDB database in MySQL Workbench. Run the file `ddqheroku.sql` (found in the project root directory) in MySQL Workbench to initiate the database creation and populate it with sample data.
+* Create `dbcon.js` file using your ClearDB credentials, with `dbdon.js.example` file (in root directory) as a template.
 
 **How to Run Locally**
 
@@ -52,5 +54,3 @@ Screenshot of Pharmacy page after I updated "Wallgreens&" pharmacy to have the n
 	* Tweak the Render settings from the above. Use `npm start` for start command.
 * **Optional Security Measure**: Make a duplicate, **private** cloned repository that is identical to the public repository. Remove `dbcon.js` from the public repository but keep `dbcon.js` in the private repository. Only deploy from the private repository to prevent your credentials from being leaked. Make sure the public repository has `dbcon.js` listed in the `.gitignore`.
 	* Another approach is to make a local (not remote) Git branch and keep your credentials there, but this requires command line interface from Render.com which I was unable to figure out.
-* **Optional Tip for Render.com free plan**: Use something like [Uptime Robot](https://uptimerobot.com/) to ping your site every 15 minutes (use Uptime Robot's "HTTPS Monitor" option). By default, Render.com pages on the free plan will "spin down" after 15 minutes of inactivity and will take 30+ seconds to load after that.
-	* Note: If you have multiple Render.com apps on a free plan this is not a good idea, since if you run your app 24/7 you will only have enough hours on the free plan for one app.
