@@ -14,6 +14,11 @@ The site is meant to be used by a theoretical hospital. The user is able to inse
  * Express Handlebars used for frontend templating of recurring site features
  * Deployed on Render.com
 
+ ### Database Design
+ * [Entity Relationships Diagram](https://media.discordapp.net/attachments/833505136290299935/1013128131256787106/unknown.png)
+ * [Schema](https://media.discordapp.net/attachments/833505136290299935/1013128945656418435/unknown.png?width=548&height=669)
+ * The final SQL implementation can be viewed in the `ddqheroku.sql` file [here](https://github.com/solderq35/hospital-website/blob/renderbranch/ddqheroku.sql).
+
 ## Screenshots
 
 Screenshot of Pharmacy page:
@@ -40,8 +45,9 @@ Screenshot of Pharmacy page after I updated "Wallgreens&" pharmacy to have the n
 * [Helpful Video Guide](https://youtu.be/ZZp0VIjTsbM)
 	* This video isn't 100% matching this project's use case but still a lot there that helps. Refer to the video if instructions below confuse.
 * Make Heroku account and ClearDB account (Even though we deploy on Render.com, we need Heroku for the free ClearDB database add-on).
-* Install MySQL Workbench or similar SQL tool, log in to your ClearDB database in MySQL Workbench. Run the file `ddqheroku.sql` (found in the project root directory) in MySQL Workbench to initiate the database creation and populate it with sample data.
+* Install MySQL Workbench or similar SQL tool, log in to your ClearDB database in MySQL Workbench. Run the file `ddqheroku.sql` (found in the project root directory [here](https://github.com/solderq35/hospital-website/blob/renderbranch/ddqheroku.sql)) in MySQL Workbench to initiate the database creation and populate it with sample data.
 * Create `dbcon.js` file using your ClearDB credentials, with `dbdon.js.example` file (in root directory) as a template.
+* If you ever need to debug the SQL database, you can try running some of the commands found in the `dmq.sql` file [here](https://github.com/solderq35/hospital-website/blob/renderbranch/dmq.sql).
 
 **How to Run Locally**
 
