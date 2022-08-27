@@ -78,6 +78,9 @@ module.exports = (function () {
     getMedication(res, mysql, context, complete);
     get_insert_error(res, context, complete);
 
+	// Remove error after reload
+	insert_error = "";
+	
     // Render page
     function complete() {
       callbackCount++;
