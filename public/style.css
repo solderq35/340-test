@@ -27,10 +27,10 @@ ul {
 }
 
 ul.homeli {
-  margin: 10;
-  padding-left: 20;
-  padding-right: 20;
-  padding-top: 0;
+  margin: 0.625rem;
+  padding-left: 3rem;
+  padding-right: 1.25rem;
+  padding-top: 0px;
   overflow: shown;
   background-color: transparent;
   list-style-type: circle;
