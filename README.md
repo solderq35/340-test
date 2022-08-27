@@ -10,29 +10,11 @@ https://github.com/knightsamar/cs340_sample_nodejs_app
 
 General Tip: Ctrl C to stop any node process in terminal
 
-# Heroku Version
-Switch to herokubranch
+My attempt at a guide: https://github.com/solderq35/hospital-website/blob/osubranch/old%20stuff/guide2.md
+(May need to dig around the "old stuff" folder for some template files I removed from the main fulders).
 
 ## SETUP
-[More Info](https://youtu.be/ZZp0VIjTsbM)
-
-Make Heroku account and ClearDB account.
-
-Set up MySQL Workbench
-
-Create dbcon.js file using your ClearDB credentials.
-
-Run `npm install`
-
-Run `npm start` to run locally
-
-Make a local branch herokubranch2 so credentials aren't leaked from dbcon.js
-
-git push -f heroku herokubranch2:master to push to heroku site
-
-# OSU Version
-
-## SETUP
+**Note: These are deprecated instrucctions from back when this was an OSU CS340 project. My MariaDB account from OSU has since expired so I have no idea how well this version still works on OSU flip servers. There are also several bug fixes missing from this version, such as the fact that error messages don't go away even when you refresh the page, only going away when you make a correct input. I keep this for legacy purposes I guess.**
 
 Must run `source ./ddq.sql` first on ENGR servers, if you haven't already 
 
