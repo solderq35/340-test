@@ -11,9 +11,9 @@ body {
 
 .header-title {
   background: rgba(106, 140, 182, 1);
-  padding: 15px;
+  padding: 0.938rem;
   color: white;
-  font-size: 25px;
+  font-size: 1.563rem;
   font-weight: bold;
   cursor: default;
 }
@@ -39,13 +39,14 @@ ul.homeli {
 li.nonhome {
   float: left;
   color: white;
+  font-size: 1rem;
 }
 
 li a {
   display: block;
   text-align: left;
   color: white;
-  padding: 14px 16px;
+  padding: 0.875rem 1rem;
   text-decoration: none;
 }
 
@@ -54,7 +55,7 @@ li a:hover {
 }
 
 .topnav {
-  border-top: 3px solid red;
+  border-top: 0.188rem solid red;
 }
 
 h1.home {
@@ -62,27 +63,30 @@ h1.home {
 }
 
 .mainbody {
-  padding-left: 20px;
+  padding-left: 1.25rem;
 }
 
 .indexlink {
-  padding-left: 20px;
-  font-size: 20px;
+  padding-left: 1.25rem;
+  font-size: 1.25rem;
 }
 
 table,
 th,
 td {
-  border: 1px solid black;
-  padding: 5px;
+  border: 0.063rem solid black;
+  padding: 0.313rem;
+  font-size: 1rem;
 }
 
+text,
 button,
 input,
 select,
 form,
+h3,
 tr {
-  font-size: 15px;
+  font-size: 1rem;
 }
 
 a:link {
@@ -95,7 +99,7 @@ a.homelink {
 }
 
 input[type="text"] {
-  width: 350px;
+  width: 21.875rem;
 }
 
 a.blacklink {
@@ -104,4 +108,8 @@ a.blacklink {
 
 a.whitelink {
   color: white;
+}
+
+ul li { 
+padding: 0.313rem 0px; 
 }
