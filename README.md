@@ -39,16 +39,16 @@ Screenshot of Pharmacy page after I updated "Wallgreens&" pharmacy to have the n
 
 * Make Heroku account and ClearDB account (Even though we deploy on Render.com, we need Heroku for the free ClearDB database add-on).
 * Set up MySQL Workbench.
-* Create `dbcon.js` file using your ClearDB credentials, with `dbdon.js.example` file as a template. For deployment, you may want to move the `dbcon.js` file to a private repository or local-only branch (more on this below).
+* Create `dbcon.js` file using your ClearDB credentials, with `dbdon.js.example` file as a template.
 
 **How to Run Locally**
 
-* Run `yarn`
-* Run `npm start`
+* Run `yarn` to install node modules.
+* Run `npm start` to test the website locally.
 
 **How to Deploy**
-
-* Check [this page](https://render.com/docs/deploy-node-express-app).
+* Deploy app in [Render.com](https://render.com/) in your browser. Make a render.com account if you haven't already.
+* Check [this page](https://render.com/docs/deploy-node-express-app) for more info on how to deploy a NodeJS app on Render.
 	* Tweak the Render settings from the above. Use `npm start` for start command.
-* Delete `package-lock.json`, install yarn (Render.com works better with yarn?).
-* Make a duplicate, private cloned repository and deploy from the private repository so that ClearDB credentials aren't leaked (probably not best method but it works). Wasn't sure how to get render.com running in command line interface.
+* (Optional Security Measure) Make a duplicate, **private** cloned repository that is identical to the public repository. Remove `dbcon.js` from the public repository but keep `dbcon.js` in the private repository. Only deploy from the private repository to prevent your credentials from being leaked. Make sure the public repository has `dbcon.js` listed in the `.gitignore`.
+	* Another approach is to make a local (not remote) Git branch and keep your credentials there, but this requires command line interface from Render.com which I was unable to figure out.
