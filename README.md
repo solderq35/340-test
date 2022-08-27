@@ -1,9 +1,6 @@
 # Hospital Website
 
 ## Site URL (Try it Yourself!)
-**https://hospital-website1.herokuapp.com/**
-
-### Backup host if Heroku free plan expires after November 2022:
 **https://hospital-website.onrender.com/**
 
 ## About
@@ -15,7 +12,7 @@ The site is meant to be used by a theoretical hospital. The user is able to inse
  * SQL (ClearDB) for database management
  * NodeJS for backend
  * Express Handlebars used for frontend templating of recurring site features
- * Deployed on Heroku
+ * Deployed on Render.com
 
 ## Screenshots
 
@@ -40,22 +37,18 @@ Screenshot of Pharmacy page after I updated "Wallgreens&" pharmacy to have the n
 ## Usage Setup
 [More Info](https://youtu.be/ZZp0VIjTsbM)
 
-* Make Heroku account and ClearDB account.
-* Set up MySQL Workbench
-* Create `dbcon.js` file using your ClearDB credentials, with `dbdon.js.example` file as a template.
+* Make Heroku account and ClearDB account (Even though we deploy on Render.com, we need Heroku for the free ClearDB database add-on).
+* Set up MySQL Workbench.
+* Create `dbcon.js` file using your ClearDB credentials, with `dbdon.js.example` file as a template. For deployment, you may want to move the `dbcon.js` file to a private repository or local-only branch (more on this below).
 
 **How to Run Locally**
 
-* Run `npm install`
+* Run `yarn`
 * Run `npm start`
 
 **How to Deploy**
-* Heroku Instructions
-	* Make a local branch herokubranch2 so ClearDB credentials aren't leaked from dbcon.js
-	* git push -f heroku herokubranch2:master to push to heroku site
-	
-* Render.com instructions
-	* https://render.com/docs/deploy-node-express-app
-	* Delete package-lock.json, install yarn (render.com works better with yarn?)
-	* Make a private cloned repository so ClearDB credentials aren't leaked (probably not best method but it works). Wasn't sure how to get render.com running in command line interface.
 
+* Check [this page](https://render.com/docs/deploy-node-express-app).
+	* Tweak the Render settings from the above. Use `npm start` for start command.
+* Delete `package-lock.json`, install yarn (Render.com works better with yarn?).
+* Make a duplicate, private cloned repository and deploy from the private repository so that ClearDB credentials aren't leaked (probably not best method but it works). Wasn't sure how to get render.com running in command line interface.
