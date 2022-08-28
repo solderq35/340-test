@@ -1,7 +1,8 @@
 # Hospital Website
 
 ## Site URL (Try it Yourself!)
-**https://hospital-website.onrender.com/**
+**https://hospital-website1.herokuapp.com/**
+- Heroku site may be deprecated after November 28
 
 ## About
 Proof of concept CRUD (Create, Read, Update, Delete) site, with database interaction.
