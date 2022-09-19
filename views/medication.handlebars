@@ -5,10 +5,10 @@
   <h1>Medication</h1>
   <h3>Add New Medication (Please fill in all Input Fields):</h3>
 
-  <!---rror message for invalid insertion inputs -->
+  <!---ror message for invalid insertion inputs -->
   <h4>{{insert_error}}</h4>
 
-  <!---orm to insert new Medication entry -->
+  <!---rm to insert new Medication entry -->
   <form
     id="addperson"
     action="/medication"
@@ -45,10 +45,10 @@
   >
     <label> Search for Medication by Medication Name:</label>
 
-    <!---rror message for invalid search inputs -->
+    <!---ror message for invalid search inputs -->
     <h4>{{search_error}}</h4>
 
-    <!---earch Input Form -->
+    <!---arch Input Form -->
     <input
       id="search_string"
       type="text"
@@ -61,7 +61,7 @@
 
   </form>
 
-  <!---isplay Current Medication Entity Table -->
+  <!---splay Current Medication Entity Table -->
   <h3>Current Medication:</h3>
   <table>
     <thead>
@@ -76,7 +76,7 @@
           <td>{{medication_name}}</td>
           <td>{{manufacturer}}</td>
 
-          <!---elete and Update Buttons -->
+          <!---lete and Update Buttons -->
           <td><button onclick="deletemedication({{id}})">Delete</button></td>
           <td><button
               onclick="location.href='/medication/{{id}}'"
