@@ -6,10 +6,10 @@
   <h1>Patient</h1>
   <h3>Add New Patient (Please fill in all Input Fields):</h3>
 
-  <!---Error message for invalid insertion inputs -->
+  <!---rror message for invalid insertion inputs -->
   <h4>{{insert_error}}</h4>
 
-  <!---Form to insert new Patient entry -->
+  <!---orm to insert new Patient entry -->
   <form
     id="addperson"
     action="/patient"
@@ -76,10 +76,10 @@
   >
     <label> Search for Patient by First Name:</label>
 
-    <!---Error message for invalid search inputs -->
+    <!---rror message for invalid search inputs -->
     <h4>{{search_error}}</h4>
 
-    <!---Search Input Form -->
+    <!---earch Input Form -->
     <input
       id="search_string"
       type="text"
@@ -91,7 +91,7 @@
     <button type="button"><a class="blacklink" href="/patient">Cancel Search</a></button>
   </form>
 
-  <!---Display Current Patient Entity Table -->
+  <!---isplay Current Patient Entity Table -->
   <h3>Current Patients:</h3>
   <table>
     <thead>
@@ -114,7 +114,7 @@
           <td>{{patient_email}}</td>
           <td>{{patient_contact}}</td>
 
-          <!---Delete and Update Buttons -->
+          <!---elete and Update Buttons -->
           <td><button onclick="deletepatient({{id}})">Delete</button></td>
           <td><button
               onclick="location.href='/patient/{{id}}'"
