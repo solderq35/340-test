@@ -6,10 +6,10 @@
   <h1>Diagnosis</h1>
   <h3>Add new Diagnosis (Please fill in all Input Fields):</h3>
 
-  <!---ror message for invalid insertion inputs -->
+  <!-- Error message for invalid insertion inputs -->
   <h4>{{insert_error}}</h4>
 
-  <!---rm to insert new Diagnosis entry -->
+  <!-- Form to insert new Diagnosis entry -->
   <form
     id="add_people_certificates"
     action="/diagnosis"
@@ -25,7 +25,7 @@
     <br />
     <br />
 
-    <!---lect Menu (dropdown) for Medication ID -->
+    <!-- Select Menu (dropdown) for Medication ID -->
     Medication ID:
     <select name="medication_id">
       <option disabled selected value> -- select an option -- </option>
@@ -37,7 +37,7 @@
     <br />
     <br />
 
-    <!---lect Menu (dropdown) for Patient ID -->
+    <!-- Select Menu (dropdown) for Patient ID -->
     Patient ID:
     <select name="patient_id">
       <option disabled selected value> -- select an option -- </option>
@@ -48,7 +48,7 @@
     </select><br />
     <br />
 
-    <!---lect Menu (dropdown) for Doctor ID -->
+    <!-- Select Menu (dropdown) for Doctor ID -->
     Doctor ID:
     <select name="doctor_id">
       <option disabled selected value> -- select an option -- </option>
@@ -59,7 +59,7 @@
     </select><br />
     <br />
 
-    <!---lect Menu (dropdown) for Pharmacy ID -->
+    <!-- Select Menu (dropdown) for Pharmacy ID -->
     Pharmacy ID:
     <select name="pharmacy_id">
       <option disabled selected value> -- select an option -- </option>
@@ -91,10 +91,10 @@
   >
     <label> Search for Diagnosis by Diagnosis Name:</label>
 
-    <!---ror message for invalid search inputs -->
+    <!-- Error message for invalid search inputs -->
     <h4>{{search_error}}</h4>
 
-    <!---arch Input Form -->
+    <!-- Search Input Form -->
     <input
       id="search_string"
       type="text"
@@ -107,7 +107,7 @@
 
   </form>
 
-  <!---splay Current Diagnosis Entity Table -->
+  <!-- Display Current Diagnosis Entity Table -->
   <h3>Current Diagnosis:</h3>
   <table>
     <thead>
@@ -140,7 +140,7 @@
           <td>{{decifix charge}}</td>
           <td>{{diagnosis_date}}</td>
 
-          <!---lete and Update Buttons -->
+          <!-- Delete and Update Buttons -->
           <td><button onclick="deletediagnosis({{id}})">Delete</button></td>
           <td><button
               onclick="location.href='/diagnosis/{{id}}'"

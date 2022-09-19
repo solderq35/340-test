@@ -2,10 +2,10 @@
 
   <h1>Update Medication {{medication.id}} ({{medication.medication_name}})</h1>
 
-  <!---ror message for invalid update inputs -->
+  <!-- Error message for invalid update inputs -->
   <h4>{{update_error}}</h4>
 
-  <!---date Medication Entity Form -->
+  <!-- Update Medication Entity Form -->
   <form
     id="update-medication"
     action="/medication"
@@ -31,7 +31,7 @@
     <br />
   </form>
 
-  <!---nalize Update Buttons -->
+  <!-- Finalize Update Buttons -->
   <button onclick="updateMedication({{medication.id}})">Update</button>
   <td><button onclick="location.href='/medication'">Cancel Update</button></td>
 </html>
