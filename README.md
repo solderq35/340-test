@@ -1,8 +1,8 @@
 # Hospital Website
 
 ## Site URL (Try it Yourself!)
-**https://hospital-website2-production.up.railway.app/** (main URL)
-**https://hospital-website.glitch.me/** (backup, slow startup time)
+- **https://hospital-website2-production.up.railway.app/** (main URL)
+- **https://hospital-website.glitch.me/** (backup, slow startup time)
 
 ## About
 
