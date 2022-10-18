@@ -1,8 +1,8 @@
 # Hospital Website
 
 ## Site URL (Try it Yourself!)
-
-**https://hospital-website.glitch.me/**
+**https://hospital-website2-production.up.railway.app/** (main URL)
+**https://hospital-website.glitch.me/** (backup, slow startup time)
 
 ## About
 
@@ -15,7 +15,7 @@ The site is meant to be used by a theoretical hospital. The user is able to inse
 - SQL (ClearDB) for database management
 - NodeJS for backend
 - Express Handlebars used for frontend templating of recurring site features
-- Deployed on Glitch.com
+- Deployed on [Railway](https://railway.app/)
 
 ### Database Design
 
@@ -60,12 +60,6 @@ Screenshot of Pharmacy page after I updated "Wallgreens&" pharmacy to have the n
 
 **How to Deploy**
 
-- Deploy app in [Glitch.com](https://glitch.com) in your browser. Make a glitch.com account if you haven't already.
-- Select "New Project" from upper right > "Import from Github". 
-- If you have a private repository, then after you get to the "edit project" page, click on `Terminal` in the left corner, and `git clone` the project with Glitch's remote Terminal. 
-  - Use `https` cloning URL, not `SSH`, and use a Personal Access Token from Github as well. 
-  - Then you might have to move the files into your root directory via `mv FOLDERNAME/* .`
-- Refresh the project by typing `refresh` into Glitch Terminal. 
-- Finally, click `Preview` in the lower left to see the deployed project.
-- **Optional Security Measure**: Make a duplicate, **private** cloned repository that is identical to the public repository. Remove `dbcon.js` from the public repository but keep `dbcon.js` in the private repository. Only deploy from the private repository to prevent your credentials from being leaked. Make sure the public repository has `dbcon.js` listed in the `.gitignore`.
-  - Another approach is to make a local (not remote) Git branch and keep your credentials there, but this requires command line interface from Render.com which I was unable to figure out.
+- Currently deployed on [Railway](https://railway.app/)
+- **Optional Security Measure**: I made a duplicate, **private** cloned repository that was identical to the public repository. I removed `dbcon.js` from the public repository, while keeping `dbcon.js` in the private repository. I deployed from the private repository to prevent my credentials from being leaked, and I made sure that the public repository had `dbcon.js` listed in the `.gitignore`.
+  - Another approach is to make a local (not remote) Git branch and keep your credentials there.
