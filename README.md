@@ -2,7 +2,7 @@
 
 ## Site URL (Try it Yourself!)
 
-**https://hospital-website.onrender.com/**
+**https://hospital-website.glitch.me/**
 
 ## About
 
@@ -15,7 +15,7 @@ The site is meant to be used by a theoretical hospital. The user is able to inse
 - SQL (ClearDB) for database management
 - NodeJS for backend
 - Express Handlebars used for frontend templating of recurring site features
-- Deployed on Render.com
+- Deployed on Glitch.com
 
 ### Database Design
 
@@ -60,8 +60,10 @@ Screenshot of Pharmacy page after I updated "Wallgreens&" pharmacy to have the n
 
 **How to Deploy**
 
-- Deploy app in [Render.com](https://render.com/) in your browser. Make a render.com account if you haven't already.
-- Check [this page](https://render.com/docs/deploy-node-express-app) for more info on how to deploy a NodeJS app on Render.
-  - Tweak the Render settings from the above. Use `npm start` for start command.
+- Deploy app in [Glitch.com](https://glitch.com) in your browser. Make a glitch.com account if you haven't already.
+- Select "New Project" from upper right > "Import from Github". 
+- If you have a private repository, then after you get to the "edit project" page, click on `Terminal` in the left corner, and `git clone` the project with Glitch's remote Terminal. Use `https` cloning URL, not `SSH`, and use a Personal Access Token from Github as well. Then you might have to move the files into your root directory via `mv FOLDERNAME/* .`. 
+- Refresh the project by typing `refresh` into Glitch Terminal. 
+- Finally, click `Preview` in the lower left to see the deployed project.
 - **Optional Security Measure**: Make a duplicate, **private** cloned repository that is identical to the public repository. Remove `dbcon.js` from the public repository but keep `dbcon.js` in the private repository. Only deploy from the private repository to prevent your credentials from being leaked. Make sure the public repository has `dbcon.js` listed in the `.gitignore`.
   - Another approach is to make a local (not remote) Git branch and keep your credentials there, but this requires command line interface from Render.com which I was unable to figure out.
