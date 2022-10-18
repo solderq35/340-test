@@ -62,7 +62,9 @@ Screenshot of Pharmacy page after I updated "Wallgreens&" pharmacy to have the n
 
 - Deploy app in [Glitch.com](https://glitch.com) in your browser. Make a glitch.com account if you haven't already.
 - Select "New Project" from upper right > "Import from Github". 
-- If you have a private repository, then after you get to the "edit project" page, click on `Terminal` in the left corner, and `git clone` the project with Glitch's remote Terminal. Use `https` cloning URL, not `SSH`, and use a Personal Access Token from Github as well. Then you might have to move the files into your root directory via `mv FOLDERNAME/* .`. 
+- If you have a private repository, then after you get to the "edit project" page, click on `Terminal` in the left corner, and `git clone` the project with Glitch's remote Terminal. 
+  - Use `https` cloning URL, not `SSH`, and use a Personal Access Token from Github as well. 
+  - Then you might have to move the files into your root directory via `mv FOLDERNAME/* .`
 - Refresh the project by typing `refresh` into Glitch Terminal. 
 - Finally, click `Preview` in the lower left to see the deployed project.
 - **Optional Security Measure**: Make a duplicate, **private** cloned repository that is identical to the public repository. Remove `dbcon.js` from the public repository but keep `dbcon.js` in the private repository. Only deploy from the private repository to prevent your credentials from being leaked. Make sure the public repository has `dbcon.js` listed in the `.gitignore`.
