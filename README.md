@@ -1,8 +1,7 @@
 # Hospital Website
 
-## Site URL (Try it Yourself!)
-- **https://hospital-website.up.railway.app/** (main URL)
-- **https://hospital-website.glitch.me/** (backup, slow startup time)
+## Disclaimer
+The site URL index page can be seen here hosted on [railway](https://hospital-website.up.railway.app/), but any other page **will not load**, as the Heroku / ClearDB database I was using is no longer available for free, as of December 18, 2023. The info given below is still accurate from an educational standpoint, and there a variety of other database vendors (although if you pick a nonrelational database vendor like MongoDB, the SQL code as written below will need adjustments).
 
 ## About
 
