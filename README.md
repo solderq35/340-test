@@ -18,7 +18,28 @@ The site is meant to be used by a theoretical hospital. The user is able to inse
 
 ### Database Design
 
-- SQL implementation can be viewed in the `ddqheroku.sql` file [here](https://github.com/solderq35/hospital-website/blob/renderbranch/ddqheroku.sql).
+- [Entity Relationships Diagram](https://i.ibb.co/HFznKKY/erd.png)
+- [Schema](https://i.ibb.co/z6M2f8p/schema.png)
+- The final SQL implementation can be viewed in the `ddqheroku.sql` file [here](https://github.com/solderq35/hospital-website/blob/renderbranch/ddqheroku.sql).
+
+## Screenshots
+
+Screenshot of Pharmacy page:
+![Overview](https://i.ibb.co/pwt08vx/pharmacy.png)
+
+Screenshot of Pharmacy Page after Searching for pharmacy named "Kroger":
+![Search](https://i.ibb.co/jZPzR26/pharmacysearch.png)
+
+Screenshot of Pharmacy page after filling out the "Add new Pharmacy" form and adding a new Pharmacy "Johnson Pharmacy": ![Add](https://i.ibb.co/VMbPDWD/pharmacyadd.png)
+
+Screenshot of Pharmacy page after deleting " Albertsons" pharmacy:
+![Delete](https://i.ibb.co/10j9dGJ/deletepharmacy.png)
+
+Screenshot of Pharmacy Update Page after clicking on "Update" for pharmacy "Wallgreens&":
+![Update](https://i.ibb.co/6gJhyPh/updatepharmacy.png)
+
+Screenshot of Pharmacy page after I updated "Wallgreens&" pharmacy to have the name "Wallgreens" instead:
+![Update2](https://i.ibb.co/9sNZrwC/updatepharmacy2.png)
 
 ## Usage Setup
 
