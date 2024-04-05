@@ -1,7 +1,12 @@
 # Hospital Website
 
-## Disclaimer
-The site URL index page can be seen here hosted on [render.com](https://hospital-website.onrender.com/), but any other page **will not load**, as the Heroku / ClearDB database I was using is no longer available for free, as of December 18, 2023. The info given below is otherwise still accurate from an educational standpoint, and there a variety of other database vendors that may offer free or cheap plans (do your own research). If you pick a nonrelational database vendor like MongoDB, the SQL code as written below will need adjustments, as [seen here](https://web.engr.oregonstate.edu/~hessro/teaching/cs493-sp22#Using-MongoDB-to-Store-API-Data).
+## DISCLAIMER
+- **This project will be archived as read-only indefinitely as of April 5, 2024**. Any existing site deployments listed below will stay up, but future maintenance or fixes are not planned
+- The site URL index page will load as expected, but any other page **will not load**, as the Heroku / ClearDB database I was using is no longer available for free, as of December 18, 2023
+- The info given below is otherwise still accurate from an educational standpoint, and there a variety of other database vendors that may offer free or cheap plans (do your own research). If you pick a nonrelational database vendor like MongoDB, the SQL code as written below will need adjustments, as [seen here](https://web.engr.oregonstate.edu/~hessro/teaching/cs493-sp22#Using-MongoDB-to-Store-API-Data)
+
+## Site URL (Try it Yourself!)
+- https://hospital-website.onrender.com/
 
 ## About
 
