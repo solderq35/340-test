@@ -1,8 +1,9 @@
 # Hospital Website
 
 ## DISCLAIMER
-- **This project will be archived as read-only indefinitely as of April 5, 2024**. Any existing site deployments listed below will stay up, but future maintenance or fixes are not planned
-- The site URL index page will load as expected, but any other page **will not load**, as the Heroku / ClearDB database I was using is no longer available for free, as of December 18, 2023
+- **This project will be archived as read-only indefinitely as of April 5, 2024**. Any existing site deployments listed below *may* stay up, but future maintenance or fixes are not planned
+  - The production deployment I was using on [render.com](https://hospital-website.onrender.com/) will only load the index page (which doesn't make any database calls), as the Heroku / ClearDB database I was using is no longer available for free, as of December 18, 2023
+  - In theory, this project should still work with a locally deployed SQL database or a cloud SQL database (which you may or may not have to pay for). However, future compatibility with newer NodeJS versions (probably needed for most cloud deployments) is not guaranteed; as listed below this was last tested with NodeJS v16.15.1
 - The info given below is otherwise still accurate from an educational standpoint, and there a variety of other database vendors that may offer free or cheap plans (do your own research). If you pick a nonrelational database vendor like MongoDB, the SQL code as written below will need adjustments, as [seen here](https://web.engr.oregonstate.edu/~hessro/teaching/cs493-sp22#Using-MongoDB-to-Store-API-Data)
 
 ## Site URL (Try it Yourself!)
@@ -17,7 +18,7 @@ The site is meant to be used by a theoretical hospital. The user is able to inse
 ### Technologies Used:
 
 - SQL (ClearDB) for database management
-- NodeJS for backend
+- NodeJS for backend (**last tested to work on NodeJS v16.15.1**)
 - Express Handlebars used for frontend templating of recurring site features
 - Deployed on [render.com](https://render.com/)
 
@@ -53,6 +54,7 @@ Screenshot of Pharmacy page after I updated "Wallgreens&" pharmacy to have the n
 - [Helpful Video Guide](https://youtu.be/ZZp0VIjTsbM)
   - This video isn't 100% matching this project's use case but still a lot there that helps. Refer to the video if instructions below confuse.
 - Make Heroku account and ClearDB account (Even though we deploy on Render.com, we need Heroku for the free ClearDB database add-on).
+  - **April 5, 2024 edit: The Heroku ClearDB add-on is no longer free; there may be other free relational (SQL) database offerings out there, do your own research**
 - Install MySQL Workbench or similar SQL tool, log in to your ClearDB database in MySQL Workbench. Run the file `ddqheroku.sql` (found in the project root directory [here](https://github.com/solderq35/hospital-website/blob/renderbranch/ddqheroku.sql)) in MySQL Workbench to initiate the database creation and populate it with sample data.
 - Create `dbcon.js` file using your ClearDB credentials, with `dbdon.js.example` file (in root directory) as a template.
 - If you ever need to debug the SQL database, you can try running some of the commands found in the `dmq.sql` file [here](https://github.com/solderq35/hospital-website/blob/renderbranch/dmq.sql).
