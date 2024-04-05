@@ -1,7 +1,7 @@
 # Hospital Website
 
 ## Disclaimer
-The site URL index page can be seen here hosted on [railway](https://hospital-website.up.railway.app/), but any other page **will not load**, as the Heroku / ClearDB database I was using is no longer available for free, as of December 18, 2023. The info given below is otherwise still accurate from an educational standpoint, and there a variety of other database vendors that may offer free or cheap plans (do your own research). If you pick a nonrelational database vendor like MongoDB, the SQL code as written below will need adjustments, as [seen here](https://web.engr.oregonstate.edu/~hessro/teaching/cs493-sp22#Using-MongoDB-to-Store-API-Data).
+The site URL index page can be seen here hosted on [render.com](https://hospital-website.onrender.com/), but any other page **will not load**, as the Heroku / ClearDB database I was using is no longer available for free, as of December 18, 2023. The info given below is otherwise still accurate from an educational standpoint, and there a variety of other database vendors that may offer free or cheap plans (do your own research). If you pick a nonrelational database vendor like MongoDB, the SQL code as written below will need adjustments, as [seen here](https://web.engr.oregonstate.edu/~hessro/teaching/cs493-sp22#Using-MongoDB-to-Store-API-Data).
 
 ## About
 
@@ -14,7 +14,7 @@ The site is meant to be used by a theoretical hospital. The user is able to inse
 - SQL (ClearDB) for database management
 - NodeJS for backend
 - Express Handlebars used for frontend templating of recurring site features
-- Deployed on [Railway](https://railway.app/)
+- Deployed on [render.com](https://render.com/)
 
 ### Database Design
 
@@ -59,6 +59,6 @@ Screenshot of Pharmacy page after I updated "Wallgreens&" pharmacy to have the n
 
 **How to Deploy**
 
-- Currently deployed on [Railway](https://railway.app/)
+- Currently deployed on [render.com](https://render.com/)
 - **Optional Security Measure**: I made a duplicate, **private** cloned repository that was identical to the public repository. I removed `dbcon.js` from the public repository, while keeping `dbcon.js` in the private repository. I deployed from the private repository to prevent my credentials from being leaked, and I made sure that the public repository had `dbcon.js` listed in the `.gitignore`.
   - Another approach is to make a local (not remote) Git branch and keep your credentials there.
